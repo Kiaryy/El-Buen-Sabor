@@ -1,0 +1,230 @@
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat+Alternates:wght@400;700&display=swap');
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*-------------------- HEADER --------------------*/
+
+.header, .footer {
+    background-color: #333;
+	color: white;
+	text-align: center;
+	padding: 10px 0;
+}
+
+.header {
+	background-color: #FFD284;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 50px;
+}
+
+.header .logo {
+	font-size: 24px;
+	font-weight: bold;
+	font-family: 'Montserrat Alternates', sans-serif;
+	color: #333333;
+}
+
+.header .logo span {
+	color: #FFA101;
+}
+
+.header nav {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+}
+
+.header nav a {
+	color: #333;
+	margin: 0 15px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.header .register-btn {
+	background-color: #FFD284;
+	border: 3px solid #FFA101;
+	padding: 5px 15px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	margin-left: 20px;
+}
+
+/*-------------------- CARRITO --------------------*/
+
+.back-to-menu {
+	display: block;
+	margin: 20px 50px;
+	background-color: #f8b400;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-family: 'Lato', sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 18px;
+	cursor: pointer;
+	width: 169px;
+	height: 40px;
+}
+
+.main-content {
+	display: flex;
+	justify-content: space-around;
+	padding: 50px 0;
+	flex: 1;
+}
+
+.main-content > div {
+	width: 30%;
+	padding: 0 20px;
+}
+
+.main-content h2 {
+	text-align: center;
+	margin-bottom: 20px;
+	font-family: 'Lato', sans-serif;
+}
+
+.main-content .order-summary, .main-content .suggestions {
+	border-left: 1px solid #FFA101;
+	border-right: 1px solid #FFA101;
+	padding: 0 20px;
+}
+
+.main-content .order-summary h2 {
+	margin-top: -60px;
+	padding-top: 0;
+	text-align: center;
+}
+
+.main-content .suggestions h2 {
+	margin-top: -20px;
+}
+
+.main-content .order-summary ul, .main-content .suggestions ul {
+	list-style: none;
+	padding: 0;
+}
+
+.main-content .order-summary ul li, .main-content .suggestions ul li {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	font-family: 'Lato', sans-serif;
+}
+
+.main-content .order-summary ul li span, .main-content .suggestions ul li span {
+	background-color: #fff;
+	border: 1px solid #FFA101;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.main-content .order-summary .total {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.main-content .order-summary .total span {
+	font-size: 24px;
+}
+
+.main-content .order-summary .btn, .main-content .suggestions .btn {
+	display: block;
+	width: 100%;
+	text-align: center;
+	background-color: #f8b400;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	font-weight: bold;
+	margin-top: 20px;
+	cursor: pointer;
+	font-family: 'Lato', sans-serif;
+}
+
+.main-content .order-summary .edit-btn {
+	background-color: #333333;
+	color: #FFA101;
+	font-family: 'Lato', sans-serif;
+}
+
+.shipping-info {
+	padding-left: 40px; 
+	border-right: 1px solid #FFA101;
+}
+
+.shipping-info h2 {
+	margin-top: -20px; 
+	font-family: 'Lato', sans-serif;
+}
+
+.shipping-info p {
+	margin-top: 20px; 
+	font-family: 'Lato', sans-serif;
+}
+
+.shipping-info .edit-btn {
+	background-color: #333333;
+	color: #FFA101;
+	font-family: 'Lato', sans-serif;
+	border-radius: 10px;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+}
+
+/*-------------------- FOOTER --------------------*/
+
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 50px;
+	margin-top: auto;
+	flex-direction: column;
+}
+
+.footer .logo {
+	font-size: 18px;
+	font-weight: bold;
+	font-family: 'Montserrat Alternates', sans-serif;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.footer .logo span {
+	color: #FFA101;
+}
+
+.footer .info {
+	text-align: justify;
+	width: 100%;
+	max-width: 600px;
+	font-family: 'Lato', sans-serif;
+}
+
+.footer .info div {
+	margin-bottom: 10px;
+}
+
+.footer .info i {
+	margin-right: 10px;
+	color: #FFA101;
+}
