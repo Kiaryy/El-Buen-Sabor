@@ -1,0 +1,185 @@
+
+body {
+    margin:0;
+    font-family: "Lato";
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.navbar {
+    background-color: #FFD284;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    position: top;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
+.navbar .logo {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30.48px;
+    text-align: left;
+    color: #333333;;
+}
+
+.navbar .logo span {
+    color: #F4A261;
+}
+
+.navbar .menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .menu a {
+    margin: 0 15px;
+    padding: 5px 15px;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #333333;
+}
+
+.navbar .menu a:hover {
+    background-color: #FFAA33;
+    color: #ffffff;
+}
+
+.navbar .menu .register {
+    border: 4px solid #FFA101;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~card-food~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#container-menu{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3,1fr);
+    width: 100%;
+}
+
+#barra{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 2px solid #FFA101;
+    width: 80%;
+    margin: auto;
+}
+
+.nav-link{
+    border-right:2px solid #FFA101;
+    padding-right: 30px;
+
+}
+
+.nav-link:last-child{
+    border: none;
+}
+
+#barra a{
+    text-decoration: none;
+    color: #333333;
+    font-family: "Lato";
+    font-size: 24px;
+
+}
+
+.title-products{
+    padding-top: 40px;
+    font-weight: lighter;
+    text-align: center;
+    margin: 10px 0 50px 30px;
+    display: flex;
+    float: left ;
+    color: #000000;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card-food {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    
+}
+
+.card-food :hover img{
+    transform: scale(1.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12) , 0 1px 2px rgba(0,0,0,0.42);
+    }
+
+.card-food:hover{
+    text-decoration: none;
+    transition: all;
+}
+
+.card-food img{
+    transition: all 2s;
+    width: 212px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+footer {
+    background-color: #333333;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    padding:50px 0px;
+}
+
+#footer-name{
+    display: flex;
+    flex-direction: column;
+    
+  
+}
+
+#footer-name p{
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat Alternates';
+    font-weight: bold;
+    color:#FFFFFF ;
+}
+
+#footer-name p span{
+    color: #F4A261;
+}
+
+#container-contact{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.contact{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color:#FFFFFF ;
+    font-family: "Lato";
+}
+
+.contact img{
+    width: 30px;
+    height: 30px;
+}
