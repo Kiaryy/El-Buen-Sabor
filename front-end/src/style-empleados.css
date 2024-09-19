@@ -6,55 +6,9 @@
 body {
     margin:0;
     font-family: "Lato";
-    background-color: #EEEEEE;
+    background-color:#333333;
 
 }
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-.navbar {
-    background-color: #FFD284;
-    padding: 10px 0px;
-    display: flex;
-    width: 100%;
-    align-items: center;
-}
-
-.navbar .logo {
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 30.48px;
-    text-align: left;
-    color: #333333;;
-}
-
-.navbar .logo span {
-    color: #F4A261;
-}
-
-.navbar .menu {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-}
-
-.navbar .menu a {
-    margin: 0 15px;
-    padding: 5px 15px;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    color: #333333;
-}
-
-.navbar .menu a:hover {
-    background-color: #FFAA33;
-    color: #ffffff;
-}
-
-
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MAin~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .ocultar{
@@ -104,6 +58,7 @@ body {
     width: 72px;
     border: 2px solid #FFA101 ;
     border-radius: 100px;
+    background-color: #333333;
 }
 #button-sign-up{
     background-color: #FFA101;

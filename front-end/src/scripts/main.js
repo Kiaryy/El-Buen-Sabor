@@ -1,34 +1,37 @@
-const $ = selector => document.querySelector(selector);
-const º = selector => document.querySelectorAll(selector);
+//     const $ = selector => document.querySelector(selector);
+//     const º = selector => document.querySelectorAll(selector);
 
-const contenedor = $("#popular");
+// const contenedor = $("#popular");
 
+const url = 'http://localhost:8080/api/mostrar-platos';
 // Agrega un event listener al contenedor que escucha clicks en elementos con clase .button-to-cart
-contenedor.addEventListener("click", (e) => {
-    if (e.target && e.target.classList.contains("button-to-cart")) {
-        console.log("hola");
-        agregar();
-    }
-});
+fetch(url)
+.then(response => {
+    // Verificar si la respuesta fue exitos
+    // Convertir la respuesta a JSON
+    return response.json();})
+    .then(data => {
+        console.log(data[5]);
+      
+    })
 
-const agregar = async () => {
-    contenedor.innerHTML += `
-        <div class="product-pop">
-            <img src="IMAGENES BUEN SABOR/MAIN/hamburguesaClasica.png" alt="">
-            <div class="name-food">
-                <h5><center>Hamburguesa<br>Clasica</center></h5>
-            </div>
-            <div class="add-car">
-                <div class="description-pop">
-                    <div id="time">
-                        <img src="IMAGENES BUEN SABOR/MAIN/reloj.png" alt="" id="reloj">
-                        <p>15 mins.</p>
-                    </div>
-                    <img src="IMAGENES BUEN SABOR/MAIN/estrellas.png" alt="">
-                    <br>
-                </div>
-                <button class="button-to-cart">IR AL <br> PRODUCTO</button>
-            </div>
-        </div>
-    `;
-}
+
+
+// Realizar la solicitud GET
+// fetch(url)
+//   .then(response => {
+//     // Verificar si la respuesta fue exitosa
+//     if (!response.ok) {
+//       throw new Error('Error en la solicitud: ' + response.status);
+//     }
+//     // Convertir la respuesta a JSON
+//     return response.json();
+//   })
+//   .then(data => {
+//     // Trabajar con los datos recibidos
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     // Manejar errores
+//     console.error('Hubo un problema con la solicitud:', error);
+//   });
