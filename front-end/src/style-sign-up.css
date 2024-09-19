@@ -29,7 +29,7 @@ body {
 }
 
 .navbar .logo span {
-    color: #F4A261;
+    color: #FFA101;
 }
 
 .navbar .menu {
@@ -57,7 +57,7 @@ body {
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MAin~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.ocultar{
+.hide{
     display: none !important
 }
 #container{
@@ -68,7 +68,7 @@ body {
     width: 100%;
     height: 80vh;
 }
-#container-login{
+#container-sign-up{
     display: flex;
     flex-direction: column;
     border: 2px solid #FFA101;
@@ -79,7 +79,7 @@ body {
     background-color: #FFFFFF;
 
 }
-#login{
+#sign-up{
     display: flex;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -90,7 +90,7 @@ body {
 
 }
 
-#login input{
+#sign-up input{
     background-color: #EEEEEE;
     border: 1px  solid #333333;
     border-radius: 10px;
@@ -100,7 +100,7 @@ body {
 
 }
 
-#container-login img{
+#container-sign-up img{
     width: 72px;
     border: 2px solid #FFA101 ;
     border-radius: 100px;

@@ -11,7 +11,7 @@ body {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MAin~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.ocultar{
+.hide{
     display: none !important
 }
 #container{
