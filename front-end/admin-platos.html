@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/admin-platos.css">
+    <title>ADMIN</title>
+</head>
+<body>
+    
+    <section id="admin">
+
+        
+            <div id="left">
+                <div id="logo">Buen<span>SABOR</span></div>
+                <div id="buttons">
+                    <button class="button-left" id="plate">Platos</button>
+                    <button class="button-left">Historial de compra</button>
+                    <button class="button-left">Historial de ventas</button>
+                    <button class="button-left">Personal</button>
+                    <button class="button-left">Inventario</button>
+                    <button class="button-left">Provedor</button>
+        
+                </div>
+               
+            </div>
+     
+       
+        <div id="right">
+            <form action="/buscar" method="GET">
+                <input type="search" name="query" placeholder="Buscar..." required>
+                <button type="submit">Buscar</button>
+            </form>
+            <button id="add-plate">Nuevo Plato</button>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Precio Costo</th>
+                    <th>Precio venta</th>
+                    <th>Oferta%</th>
+                    <th>Existencias</th>
+                    <th>Stock</th>
+                    <th>Opcines</th>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+    </section>
+</body>
+</html>
