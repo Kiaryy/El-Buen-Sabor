@@ -8,7 +8,9 @@ body {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+ul{
+    list-style: none;
+}
 header{
     position: fixed;
     width: 100%;
@@ -18,6 +20,7 @@ header{
     padding: 10px 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .navbar .logo {
@@ -33,13 +36,14 @@ header{
     color: #FFA101;
 }
 
-.navbar .menu {
+.navbar nav ul{
     margin-left: auto;
     display: flex;
+    flex-direction: row;
     align-items: center;
 }
 
-.navbar .menu a {
+.navbar nav ul li a {
     margin: 0 15px;
     padding: 5px 15px;
     text-decoration: none;
@@ -50,12 +54,63 @@ header{
     color: #333333;
 }
 
-.navbar .menu a:hover {
+.navbar nav ul li a:hover {
     background-color: #FFAA33;
     color: #ffffff;
 }
+#menu {
+    border: 4px solid #FFA101;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+ul{
+    list-style: none;
+}
 
-.navbar .menu .register {
+.navbar {
+    background-color: #FFD284;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30.48px;
+    text-align: left;
+    color: #333333;;
+}
+
+.navbar .logo span {
+    color: #FFA101;
+}
+
+.navbar nav ul{
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar nav ul li a {
+    margin: 0 15px;
+    padding: 5px 15px;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #333333;
+}
+
+.navbar nav ul li a:hover {
+    background-color: #FFAA33;
+    color: #ffffff;
+}
+#login {
     border: 4px solid #FFA101;
     padding: 5px 10px;
     border-radius: 5px;
