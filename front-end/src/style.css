@@ -5,7 +5,6 @@
 
 body {
     margin:0;
-    /*font-family: lato;*/
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -125,13 +124,13 @@ ul{
     flex-direction: row;
     justify-content: flex-end;
     padding-top: 40px;
-    
 }
 
 .container {
     text-align: left;
     margin-left: 20px;
     width: 60%;
+    padding-bottom: 30px;
 }
 
 .container h1 {
@@ -199,18 +198,11 @@ ul{
     overflow: hidden;
     background-repeat: no-repeat;   
     align-items: center;
-   
-    
- 
-   
 }
 
 #pizza2 {
-    
     height: 450px;
     width: 450px;
-   
-    
 }
 
 .word-main {
@@ -370,7 +362,6 @@ ul{
 }
 #about-us h2{
     font-family: 'Righteous', sans-serif;
- 
 }
 #about-us img{
     width: 270px;
@@ -383,7 +374,7 @@ ul{
     display: flex;
     flex-direction: column;
     width:  650px;
-    font-family: "Lato";
+    font-family: sans-seriF;
     color:#000000
 }
 #description-about-us p{
@@ -399,6 +390,7 @@ footer {
     padding-bottom: 15px;
     padding:50px 0px;
 }
+
 #footer-name{
     display: flex;
     flex-direction: column;
@@ -413,7 +405,7 @@ footer {
     color:#FFFFFF ;
 }
 #footer-name p span{
-    color: #F4A261;
+    color: #FFA101;
 }
 #container-contact{
     display: flex;
@@ -425,7 +417,7 @@ footer {
     flex-direction: row;
     align-items: center;
     color:#FFFFFF ;
-    font-family: "Lato";
+    font-family: sans-serif;
 }
 
 .contact img{
