@@ -2,13 +2,13 @@ const regex={
 
     nombre:/^[a-zA-ZÀ-ÿ\s]{4,20}$/,
     email:/^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov.ar)$/,
-    direccion:/^[a-zA-ZÀ-ÿ\s]{4,30}$/,
+
     password:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,12}$/,
     repetir:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,12}$/,
 }
 export const vali=()=>{
     const parrafo=document.getElementsByTagName('p')
-    const input=document.querySelectorAll('#sign-up input, #button-sign-up')
+    const input=document.querySelectorAll('#sign-up input, #button-sign-up, #login input,button-login')
     var contra=""
     input.forEach(input=>{
         //cada ves que se ingrese una tecla
@@ -78,7 +78,7 @@ export const vali=()=>{
 export const valueRegex = {
     nombre:false,
     email:false,
-    direccion:false,
+   
     password:false,
     repetir:false,
 }

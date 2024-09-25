@@ -363,6 +363,7 @@ ul{
     flex-direction: row;
     align-items: center;
     padding: 20px 0px;
+    padding-bottom: 40px;
     justify-content: space-around;
 
 
