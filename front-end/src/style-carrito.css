@@ -287,7 +287,7 @@ footer {
     flex-direction: row;
     align-items: center;
     color:#FFFFFF ;
-    font-family: "Lato";
+    font-family: sans-serif;
 }
 
 .contact img{
