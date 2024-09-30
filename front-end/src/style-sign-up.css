@@ -79,13 +79,15 @@ ul{
 .hide{
     display: none !important
 }
+
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 85vh;
+    min-height: 85vh;
+    height: auto;
 }
 #container-login{
     display: flex;
@@ -152,8 +154,6 @@ ul{
     width: 25%;
     margin-top: 10px;
     background-color: #FFFFFF;
-
-
 }
 section{
     width: 100%;;
