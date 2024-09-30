@@ -33,6 +33,9 @@ body {
     background-color: #FFFFFF;
 
 }
+.hide{
+    display: none !important
+}
 #login{
     display: flex;
     margin-top: 30px;

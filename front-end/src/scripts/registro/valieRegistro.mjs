@@ -1,84 +1,124 @@
-const regex={
+// const regex={
 
-    nombre:/^[a-zA-ZÀ-ÿ\s]{4,20}$/,
-    email:/^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov.ar)$/,
+//     email:/^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov.ar)$/,
+//     password:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{5,15}$/,
+//     // repetir:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,12}$/,
+// }
 
-    password:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,12}$/,
-    repetir:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,12}$/,
-}
-export const vali=()=>{
-    const parrafo=document.getElementsByTagName('p')
-    const input=document.querySelectorAll('#sign-up input, #button-sign-up, #login input,button-login')
-    var contra=""
-    input.forEach(input=>{
-        //cada ves que se ingrese una tecla
-        input.addEventListener('keydown',()=>{
-            if (input.name=="password") {
-                contra=input.name
-                
-            }
-            if (input.name=="repetir") {
-                
-                if (input.name==contra) {
-                    parrafo[4].classList.add('hide')
-                    valueRegex.repetir=true
-                }else{
-                    parrafo[4].classList.remove('hide')
     
-                }
-            }
-            else{
-                validation(input.name,input.value) 
-            }
-        })
-          //cada ves que deje de hacer foco
-        input.addEventListener('blur',()=>{
-            if (input.name=="password") {
-                contra=input.name
-                
-            }
-            if (input.name=="repetir") {
-                
-                if (input.name==contra) {
-                    parrafo[4].classList.add('hide')
-                    valueRegex.repetir=true
-                }else{
-                    parrafo[4].classList.remove('hide')
     
-                }
-            }
-            else{
-                validation(input.name,input.value) 
-            }
+//     const parrafo=document.querySelectorAll('.warning')
+//     const inputs=document.querySelectorAll('#sign-up input, #button-sign-up, #login input,#button-login')
 
-        })
-    })
-    function validation(names, value){
-        if(regex[names].test(value)){
-            valueRegex[names]==true
-            for (let i = 0; i < parrafo.length; i++) {
-                if (parrafo[i].getAttribute('name')==names) {
-                    parrafo[i].classList.add('hide')
-                }
-                
-            }
-        }
-        else{
-            for (let i = 0; i < parrafo.length; i++) {
-                if (parrafo[i].getAttribute('name')==names) {
-                    parrafo[i].classList.remove('hide')
-                }
-                
-            }
+    
+// const valueRegex = {
 
-        }
+//     email:false,
+//     password:false,
+//     // repetir:false,
+// }
+//     var contra=""
+//     inputs.forEach(input => {
+        
+//         // Cada vez que se ingrese una tecla
+//         input.addEventListener('keydown', () => {
+//             validation(input.name, input.value);
+//         });
+    
+//         // Cada vez que deje de hacer foco
+//         input.addEventListener('blur', () => {
+//             validation(input.name, input.value);
+//         });
+//     });
 
+//     function validation(names, value) {
+    
+        
+//         // Validar usando la expresión regular
+//         if (names === 'repetir') {
+//             valueRegex[names] = regex.repetir(value);
+//         } else {
+//             valueRegex[names] = regex[names].test(value);
+//         }
+        
+//         // Mostrar u ocultar mensajes de advertencia
+//         for (let i = 0; i < parrafo.length; i++) {
+//             if (parrafo[i].getAttribute('name') === names) {
+//                 if (valueRegex[names]) {
+//                     parrafo[i].classList.add('hide'); // Ocultar si es válido
+//                 } else {
+//                     parrafo[i].classList.remove('hide'); // Mostrar si no es válido
+//                 }
+//             }
+//         }
+//     }
+    
+
+// // FUNCION PARA OCULTAR Y MOSTRAR EL MENU DE LOGIN Y REGISTER
+
+//     const btn_sign_up = document.querySelector('#link-sign-up');
+//     const btn_login = document.querySelector('#link-login');
+//     const section_login = document.querySelector('#section-login');
+//     const section_sign_up = document.querySelector('#section-sign-up');
+
+//     btn_login.addEventListener('click',()=>{
+//         section_login.classList.add('hide')
+//         section_sign_up.classList.remove('hide')
+//     })
+
+//     btn_sign_up.addEventListener('click',()=>{
+//         section_sign_up.classList.add('hide')
+//         section_login.classList.remove('hide')
+       
+//     })
+
+const regex = {
+    email: /^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/
+    // repetir: function(value) {
+    //     return value === document.querySelector('input[name="password"]').value;
+    // }
+};
+
+const parrafo = document.querySelectorAll('.warning');
+const inputs = document.querySelectorAll('#sign-up input, #button-sign-up, #login input, #button-login');
+
+const valueRegex = {
+    email: false,
+    password: false,
+    repetir: false,
+};
+
+inputs.forEach(input => {
+    // Cada vez que se ingrese una tecla
+    input.addEventListener('input', () => {
+        validation(input.name, input.value);
+    });
+
+    // Cada vez que deje de hacer foco
+    input.addEventListener('blur', () => {
+        validation(input.name, input.value);
+    });
+});
+
+function validation(names, value) {
+    console.log(value);
+    
+    // Validar usando la expresión regular
+    if (names === 'repetir') {
+        valueRegex[names] = regex.repetir(value);
+    } else {
+        valueRegex[names] = regex[names].test(value);
     }
-}
-export const valueRegex = {
-    nombre:false,
-    email:false,
-   
-    password:false,
-    repetir:false,
+
+    // Mostrar u ocultar mensajes de advertencia
+    for (let i = 0; i < parrafo.length; i++) {
+        if (parrafo[i].getAttribute('name') === names) {
+            if (valueRegex[names]) {
+                parrafo[i].classList.add('hide'); // Ocultar si es válido
+            } else {
+                parrafo[i].classList.remove('hide'); // Mostrar si no es válido
+            }
+        }
+    }
 }
