@@ -5,55 +5,9 @@ const section_ensalada=document.querySelector('#section-ensalada')
 const section_acompañamiento=document.querySelector('section-acompañamiento')
 const section_postre=document.querySelector('#section-postre')
 
-let hamburguesaDict = {};
-let pizzaDict = {};
-let empanadaDict = {};
-let ensaladaDict = {};
-let acompañamientoDict = {};
-let postreDict = {};
 
-
-
-// Recuperar datos del localStorage
-// const menuData = JSON.parse(localStorage.getItem('menuData'));
-
-// // Referencia al contenedor donde se mostrarán los platos
-
-// menuData.forEach(plato => {
-//     const platoDiv = document.createElement('div');
-//         platoDiv.classList.add('card-food');
-//         platoDiv.innerHTML = 
-//         `
-//        <div class="card-food">
-//             <a href="#" class="food">
-//             </a>
-//                 <img alt="imagen comida" src="${plato.img}">
-//                 <h3>${plato.name}</h3>
-//         </div>
-//         `;
-//         if (plato.type=="HAMBURGUESA") {
-            
-//             section_hamburguesa.appendChild(platoDiv);
-//         }
-//         else if(plato.type=="PIZZA"){
-//             section_pizza.appendChild(platoDiv);
-//         }
-//         else if(plato.type=="EMPANADA"){
-//             section_empanada.appendChild(platoDiv);
-//         }
-//         else if(plato.type=="ENSALADA"){
-//             section_ensalada.appendChild(platoDiv);
-//         }
-//         else if(plato.type=="POSTRE"){
-//             section_postre.appendChild(platoDiv);
-//         }
-//         else if(plato.type=="ACOMPAÑANMIENTO"){
-//             section_acompañamiento.appendChild(platoDiv);
-//         }
-//     });
-    
-    
-const url = 'https://demoapi-latest.onrender.com/platos/findAll';
+window.onload =async function () {
+    const url = 'https://demoapi-latest.onrender.com/platos/findAll';
 // Realizar la solicitud GET
 fetch(url)
 .then(response => {
@@ -65,41 +19,44 @@ fetch(url)
     return response.json();
 })
 .then(data => {
+    // Mapeamos las secciones a los tipos de comida
+    const sectionMap = {
+        HAMBURGUESA: section_hamburguesa,
+        PIZZA: section_pizza,
+        EMPANADA: section_empanada,
+        ENSALADA: section_ensalada,
+        ACOMPAÑANMIENTO: section_acompañamiento,
+        POSTRE: section_postre
+    };
+
     // Trabajar con los datos recibidos
     data.forEach(item => {
-        if (item.type=="HAMBURGUESA") {
-            hamburguesaDict[item.platoID]=item
+        // Si existe una sección para el tipo de comida
+        if (sectionMap[item.type]) {
+            sectionMap[item.type].innerHTML += `
+                <div class="card-food">
+                    <a href="#" class="food"></a>
+                    <img alt="imagen comida" src="${item.img}">
+                    <h3>${item.name}</h3>
+                </div>
+            `;
         }
-        else if(item.type=="PIZZA"){
-            pizzaDict[item.platoID]=item
-        }
-        else if(item.type=="EMPANADA"){
-            empanadaDict[item.platoID]=item
-        }
-        else if(item.type=="ENSALADA"){
-            ensaladaDict[item.platoID]=item
-        }
-        else if(item.type=="ACOMPAÑANMIENTO"){
-            acompañamientoDict[item.platoID]=item
-        }
-        else if(item.type=="POSTRE"){
-            postreDict[item.platoID]=item
-        }
-    
-    })
+    });
 })
+    
+    // Object.values(hamburguesaDict).forEach(hamburguesa => {
+    //     console.log(hamburguesa.name);
+    //  
+    // })
+
 .catch(error => {
     // Manejar errores
     console.error('Hubo un problema con la solicitud:', error);
 });
 
-Object.values(hamburguesaDict).forEach(hamburguesa => {
-    section_hamburguesa.innerHTML+=  `
-       <div class="card-food">
-            <a href="#" class="food">
-            </a>
-                <img alt="imagen comida" src="${hamburguesa.img}">
-                <h3>${hamburguesa.name}</h3>
-        </div>
-        `;
-})
+
+
+}
+function addPlate(section){
+
+}
