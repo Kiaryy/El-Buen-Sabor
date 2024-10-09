@@ -8,60 +8,15 @@ body {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-ul{
+
+ul {
     list-style: none;
 }
-header{
+
+header {
     position: fixed;
     width: 100%;
 }
-.navbar {
-    background-color: #FFD284;
-    padding: 10px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.navbar .logo {
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 30.48px;
-    text-align: left;
-    color: #333333;;
-}
-
-.navbar .logo span {
-    color: #FFA101;
-}
-
-.navbar nav ul{
-    margin-left: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.navbar nav ul li a {
-    margin: 0 15px;
-    padding: 5px 15px;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    color: #333333;
-}
-
-.navbar nav ul li a:hover {
-    background-color: #FFAA33;
-    color: #ffffff;
-}
-
-ul{
-    list-style: none;
-}
 
 .navbar {
     background-color: #FFD284;
@@ -77,6 +32,7 @@ ul{
     font-weight: 700;
     line-height: 30.48px;
     text-align: left;
+    margin-left: 20px;
     color: #333333;;
 }
 
@@ -84,7 +40,7 @@ ul{
     color: #FFA101;
 }
 
-.navbar nav ul{
+.navbar nav ul {
     margin-left: auto;
     display: flex;
     flex-direction: row;
@@ -96,7 +52,7 @@ ul{
     padding: 5px 15px;
     text-decoration: none;
     font-family: 'Lato', sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
     line-height: 24px;
     color: #333333;
@@ -105,11 +61,14 @@ ul{
 .navbar nav ul li a:hover {
     background-color: #FFAA33;
     color: #ffffff;
+    border-radius: 5px;
 }
+
 #login {
-    border: 4px solid #FFA101;
+    border: 3px solid #FFA101;
     padding: 5px 10px;
     border-radius: 5px;
+    margin-right: 25px;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -124,14 +83,14 @@ ul{
 
 .container {
     text-align: left;
-    margin-left: 20px;
+    margin-left: 40px;
     width: 60%;
     padding-bottom: 30px;
 }
 
 .container h1 {
     font-family: 'Lato', sans-serif;
-    font-size: 70px;
+    font-size: 60px;
     font-weight: 800;
     line-height: 100px;
     color: #333;
@@ -148,7 +107,7 @@ ul{
 
 .container p {
     font-family: 'Righteous', sans-serif;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: 400;
     line-height: 39px;
     text-align: left;
@@ -167,7 +126,7 @@ ul{
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 13px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 24px;
     text-align: left;
@@ -182,8 +141,8 @@ ul{
     background-color: #f7931e;
     color: #333333;
 }
-#image{
-    
+
+#image {
     display: flex;
     justify-content: center;
     width: 40%;
@@ -194,6 +153,8 @@ ul{
     overflow: hidden;
     background-repeat: no-repeat;   
     align-items: center;
+    margin-top: 50px;
+    margin-right: 50px;
 }
 
 #pizza2 {
@@ -214,7 +175,8 @@ ul{
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~POPULAR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-#popular{
+
+#popular {
     display: flex;
     flex-direction: column;   
     padding:50px 0px;
@@ -234,6 +196,7 @@ ul{
     flex-direction: row;
     justify-content: space-around;
 }
+
 .product-pop {
     display: flex;
     flex-direction: column;
@@ -280,7 +243,7 @@ ul{
     align-items: center;
 }
 
-#time p{
+#time p {
     font-size: 13px;
     
 }
@@ -296,7 +259,7 @@ ul{
     height: 20px;
 }
 
-.button-to-cart {
+.button-to-product {
     display: inline;
     font-size: 13px;
     color: #FFA101;
@@ -311,17 +274,19 @@ ul{
     padding:50px 0px;
     display: flex;
     flex-direction: column;   
-
 }
+
 #container-cat {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-#categories h2{
+
+#categories h2 {
     font-family: 'Righteous', sans-serif;
     margin-left: 75px;
 }
+
 .product-cat {
     display: flex;
     flex-direction: column;
@@ -336,6 +301,7 @@ ul{
 }
 
 .description-cate {
+    font-family: 'Righteous', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -345,36 +311,39 @@ ul{
     height: 40px;
     font-size: 25PX;
 }
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ABOUT-US~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-#about-us{
+
+#about-us {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 20px 0px;
     padding-bottom: 40px;
     justify-content: space-around;
-
-
 }
 
-#about-us h2{
+#about-us h2 {
     font-family: 'Righteous', sans-serif;
 }
-#about-us img{
+
+#about-us img {
     width: 270px;
     height: 270px;
     background-color:rgba(255, 161, 1, 0.8);;
     border-radius: 50%;
     padding: 12px
 }
-#description-about-us{
+
+#description-about-us {
     display: flex;
     flex-direction: column;
     width:  650px;
     font-family: sans-seriF;
     color:#000000
 }
-#description-about-us p{
+
+#description-about-us p {
     font-size: 18px;
 }
 
@@ -388,28 +357,30 @@ footer {
     padding:50px 0px;
 }
 
-#footer-name{
+#footer-name {
     display: flex;
     flex-direction: column;
-    
-  
 }
-#footer-name p{
+
+#footer-name p {
     display: flex;
     justify-content: center;
     font-family: 'Montserrat Alternates';
     font-weight: bold;
-    color:#FFFFFF ;
+    color: #FFFFFF;
 }
-#footer-name p span{
+
+#footer-name p span {
     color: #FFA101;
 }
-#container-contact{
+
+#container-contact {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
-.contact{
+
+.contact {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -417,7 +388,7 @@ footer {
     font-family: sans-serif;
 }
 
-.contact img{
+.contact img {
     width: 30px;
     height: 30px;
 }
