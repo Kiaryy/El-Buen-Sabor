@@ -27,7 +27,9 @@ const regex = {
 };
 
 const parrafo = document.querySelectorAll('.warning');
-const inputs = document.querySelectorAll('#sign-up input, #button-sign-up, #login input, #button-login');
+const inputs = document.querySelectorAll('#sign-up input, #login input');
+const button_login=document.getElementById('button-login')
+const button_sign_up=document.getElementById('button-sign-up')
 
 const valueRegex = {
     email: false,
@@ -67,3 +69,33 @@ function validation(names, value) {
         }
     }
 }
+button_sign_up.addEventListener('click',()=>{
+
+})
+const add = 'https://bsapi-latest.onrender.com/users/add';
+fetch(add,{
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json' // Especificamos que los datos están en formato JSON
+    },
+    
+    body: JSON.stringify(nuevo_plato) // Convertimos los datos a formato JSON
+})
+.then(response => {
+    // Verificar si la respuesta fue exitosa
+    if (!response.ok) {
+    throw new Error('Error en la solicitud: ' + response.status);
+    }
+    // Convertir la respuesta a JSON
+    return response.json();
+})
+.then(data => {
+    // Mapeamos las secciones a los tipos de comida
+
+})
+    
+
+.catch(error => {
+    // Manejar errores
+    console.error('Hubo un problema con la solicitud:', error);
+});

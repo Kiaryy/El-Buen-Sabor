@@ -1,5 +1,5 @@
 /* General styles */
-body {
+body  {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -15,7 +15,9 @@ body {
 
 /* Estilos de la barra lateral */
 .sidebar {
+    position: fixed;
     width: 15%;
+    height: 100%;
     background-color: #999999;
     border-right: 1px solid #666666;
 }
@@ -67,6 +69,7 @@ body {
 
 .search-container {
     position: relative;
+    
     width: 50%;
     margin: 3%;
 }
@@ -93,6 +96,8 @@ body {
 
 #search{
     display: flex;
+    position: sticky;
+    top: 0;
     flex-direction: row;
     justify-content: center;
 }
@@ -115,20 +120,27 @@ body {
 }
 
 /* Estilos del contenido */
+
+
 h2{
     padding-left: 1rem;
 }
 
 .content {
+    margin-left: 15%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: 85%;
-    position: relative;
+    
 }
 
 table{
     width: 100%;
+}
+.data-name{
+    position: sticky;
+    top:100px;
 }
 table th{
     background-color: #dddddd;

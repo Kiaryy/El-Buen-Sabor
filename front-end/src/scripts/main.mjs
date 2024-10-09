@@ -5,36 +5,36 @@
 
 // const contenedor = $("#popular");
 
-window.onload =async function () {
+// window.onload =async function () {
  
-    try{
-        const response = await fetch('https://demoapi-latest.onrender.com/platos/findAll'); // Reemplaza con la URL de tu API
-        const data = await response.json();
-          // Almacenar datos en localStorage
-        localStorage.setItem('menuData', JSON.stringify(data));
+//     try{
+//         const response = await fetch('https://bsapi-latest.onrender.com/platos/findAll'); // Reemplaza con la URL de tu API
+//         const data = await response.json();
+//           // Almacenar datos en localStorage
+//         localStorage.setItem('menuData', JSON.stringify(data));
                 
-          // Redirigir a la página del menú
-        window.location.href = 'menu.html';
-    }catch (error) {
-        console.error('Error al llamar a la API:', error);
-    }
+//           // Redirigir a la página del menú
     
-} 
+//     }catch (error) {
+//         console.error('Error al llamar a la API:', error);
+//     }
+    
+// } 
 // const $btn_menu=$('#menu')
 // $btn_menu.addEventListener('click',()=>{
     
 //     prueba();
 // })
-const url = 'https://demoapi-latest.onrender.com/platos/findAll';
-// Agrega un event listener al contenedor que escucha clicks en elementos con clase .button-to-cart
-fetch(url)
-.then(response => {
-    // Verificar si la respuesta fue exitos
-    // Convertir la respuesta a JSON
-    return response.json();})
-    .then(data => {
+// const url = 'https://demoapi-latest.onrender.com/platos/findAll';
+// // Agrega un event listener al contenedor que escucha clicks en elementos con clase .button-to-cart
+// fetch(url)
+// .then(response => {
+//     // Verificar si la respuesta fue exitos
+//     // Convertir la respuesta a JSON
+//     return response.json();})
+//     .then(data => {
         
-        console.log(data);
-    })
+//         console.log(data);
+//     })
 
     
