@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.dto.UsuarioRequestDto;
+import com.example.demo.domain.dto.UserRequestDto;
 import com.example.demo.domain.models.Usuario;
-import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,27 +10,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 @Service
-public class UsuarioService {
+public class UserService {
     
     //JPA repository
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UserRepository userRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
 
     public List<Usuario> getAllUsuarios() {
-        return usuarioRepository.findAll();
+        return userRepository.findAll();
     }
 
         public Usuario findById(Long id){
-        Optional<Usuario> entityOptional = usuarioRepository.findById(id);
+        Optional<Usuario> entityOptional = userRepository.findById(id);
         return entityOptional.get();
     }
 
-    public String addUsuarios(UsuarioRequestDto usuarioDTO) {
+    public String addUsuarios(UserRequestDto usuarioDTO) {
 
         Usuario usuario = Usuario.builder()
                 .name(usuarioDTO.name())
@@ -41,12 +41,12 @@ public class UsuarioService {
                 .password(usuarioDTO.passWord())
                 .build();
         // Here we save in dataBase
-        usuarioRepository.save(usuario);
+        userRepository.save(usuario);
         return "Usuario agregado";
     }
 
-    public Usuario update(Long id, UsuarioRequestDto entity){
-        Optional<Usuario> entityOptional = usuarioRepository.findById(id);
+    public Usuario update(Long id, UserRequestDto entity){
+        Optional<Usuario> entityOptional = userRepository.findById(id);
         Usuario usuario = entityOptional.get();
         // We convert the DTO entity to an object
         Usuario usuarioActualizado = Usuario.builder()
@@ -58,13 +58,13 @@ public class UsuarioService {
                 .password(entity.passWord())
                 .build();
         // Saves updated entity to database
-        usuario = usuarioRepository.save(usuarioActualizado);
+        usuario = userRepository.save(usuarioActualizado);
         return usuario;
     }
 
     public boolean delete(Long id){
-        if(usuarioRepository.existsById(id)){
-            usuarioRepository.deleteById(id);
+        if(userRepository.existsById(id)){
+            userRepository.deleteById(id);
             return true;
         } else{
             return false;

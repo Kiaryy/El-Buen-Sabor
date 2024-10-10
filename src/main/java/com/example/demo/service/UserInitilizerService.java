@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.models.Usuario;
-import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import java.util.List;
 
 @Service
 public class UserInitilizerService {
-    private final UsuarioRepository repository;
+    private final UserRepository repository;
 
     @Autowired
-    public UserInitilizerService(UsuarioRepository repository) {
+    public UserInitilizerService(UserRepository repository) {
         this.repository = repository;
     }
 

@@ -5,8 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PedidoRequestDto {
+public class OrderRequestDto {
     private Long userId;
     private String deliveryName;
-    private List<PlatoRequestDto> productos;
+    private List<ProductRequestDto> productos;
 }

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.dto.PedidoRequestDto;
-import com.example.demo.service.PedidoService;
+import com.example.demo.domain.dto.OrderRequestDto;
+import com.example.demo.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/order")
 @AllArgsConstructor
-public class PedidoController {
+public class OrderController {
 
-    private PedidoService pedidoService;
+    private OrderService orderService;
     @PostMapping("/realizarPedido")
-    public ResponseEntity<String> realizarPedido(@RequestBody PedidoRequestDto pedidoRequest ){
-        return ResponseEntity.ok(pedidoService.realizarPedido(pedidoRequest));
+    public ResponseEntity<String> realizarPedido(@RequestBody OrderRequestDto pedidoRequest ){
+        return ResponseEntity.ok(orderService.realizarPedido(pedidoRequest));
     }
 
 }

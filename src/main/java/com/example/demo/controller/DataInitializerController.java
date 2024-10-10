@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.models.PlatoJpa;
+import com.example.demo.domain.models.Product;
 import com.example.demo.domain.models.Usuario;
-import com.example.demo.service.PlateInitializerService;
+import com.example.demo.service.ProductInitializerService;
 import com.example.demo.service.UserInitilizerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +17,13 @@ public class DataInitializerController {
 
 
     @Autowired
-    PlateInitializerService platoService;
+    ProductInitializerService platoService;
 
     @Autowired
     UserInitilizerService userService;
 
     @GetMapping("createPlates")
-    public List<PlatoJpa> createAllPlates(){
+    public List<Product> createAllPlates(){
         return platoService.loadMenu();
     }
 

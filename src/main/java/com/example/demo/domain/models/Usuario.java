@@ -23,6 +23,6 @@ public class Usuario extends Person {
     private String password;
 
     @OneToMany(mappedBy = "user" ,cascade =CascadeType.ALL, orphanRemoval = true)
-    private List<Pedido> pedido;
+    private List<Order> order;
 
 }

@@ -1,38 +1,38 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.dto.PlatoRequestDto;
-import com.example.demo.domain.models.PlatoJpa;
-import com.example.demo.repository.PlatoRepository;
+import com.example.demo.domain.dto.ProductRequestDto;
+import com.example.demo.domain.models.Product;
+import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 @Service
-public class PlatosService {
+public class ProductService {
 
-    private final PlatoRepository platoRepository;
+    private final ProductRepository productRepository;
     @Autowired
-    public PlatosService(PlatoRepository platoRepository) {
+    public ProductService(ProductRepository productRepository) {
 
-        this.platoRepository = platoRepository;
+        this.productRepository = productRepository;
     }
 
     //JPA repository
 
-    public List<PlatoJpa> getAllPlatos() {
-        return platoRepository.findAll();
+    public List<Product> getAllPlatos() {
+        return productRepository.findAll();
     }
 
-    public PlatoJpa findById(Long id){
-        Optional<PlatoJpa> entityOptional = platoRepository.findById(id);
+    public Product findById(Long id){
+        Optional<Product> entityOptional = productRepository.findById(id);
         return entityOptional.get();
     }
 
-    public String addPlatos(PlatoRequestDto platoDTO){
+    public String addPlatos(ProductRequestDto platoDTO){
 
 
-        PlatoJpa plato = PlatoJpa.builder()
+        Product plato = Product.builder()
                 .name(platoDTO.name())
                 .description(platoDTO.description())
                 .price(platoDTO.price())
@@ -42,15 +42,15 @@ public class PlatosService {
                 .img(platoDTO.img())
                 .build();
         // Here we save in dataBase
-        platoRepository.save(plato);
+        productRepository.save(plato);
         return "Plato agregado";
     }
 
-    public PlatoJpa update(Long id, PlatoRequestDto entity){
-        Optional<PlatoJpa> entityOptional = platoRepository.findById(id);
-        PlatoJpa plato = entityOptional.get();
+    public Product update(Long id, ProductRequestDto entity){
+        Optional<Product> entityOptional = productRepository.findById(id);
+        Product plato = entityOptional.get();
         // We convert the DTO entity to an object
-        PlatoJpa platoActualizado = PlatoJpa.builder()
+        Product platoActualizado = Product.builder()
                 .platoId(id)
                 .name(entity.name())
                 .description(entity.description())
@@ -61,12 +61,12 @@ public class PlatosService {
                 .img(entity.img())
                 .build();
         // Saves updated entity to database
-        plato = platoRepository.save(platoActualizado);
+        plato = productRepository.save(platoActualizado);
         return plato;
     }
     public boolean delete(Long id){
-        if(platoRepository.existsById(id)){
-            platoRepository.deleteById(id);
+        if(productRepository.existsById(id)){
+            productRepository.deleteById(id);
             return true;
         } else{
             return false;

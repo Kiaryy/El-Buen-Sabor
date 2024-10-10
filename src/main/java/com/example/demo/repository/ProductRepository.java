@@ -1,17 +1,17 @@
 package com.example.demo.repository;
 
-import com.example.demo.domain.models.PlatoJpa;
+import com.example.demo.domain.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlatoRepository extends JpaRepository<PlatoJpa, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
     //Busca si existen los nombres de los platos ingresado
     @Query("SELECT CASE " +
             "WHEN COUNT(*) > 0 THEN true " +
             "ELSE false END " +
-            "FROM PlatoJpa p WHERE p.name = :producto")
+            "FROM Product p WHERE p.name = :producto")
     boolean existsByName(@Param("producto") String producto);
 }

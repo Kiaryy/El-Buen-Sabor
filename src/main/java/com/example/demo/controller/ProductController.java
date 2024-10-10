@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.dto.PlatoRequestDto;
-import com.example.demo.domain.models.PlatoJpa;
-import com.example.demo.service.PlatosService;
+import com.example.demo.domain.dto.ProductRequestDto;
+import com.example.demo.domain.models.Product;
+import com.example.demo.service.ProductService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -21,27 +21,27 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin(origins = "*")
-public class PlatoController {
+public class ProductController {
 
-    private final PlatosService platosService;
+    private final ProductService productService;
 
     @GetMapping("/platos/findAll") 
-    List<PlatoJpa> findAll(){
-        return platosService.getAllPlatos();
+    List<Product> findAll(){
+        return productService.getAllPlatos();
     }
 
     @PostMapping("/platos/add")
-    public ResponseEntity<String> addPlatos(@RequestBody PlatoRequestDto platoDTO){
-        return ResponseEntity.ok(platosService.addPlatos(platoDTO));
+    public ResponseEntity<String> addPlatos(@RequestBody ProductRequestDto platoDTO){
+        return ResponseEntity.ok(productService.addPlatos(platoDTO));
     }
     
     @PutMapping("/platos/{id}")
-    public ResponseEntity<PlatoJpa> update(@PathVariable Long id, @RequestBody PlatoRequestDto platoDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(platosService.update(id, platoDTO));
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody ProductRequestDto platoDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(productService.update(id, platoDTO));
     }
 
     @DeleteMapping("/platos/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(platosService.delete(id));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productService.delete(id));
     }
 }

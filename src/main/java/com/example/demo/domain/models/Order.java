@@ -3,20 +3,19 @@ package com.example.demo.domain.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "pedido")
+@Entity(name = "order")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Pedido {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pedidoId;
-    //private List<PlatoJpa> productos;
+
     private String productos;
     private String nombreDelivery;
-    // private String idDelivery;
 
     @ManyToOne
     @JoinColumn(name= "user_id", nullable = false)
