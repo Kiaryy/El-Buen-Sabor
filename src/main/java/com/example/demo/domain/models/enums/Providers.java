@@ -1,4 +1,4 @@
-package com.example.demo.models.enums;
+package com.example.demo.domain.models.enums;
 
 public enum Providers {
     BIMBO, PATTY, PUREZA, YAGUAR

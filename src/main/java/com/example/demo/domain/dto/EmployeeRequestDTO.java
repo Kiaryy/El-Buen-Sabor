@@ -1,7 +1,8 @@
-package com.example.demo.DTO.request;
+package com.example.demo.domain.dto;
 
-import com.example.demo.models.enums.Charge;
-import com.example.demo.models.enums.EmployeeState;
+import com.example.demo.domain.models.enums.Charge;
+import com.example.demo.domain.models.enums.EmployeeState;
+
 public record EmployeeRequestDTO(
         String name,
         Long phoneNumber,

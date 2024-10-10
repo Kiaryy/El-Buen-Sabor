@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.DTO.request.ArticleRequestDTO;
-import com.example.demo.models.ArticleJpa;
+import com.example.demo.domain.dto.ArticleRequestDTO;
+import com.example.demo.domain.models.ArticleJpa;
 import com.example.demo.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

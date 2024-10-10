@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.DTO.request.EmployeeRequestDTO;
-import com.example.demo.models.EmployeeJpa;
+import com.example.demo.domain.dto.EmployeeRequestDTO;
+import com.example.demo.domain.models.EmployeeJpa;
 import com.example.demo.repository.EmployeeJpaRepository;
 
 

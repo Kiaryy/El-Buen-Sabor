@@ -1,4 +1,4 @@
-package com.example.demo.models.enums;
+package com.example.demo.domain.models.enums;
 
 public enum Charge {
     CASHIER("Mon to Fri 08:00am to 00:30am, Sat and Sun 11:00am to 15:30pm"),

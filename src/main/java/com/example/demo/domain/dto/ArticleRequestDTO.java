@@ -1,9 +1,9 @@
-package com.example.demo.DTO.request;
+package com.example.demo.domain.dto;
 
 import java.time.LocalDate;
 
-import com.example.demo.models.enums.ArticleCategory;
-import com.example.demo.models.enums.Providers;
+import com.example.demo.domain.models.enums.ArticleCategory;
+import com.example.demo.domain.models.enums.Providers;
 
 public record ArticleRequestDTO(
         String name,

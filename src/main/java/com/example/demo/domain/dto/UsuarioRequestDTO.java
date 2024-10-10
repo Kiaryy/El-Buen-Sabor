@@ -1,4 +1,4 @@
-package com.example.demo.DTO.request;
+package com.example.demo.domain.dto;
 import java.util.ArrayList;
 public record UsuarioRequestDTO(
         String name,

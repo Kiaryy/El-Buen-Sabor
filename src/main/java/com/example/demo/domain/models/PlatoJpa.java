@@ -1,6 +1,6 @@
-package com.example.demo.models;
+package com.example.demo.domain.models;
 
-import com.example.demo.models.enums.Tipo;
+import com.example.demo.domain.models.enums.Tipo;
 import jakarta.persistence.*;
 import lombok.*;
 

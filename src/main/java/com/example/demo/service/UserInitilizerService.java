@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.models.UsuarioJpa;
+import com.example.demo.domain.models.UsuarioJpa;
 import com.example.demo.repository.UsuarioJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

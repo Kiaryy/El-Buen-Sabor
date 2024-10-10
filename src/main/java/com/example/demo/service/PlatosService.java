@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.DTO.request.PlatoRequestDTO;
-import com.example.demo.models.PlatoJpa;
+import com.example.demo.domain.dto.PlatoRequestDTO;
+import com.example.demo.domain.models.PlatoJpa;
 import com.example.demo.repository.PlatoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

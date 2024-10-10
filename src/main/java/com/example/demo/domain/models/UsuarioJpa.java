@@ -1,6 +1,5 @@
-package com.example.demo.models;
+package com.example.demo.domain.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
