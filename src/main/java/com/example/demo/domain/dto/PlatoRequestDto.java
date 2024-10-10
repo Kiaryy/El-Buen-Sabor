@@ -1,11 +1,11 @@
 package com.example.demo.domain.dto;
 
-import com.example.demo.domain.models.enums.Tipo;
+import com.example.demo.domain.models.enums.FoodType;
 
 public record PlatoRequestDto(
         String name,
         String description,
-        Tipo type,
+        FoodType type,
         Double price,
         int stock,
         String img

@@ -1,6 +1,6 @@
 package com.example.demo.domain.models;
 
-import com.example.demo.domain.models.enums.Tipo;
+import com.example.demo.domain.models.enums.FoodType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +21,7 @@ public class PlatoJpa {
 
     @Column(columnDefinition = "varchar(600)")
     private String description;
-    private Tipo type;
+    private FoodType type;
     private Double price;
     private int stock;
     private boolean available;
