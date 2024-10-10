@@ -69,7 +69,6 @@ body  {
 
 .search-container {
     position: relative;
-    
     width: 50%;
     margin: 3%;
 }
@@ -95,6 +94,9 @@ body  {
 }
 
 #search{
+    width: 100%;
+    height: 20%;
+    background-color: #ffffff;
     display: flex;
     position: sticky;
     top: 0;
@@ -108,6 +110,8 @@ body  {
 }
 
 #add-item{
+    position: sticky;
+    top: 15%;
     width: 100%;
     padding: 0.3rem 0;
     border: 1px solid #999999;
@@ -138,9 +142,10 @@ h2{
 table{
     width: 100%;
 }
+
 .data-name{
     position: sticky;
-    top:100px;
+    top: 17.9%;
 }
 table th{
     background-color: #dddddd;
