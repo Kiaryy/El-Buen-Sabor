@@ -236,3 +236,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /build
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
