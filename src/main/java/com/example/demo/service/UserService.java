@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.dto.UserRequestDto;
-import com.example.demo.domain.models.Usuario;
+import com.example.demo.domain.models.User;
 import com.example.demo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +21,18 @@ public class UserService {
     }
 
 
-    public List<Usuario> getAllUsuarios() {
+    public List<User> getAllUsuarios() {
         return userRepository.findAll();
     }
 
-        public Usuario findById(Long id){
-        Optional<Usuario> entityOptional = userRepository.findById(id);
+        public User findById(Long id){
+        Optional<User> entityOptional = userRepository.findById(id);
         return entityOptional.get();
     }
 
     public String addUsuarios(UserRequestDto usuarioDTO) {
 
-        Usuario usuario = Usuario.builder()
+        User user = User.builder()
                 .name(usuarioDTO.name())
                 .email(usuarioDTO.mail())
                 .addresses(usuarioDTO.adresses())
@@ -41,15 +41,15 @@ public class UserService {
                 .password(usuarioDTO.passWord())
                 .build();
         // Here we save in dataBase
-        userRepository.save(usuario);
-        return "Usuario agregado";
+        userRepository.save(user);
+        return "User agregado";
     }
 
-    public Usuario update(Long id, UserRequestDto entity){
-        Optional<Usuario> entityOptional = userRepository.findById(id);
-        Usuario usuario = entityOptional.get();
+    public User update(Long id, UserRequestDto entity){
+        Optional<User> entityOptional = userRepository.findById(id);
+        User user = entityOptional.get();
         // We convert the DTO entity to an object
-        Usuario usuarioActualizado = Usuario.builder()
+        User userActualizado = User.builder()
                 .name(entity.name())
                 .email(entity.mail())
                 .addresses(entity.adresses())
@@ -58,8 +58,8 @@ public class UserService {
                 .password(entity.passWord())
                 .build();
         // Saves updated entity to database
-        usuario = userRepository.save(usuarioActualizado);
-        return usuario;
+        user = userRepository.save(userActualizado);
+        return user;
     }
 
     public boolean delete(Long id){

@@ -2,78 +2,57 @@ package com.example.demo.service;
 
 import com.example.demo.domain.dto.ProductRequestDto;
 import com.example.demo.domain.dto.OrderRequestDto;
-import com.example.demo.domain.models.Order;
-import com.example.demo.domain.models.Product;
-import com.example.demo.domain.models.Usuario;
+import com.example.demo.domain.models.Orders;
+import com.example.demo.domain.models.User;
+import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.UserRepository;
-import lombok.AllArgsConstructor;
+import com.example.demo.utils.ProductsMapper;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.StringJoiner;
 
 @Service
-@AllArgsConstructor
 @Log4j2
 public class OrderService {
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
-    public String realizarPedido(OrderRequestDto request) {
+    @Autowired
+    public OrderService(UserRepository userRepository, ProductRepository productRepository, OrderRepository orderRepository) {
+        this.userRepository = userRepository;
+        this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
+    }
+
+    public String placeOrder(OrderRequestDto request) {
         log.info(request);
-        Optional<Usuario> userOpt =  userRepository.findById(request.getUserId());
-
+        Optional<User> userOpt =  userRepository.findById(request.getUserId());
+        
         if(userOpt.isEmpty()){
             throw new RuntimeException("El usuario no existe");
         }
 
+        User user = userOpt.get();
+
         //Verifica si el plato existe en la base de datos
-        for (ProductRequestDto requestDTO : request.getProductos()){
-            if(!productRepository.existsByName(requestDTO.name())){
-                throw new RuntimeException("El plato con el nombre: "+requestDTO.name()+" no existe!");
+        for (ProductRequestDto product : request.getProductos()){
+            if(!productRepository.existsByNameAndAvailable(product.name(), true)){
+                throw new RuntimeException("El plato con el nombre: "+product.name()+" no existe!");
             }
         }
 
-        List<Product> product = productRepository.findAll();
-        // Descontando stock en la entidad platos y posteriormente guarda con el stock reducido
-        for (ProductRequestDto platoUser : request.getProductos()){
-
-            product.forEach(platoEntity -> {
-                if(platoEntity.getName().equalsIgnoreCase(platoUser.name()) && platoEntity.getStock() > 0 ){
-                    platoEntity.setStock(platoEntity.getStock() -1);
-                    productRepository.save(platoEntity);
-                }
-                platoEntity.setAvailable(false);
-            });
-        }
-
-        Usuario user = userOpt.get();
-        Order order = Order.builder()
-                .nombreDelivery(request.getDeliveryName())
-                .productos(listToString(request.getProductos()," "))
+        orderRepository.save(Orders.builder()
+                .deliveryName(request.getDeliveryName())
+                .products(ProductsMapper.mapListDtoToEntity(request.getProductos()))
                 .user(user)
-                .build();
+                .build() ) ;
 
-        user.getOrder().add(order);
-
-        log.info("Order: ", order);
-        log.info("User: ",user);
-
-        userRepository.save(user);
-
-        return "Order realizado con exito";
+        return "Orders realizado con exito";
     }
-    public static String listToString(List<ProductRequestDto> list, String delimiter) {
-        StringJoiner joiner = new StringJoiner(delimiter);
-        for (ProductRequestDto item : list) {
-            joiner.add(item.name());
-            joiner.add("Description:");
-            joiner.add(item.type().toString());
-        }
-        return joiner.toString();
-    }
+
 }
 

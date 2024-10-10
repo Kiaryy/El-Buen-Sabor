@@ -12,11 +12,12 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     //Busca si existen los nombres de los platos ingresado
+    /*
     @Query("SELECT CASE " +
             "WHEN COUNT(*) > 0 THEN true " +
             "ELSE false END " +
-            "FROM Product p WHERE p.name = :producto")
-    boolean existsByName(@Param("producto") String producto);
+            "FROM Product p WHERE p.name = :name") */
+     boolean existsByNameAndAvailable(String name,Boolean available);
 
 
     /*

@@ -13,11 +13,15 @@ import java.util.Optional;
 @Service
 public class IngredientService {
 
-    public IngredientRepository articleInsumoRepository;
+    public final IngredientRepository ingredientRepository;
 
     @Autowired
+    public IngredientService(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
+
     public List<Ingredients> getAllArticles() {
-        return articleInsumoRepository.findAll();
+        return ingredientRepository.findAll();
     }
 
     public String addArticle(IngredientRequestDto ingredientRequestDTO){
@@ -35,12 +39,12 @@ public class IngredientService {
                 .lastPurchased(ingredientRequestDTO.lastPurchased())
                 .build();
         // Here we save in dataBase
-        articleInsumoRepository.save(ingredients);
+        ingredientRepository.save(ingredients);
         return "Ingredients Added";
     }
 
     public Ingredients update(Long id, IngredientRequestDto entity){
-        Optional<Ingredients> entityOptional = articleInsumoRepository.findById(id);
+        Optional<Ingredients> entityOptional = ingredientRepository.findById(id);
         Ingredients ingredients = entityOptional.get();
         // We convert the DTO entity to an object
         Ingredients updatedIngredients = Ingredients.builder()
@@ -55,13 +59,13 @@ public class IngredientService {
                 .lastPurchased(LocalDate.now())
                 .build();
         // Saves updated entity to database
-        ingredients = articleInsumoRepository.save(updatedIngredients);
+        ingredients = ingredientRepository.save(updatedIngredients);
         return ingredients;
     }
 
     public boolean delete(Long id){
-        if(articleInsumoRepository.existsById(id)){
-            articleInsumoRepository.deleteById(id);
+        if(ingredientRepository.existsById(id)){
+            ingredientRepository.deleteById(id);
             return true;
         } else{
             return false;

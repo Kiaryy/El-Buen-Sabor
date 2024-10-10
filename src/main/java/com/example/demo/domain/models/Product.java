@@ -14,7 +14,7 @@ import lombok.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long platoId;
+    private Long productId;
 
     @Column(columnDefinition = "varchar(100)")
     private String name;
@@ -23,7 +23,7 @@ public class Product {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private FoodType type;
+    private FoodType foodType;
 
     private Double price;
 
@@ -33,4 +33,7 @@ public class Product {
 
     @Column(columnDefinition = "varchar(600)")
     private String img;
+
+    @OneToMany
+    OrderDetail orderDetail;
 }

@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Usuario extends Person {
+public class User extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -22,7 +22,7 @@ public class Usuario extends Person {
     private List<Long> cards ;
     private String password;
 
-    @OneToMany(mappedBy = "user" ,cascade =CascadeType.ALL, orphanRemoval = true)
-    private List<Order> order;
+    @OneToMany(mappedBy = "user")
+    private List<Orders> orders;
 
 }

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.dto.UserRequestDto;
-import com.example.demo.domain.models.Usuario;
+import com.example.demo.domain.models.User;
 import com.example.demo.service.UserService;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class UserController {
 
     private final UserService userService;
     @GetMapping("/usuarios/findAll")
-    List<Usuario> findAll(){
+    List<User> findAll(){
         return userService.getAllUsuarios();
     }
 
@@ -34,7 +34,7 @@ public class UserController {
     }
     
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody UserRequestDto usuarioDTO){
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserRequestDto usuarioDTO){
         return ResponseEntity.status(HttpStatus.OK).body(userService.update(id, usuarioDTO));
     }
 

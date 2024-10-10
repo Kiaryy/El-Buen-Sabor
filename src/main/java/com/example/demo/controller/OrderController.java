@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 @AllArgsConstructor
 public class OrderController {
 
     private OrderService orderService;
     @PostMapping("/realizarPedido")
     public ResponseEntity<String> realizarPedido(@RequestBody OrderRequestDto pedidoRequest ){
-        return ResponseEntity.ok(orderService.realizarPedido(pedidoRequest));
+        return ResponseEntity.ok(orderService.placeOrder(pedidoRequest));
     }
 
 }

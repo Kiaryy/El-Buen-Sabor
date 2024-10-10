@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.models.Product;
-import com.example.demo.domain.models.Usuario;
+import com.example.demo.domain.models.User;
 import com.example.demo.service.ProductInitializerService;
 import com.example.demo.service.UserInitilizerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class DataInitializerController {
     }
 
     @GetMapping("createUsers")
-    public List<Usuario> createAllUsers() {
+    public List<User> createAllUsers() {
         return userService.createUsers();
     }
 

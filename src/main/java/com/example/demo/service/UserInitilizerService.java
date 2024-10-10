@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.models.Usuario;
+import com.example.demo.domain.models.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +22,9 @@ public class UserInitilizerService {
 
         return "Deleted all users" ;
     }
-    public List<Usuario> createUsers() {
+    public List<User> createUsers() {
 
-        List<Usuario> users = new ArrayList<>();
+        List<User> users = new ArrayList<>();
 
         List<String> addresses = new ArrayList<>();
 
@@ -32,21 +32,21 @@ public class UserInitilizerService {
         addresses.add("Calle Verdadera 456");
         addresses.add("Calle Null 456");
 
-        users.add(Usuario.builder()
+        users.add(User.builder()
                 .name("Pedro Gonzales")
                 .email("pedro.gonzales@gmail.com")
                 .addresses(addresses)
                 .password("123456789")
                 .build());
 
-        users.add(Usuario.builder()
+        users.add(User.builder()
                 .name("Manolo Garcia")
                 .email("manolo.garcia@gmail.com")
                 .addresses(addresses)
                 .password("123456789")
                 .build());
 
-        users.add(Usuario.builder()
+        users.add(User.builder()
                 .name("Armando Esteban Quito")
                 .email("Armando.Quito@gmail.com")
                 .addresses(addresses)

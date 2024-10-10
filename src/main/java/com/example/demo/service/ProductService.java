@@ -21,7 +21,9 @@ public class ProductService {
     //JPA repository
 
     public List<Product> getAllPlatos() {
+
         return productRepository.findAll();
+
     }
 
     public Product findById(Long id){
@@ -36,7 +38,7 @@ public class ProductService {
                 .name(platoDTO.name())
                 .description(platoDTO.description())
                 .price(platoDTO.price())
-                .type(platoDTO.type())
+                .foodType(platoDTO.foodType())
                 .stock(platoDTO.stock())
                 .available(true)
                 .img(platoDTO.img())
@@ -51,11 +53,11 @@ public class ProductService {
         Product plato = entityOptional.get();
         // We convert the DTO entity to an object
         Product platoActualizado = Product.builder()
-                .platoId(id)
+                .productId(id)
                 .name(entity.name())
                 .description(entity.description())
                 .price(entity.price())
-                .type(entity.type())
+                .foodType(entity.foodType())
                 .stock(entity.stock())
                 .available(true)
                 .img(entity.img())
