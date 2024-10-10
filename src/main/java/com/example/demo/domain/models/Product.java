@@ -21,10 +21,16 @@ public class Product {
 
     @Column(columnDefinition = "varchar(600)")
     private String description;
+
+    @Enumerated(EnumType.STRING)
     private FoodType type;
+
     private Double price;
+
     private int stock;
+
     private boolean available;
+
     @Column(columnDefinition = "varchar(600)")
     private String img;
 }

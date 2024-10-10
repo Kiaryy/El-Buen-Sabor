@@ -15,37 +15,35 @@ import java.util.List;
 @RequestMapping("initializer/")
 public class DataInitializerController {
 
-
-    @Autowired
     ProductInitializerService platoService;
 
-    @Autowired
     UserInitilizerService userService;
 
+    @Autowired
+    public DataInitializerController(ProductInitializerService platoService, UserInitilizerService userService) {
+        this.platoService = platoService;
+        this.userService = userService;
+    }
+
     @GetMapping("createPlates")
-    public List<Product> createAllPlates(){
+    public List<Product> createAllPlates() {
         return platoService.loadMenu();
     }
 
     @GetMapping("deleteAllPlates")
-    public String deleteAllPlates(){
+    public String deleteAllPlates() {
         return platoService.deleteMenu();
     }
 
     @GetMapping("createUsers")
-    public List<Usuario> createAllUsers(){
+    public List<Usuario> createAllUsers() {
         return userService.createUsers();
     }
 
     @GetMapping("deleteAllUsers")
-    public String deleteAllUsers(){
+    public String deleteAllUsers() {
         return userService.deleteAllUsers();
     }
-
-
-
-
-
 
 
 }

@@ -2,13 +2,13 @@ package com.example.demo.domain.dto;
 
 import java.time.LocalDate;
 
-import com.example.demo.domain.models.enums.ArticleCategory;
+import com.example.demo.domain.models.enums.IngredientCategory;
 import com.example.demo.domain.models.enums.Providers;
 
-public record ArticleRequestDto(
+public record IngredientRequestDto(
         String name,
         String denominacion,
-        ArticleCategory category,
+        IngredientCategory category,
         Providers provider,
         Double priceUnit,
         Double precioCompra,

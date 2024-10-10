@@ -1,5 +1,5 @@
 package com.example.demo.domain.models.enums;
 
-public enum ArticleCategory {
+public enum IngredientCategory {
     VEGETABLE, BAKED, MEAT, DAIRY
 }

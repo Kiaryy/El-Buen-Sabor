@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.domain.dto.ArticleRequestDto;
-import com.example.demo.domain.models.Article;
-import com.example.demo.service.ArticleService;
+import com.example.demo.domain.dto.IngredientRequestDto;
+import com.example.demo.domain.models.Ingredients;
+import com.example.demo.service.IngredientService;
 
 import lombok.AllArgsConstructor;
 
@@ -17,29 +17,29 @@ import java.util.List;
 @AllArgsConstructor
 public class IngredientController {
 
-    private final ArticleService articleService;
+    private final IngredientService ingredientService;
 
     @GetMapping("/article/findAll") 
     // Returns everything in table
-    List<Article> findAll(){
-        return articleService.getAllArticles();
+    List<Ingredients> findAll(){
+        return ingredientService.getAllArticles();
     }
 
     @PostMapping("/article/add")
     // adds DTO object
-    public ResponseEntity<String> addArticle(@RequestBody ArticleRequestDto articleDTO){
-        return ResponseEntity.ok(articleService.addArticle(articleDTO));
+    public ResponseEntity<String> addArticle(@RequestBody IngredientRequestDto articleDTO){
+        return ResponseEntity.ok(ingredientService.addArticle(articleDTO));
     }
     
     @PutMapping("/article/{id}")
     //Updates entity with matching id
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ArticleRequestDto articleDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(articleService.update(id, articleDTO));
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody IngredientRequestDto articleDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(ingredientService.update(id, articleDTO));
     }
 
     @DeleteMapping("/article/{id}")
     // Deletes entity with matching id
     public ResponseEntity<?> delete(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(articleService.delete(id));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ingredientService.delete(id));
     }
 }
