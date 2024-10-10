@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.DTO.request.PlatoRequestDTO;
-import com.example.demo.DTO.request.UsuarioPedidoRequest;
-import com.example.demo.models.Pedido;
-import com.example.demo.models.PlatoJpa;
-import com.example.demo.models.UsuarioJpa;
+import com.example.demo.domain.dto.PlatoRequestDTO;
+import com.example.demo.domain.dto.UsuarioPedidoRequest;
+import com.example.demo.domain.models.Pedido;
+import com.example.demo.domain.models.PlatoJpa;
+import com.example.demo.domain.models.UsuarioJpa;
 import com.example.demo.repository.PlatoJpaRepository;
 import com.example.demo.repository.UsuarioJpaRepository;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.request.UsuarioRequestDTO;
-import com.example.demo.models.UsuarioJpa;
+import com.example.demo.domain.dto.UsuarioRequestDTO;
+import com.example.demo.domain.models.UsuarioJpa;
 import com.example.demo.service.UsuarioService;
 
 import lombok.AllArgsConstructor;

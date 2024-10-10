@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.request.UsuarioPedidoRequest;
+import com.example.demo.domain.dto.UsuarioPedidoRequest;
 import com.example.demo.service.PedidoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

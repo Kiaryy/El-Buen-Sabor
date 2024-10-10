@@ -2,8 +2,8 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.models.PlatoJpa;
-import com.example.demo.models.enums.Tipo;
+import com.example.demo.domain.models.PlatoJpa;
+import com.example.demo.domain.models.enums.Tipo;
 import com.example.demo.repository.PlatoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
