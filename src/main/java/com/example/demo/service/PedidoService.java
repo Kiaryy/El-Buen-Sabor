@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.dto.PlatoRequestDTO;
-import com.example.demo.domain.dto.UsuarioPedidoRequest;
+import com.example.demo.domain.dto.PlatoRequestDto;
+import com.example.demo.domain.dto.PedidoRequestDto;
 import com.example.demo.domain.models.Pedido;
 import com.example.demo.domain.models.PlatoJpa;
-import com.example.demo.domain.models.UsuarioJpa;
-import com.example.demo.repository.PlatoJpaRepository;
-import com.example.demo.repository.UsuarioJpaRepository;
+import com.example.demo.domain.models.Usuario;
+import com.example.demo.repository.PlatoRepository;
+import com.example.demo.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -19,38 +19,38 @@ import java.util.StringJoiner;
 @AllArgsConstructor
 @Log4j2
 public class PedidoService {
-    private UsuarioJpaRepository usuarioJpaRepository;
-    private PlatoJpaRepository platoJpaRepository;
+    private UsuarioRepository usuarioRepository;
+    private PlatoRepository platoRepository;
 
-    public String realizarPedido(UsuarioPedidoRequest request) {
+    public String realizarPedido(PedidoRequestDto request) {
         log.info(request);
-        Optional<UsuarioJpa> userOpt =  usuarioJpaRepository.findById(request.getUserId());
+        Optional<Usuario> userOpt =  usuarioRepository.findById(request.getUserId());
 
         if(userOpt.isEmpty()){
             throw new RuntimeException("El usuario no existe");
         }
 
         //Verifica si el plato existe en la base de datos
-        for (PlatoRequestDTO requestDTO : request.getProductos()){
-            if(!platoJpaRepository.existsByName(requestDTO.name())){
+        for (PlatoRequestDto requestDTO : request.getProductos()){
+            if(!platoRepository.existsByName(requestDTO.name())){
                 throw new RuntimeException("El plato con el nombre: "+requestDTO.name()+" no existe!");
             }
         }
 
-        List<PlatoJpa> platoJpa = platoJpaRepository.findAll();
+        List<PlatoJpa> platoJpa = platoRepository.findAll();
         // Descontando stock en la entidad platos y posteriormente guarda con el stock reducido
-        for (PlatoRequestDTO platoUser : request.getProductos()){
+        for (PlatoRequestDto platoUser : request.getProductos()){
 
             platoJpa.forEach(platoEntity -> {
                 if(platoEntity.getName().equalsIgnoreCase(platoUser.name()) && platoEntity.getStock() > 0 ){
                     platoEntity.setStock(platoEntity.getStock() -1);
-                    platoJpaRepository.save(platoEntity);
+                    platoRepository.save(platoEntity);
                 }
                 platoEntity.setAvailable(false);
             });
         }
 
-        UsuarioJpa user = userOpt.get();
+        Usuario user = userOpt.get();
         Pedido pedido = Pedido.builder()
                 .nombreDelivery(request.getDeliveryName())
                 .productos(listToString(request.getProductos()," "))
@@ -62,13 +62,13 @@ public class PedidoService {
         log.info("Pedido: ",pedido);
         log.info("User: ",user);
 
-        usuarioJpaRepository.save(user);
+        usuarioRepository.save(user);
 
         return "Pedido realizado con exito";
     }
-    public static String listToString(List<PlatoRequestDTO> list, String delimiter) {
+    public static String listToString(List<PlatoRequestDto> list, String delimiter) {
         StringJoiner joiner = new StringJoiner(delimiter);
-        for (PlatoRequestDTO item : list) {
+        for (PlatoRequestDto item : list) {
             joiner.add(item.name());
             joiner.add("Description:");
             joiner.add(item.type().toString());

@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UsuarioJpa extends Person {
+public class Usuario extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;

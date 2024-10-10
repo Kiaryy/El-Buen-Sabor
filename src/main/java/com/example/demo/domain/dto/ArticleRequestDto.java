@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import com.example.demo.domain.models.enums.ArticleCategory;
 import com.example.demo.domain.models.enums.Providers;
 
-public record ArticleRequestDTO(
+public record ArticleRequestDto(
         String name,
         String denominacion,
         ArticleCategory category,

@@ -4,17 +4,17 @@ import java.util.List;
 
 import com.example.demo.domain.models.PlatoJpa;
 import com.example.demo.domain.models.enums.Tipo;
-import com.example.demo.repository.PlatoJpaRepository;
+import com.example.demo.repository.PlatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PlateInitializerService {
 
-    private final PlatoJpaRepository repository;
+    private final PlatoRepository repository;
 
     @Autowired
-    public PlateInitializerService(PlatoJpaRepository repository) {
+    public PlateInitializerService(PlatoRepository repository) {
         this.repository = repository;
     }
 

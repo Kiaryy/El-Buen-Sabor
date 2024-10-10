@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.dto.PlatoRequestDTO;
+import com.example.demo.domain.dto.PlatoRequestDto;
 import com.example.demo.domain.models.PlatoJpa;
-import com.example.demo.repository.PlatoJpaRepository;
+import com.example.demo.repository.PlatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,25 +11,25 @@ import java.util.Optional;
 @Service
 public class PlatosService {
 
-    private final PlatoJpaRepository platoJpaRepository;
+    private final PlatoRepository platoRepository;
     @Autowired
-    public PlatosService(PlatoJpaRepository platoJpaRepository) {
+    public PlatosService(PlatoRepository platoRepository) {
 
-        this.platoJpaRepository = platoJpaRepository;
+        this.platoRepository = platoRepository;
     }
 
     //JPA repository
 
     public List<PlatoJpa> getAllPlatos() {
-        return platoJpaRepository.findAll();
+        return platoRepository.findAll();
     }
 
     public PlatoJpa findById(Long id){
-        Optional<PlatoJpa> entityOptional = platoJpaRepository.findById(id);
+        Optional<PlatoJpa> entityOptional = platoRepository.findById(id);
         return entityOptional.get();
     }
 
-    public String addPlatos(PlatoRequestDTO platoDTO){
+    public String addPlatos(PlatoRequestDto platoDTO){
 
 
         PlatoJpa plato = PlatoJpa.builder()
@@ -42,12 +42,12 @@ public class PlatosService {
                 .img(platoDTO.img())
                 .build();
         // Here we save in dataBase
-        platoJpaRepository.save(plato);
+        platoRepository.save(plato);
         return "Plato agregado";
     }
 
-    public PlatoJpa update(Long id, PlatoRequestDTO entity){
-        Optional<PlatoJpa> entityOptional = platoJpaRepository.findById(id); 
+    public PlatoJpa update(Long id, PlatoRequestDto entity){
+        Optional<PlatoJpa> entityOptional = platoRepository.findById(id);
         PlatoJpa plato = entityOptional.get();
         // We convert the DTO entity to an object
         PlatoJpa platoActualizado = PlatoJpa.builder()
@@ -61,12 +61,12 @@ public class PlatosService {
                 .img(entity.img())
                 .build();
         // Saves updated entity to database
-        plato = platoJpaRepository.save(platoActualizado);
+        plato = platoRepository.save(platoActualizado);
         return plato;
     }
     public boolean delete(Long id){
-        if(platoJpaRepository.existsById(id)){
-            platoJpaRepository.deleteById(id);
+        if(platoRepository.existsById(id)){
+            platoRepository.deleteById(id);
             return true;
         } else{
             return false;

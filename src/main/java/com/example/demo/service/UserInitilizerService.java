@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.models.UsuarioJpa;
-import com.example.demo.repository.UsuarioJpaRepository;
+import com.example.demo.domain.models.Usuario;
+import com.example.demo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import java.util.List;
 
 @Service
 public class UserInitilizerService {
-    private final UsuarioJpaRepository repository;
+    private final UsuarioRepository repository;
 
     @Autowired
-    public UserInitilizerService(UsuarioJpaRepository repository) {
+    public UserInitilizerService(UsuarioRepository repository) {
         this.repository = repository;
     }
 
@@ -22,9 +22,9 @@ public class UserInitilizerService {
 
         return "Deleted all users" ;
     }
-    public List<UsuarioJpa> createUsers() {
+    public List<Usuario> createUsers() {
 
-        List<UsuarioJpa> users = new ArrayList<>();
+        List<Usuario> users = new ArrayList<>();
 
         List<String> addresses = new ArrayList<>();
 
@@ -32,21 +32,21 @@ public class UserInitilizerService {
         addresses.add("Calle Verdadera 456");
         addresses.add("Calle Null 456");
 
-        users.add(UsuarioJpa.builder()
+        users.add(Usuario.builder()
                 .name("Pedro Gonzales")
                 .email("pedro.gonzales@gmail.com")
                 .addresses(addresses)
                 .password("123456789")
                 .build());
 
-        users.add(UsuarioJpa.builder()
+        users.add(Usuario.builder()
                 .name("Manolo Garcia")
                 .email("manolo.garcia@gmail.com")
                 .addresses(addresses)
                 .password("123456789")
                 .build());
 
-        users.add(UsuarioJpa.builder()
+        users.add(Usuario.builder()
                 .name("Armando Esteban Quito")
                 .email("Armando.Quito@gmail.com")
                 .addresses(addresses)

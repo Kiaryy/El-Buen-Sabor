@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.domain.dto.ArticleRequestDTO;
-import com.example.demo.domain.models.ArticleJpa;
+import com.example.demo.domain.dto.ArticleRequestDto;
+import com.example.demo.domain.models.Article;
 import com.example.demo.service.ArticleService;
 
 import lombok.AllArgsConstructor;
@@ -15,25 +15,25 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class ArticuloInsumoController{
+public class IngredientController {
 
     private final ArticleService articleService;
 
     @GetMapping("/article/findAll") 
     // Returns everything in table
-    List<ArticleJpa> findAll(){
+    List<Article> findAll(){
         return articleService.getAllArticles();
     }
 
     @PostMapping("/article/add")
     // adds DTO object
-    public ResponseEntity<String> addArticle(@RequestBody ArticleRequestDTO articleDTO){ 
+    public ResponseEntity<String> addArticle(@RequestBody ArticleRequestDto articleDTO){
         return ResponseEntity.ok(articleService.addArticle(articleDTO));
     }
     
     @PutMapping("/article/{id}")
     //Updates entity with matching id
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ArticleRequestDTO articleDTO){ 
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ArticleRequestDto articleDTO){
         return ResponseEntity.status(HttpStatus.OK).body(articleService.update(id, articleDTO));
     }
 

@@ -2,7 +2,7 @@ package com.example.demo.domain.dto;
 
 import com.example.demo.domain.models.enums.Tipo;
 
-public record PlatoRequestDTO(
+public record PlatoRequestDto(
         String name,
         String description,
         Tipo type,

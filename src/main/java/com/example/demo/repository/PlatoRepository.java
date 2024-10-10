@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlatoJpaRepository extends JpaRepository<PlatoJpa, Long> {
+public interface PlatoRepository extends JpaRepository<PlatoJpa, Long> {
     //Busca si existen los nombres de los platos ingresado
     @Query("SELECT CASE " +
             "WHEN COUNT(*) > 0 THEN true " +

@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.dto.ArticleRequestDTO;
-import com.example.demo.domain.models.ArticleJpa;
+import com.example.demo.domain.dto.ArticleRequestDto;
+import com.example.demo.domain.models.Article;
 import com.example.demo.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +16,14 @@ public class ArticleService{
     @Autowired
     public ArticleRepository articleInsumoRepository;
 
-    public List<ArticleJpa> getAllArticles() {
+    public List<Article> getAllArticles() {
         return articleInsumoRepository.findAll();
     }
 
-    public String addArticle(ArticleRequestDTO articleRequestDTO){
+    public String addArticle(ArticleRequestDto articleRequestDTO){
 
 
-        ArticleJpa article = ArticleJpa.builder()
+        Article article = Article.builder()
                 .name(articleRequestDTO.name())
                 .denominacion(articleRequestDTO.denominacion())
                 .category(articleRequestDTO.category())
@@ -39,11 +39,11 @@ public class ArticleService{
         return "Article Added";
     }
 
-    public ArticleJpa update(Long id, ArticleRequestDTO entity){
-        Optional<ArticleJpa> entityOptional = articleInsumoRepository.findById(id);
-        ArticleJpa article = entityOptional.get();
+    public Article update(Long id, ArticleRequestDto entity){
+        Optional<Article> entityOptional = articleInsumoRepository.findById(id);
+        Article article = entityOptional.get();
         // We convert the DTO entity to an object
-        ArticleJpa updatedArticle = ArticleJpa.builder()
+        Article updatedArticle = Article.builder()
                 .name(entity.name())
                 .denominacion(entity.denominacion())
                 .category(entity.category())

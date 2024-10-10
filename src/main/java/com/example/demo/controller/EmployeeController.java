@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.dto.EmployeeRequestDTO;
-import com.example.demo.domain.models.EmployeeJpa;
+import com.example.demo.domain.dto.EmployeeRequestDto;
+import com.example.demo.domain.models.Employee;
 import com.example.demo.service.EmployeeService;
 
 import lombok.AllArgsConstructor;
@@ -24,19 +24,19 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
     @GetMapping("/employees/findAll")
-    List<EmployeeJpa> findAll(){
+    List<Employee> findAll(){
         return employeeService.getAllEmployees();
     }
 
     @PostMapping("/employees/add")
-    public ResponseEntity<String> addEmployee(@RequestBody EmployeeRequestDTO employeeDTO){
+    public ResponseEntity<String> addEmployee(@RequestBody EmployeeRequestDto employeeDTO){
 
         return ResponseEntity.ok(employeeService.addEmployee(employeeDTO));
     }
     
     @PutMapping("/employees/{id}")
     //Updates entity with matching id
-    public ResponseEntity<EmployeeJpa> update(@PathVariable Long id, @RequestBody EmployeeRequestDTO employeeDTO){
+    public ResponseEntity<Employee> update(@PathVariable Long id, @RequestBody EmployeeRequestDto employeeDTO){
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.update(id, employeeDTO));
     }
 

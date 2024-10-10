@@ -20,7 +20,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class EmployeeJpa extends Person{
+public class Employee extends Person{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;

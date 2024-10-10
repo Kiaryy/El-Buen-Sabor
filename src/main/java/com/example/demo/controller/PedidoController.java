@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.dto.UsuarioPedidoRequest;
+import com.example.demo.domain.dto.PedidoRequestDto;
 import com.example.demo.service.PedidoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ public class PedidoController {
 
     private PedidoService pedidoService;
     @PostMapping("/realizarPedido")
-    public ResponseEntity<String> realizarPedido(@RequestBody UsuarioPedidoRequest pedidoRequest ){
+    public ResponseEntity<String> realizarPedido(@RequestBody PedidoRequestDto pedidoRequest ){
         return ResponseEntity.ok(pedidoService.realizarPedido(pedidoRequest));
     }
 

@@ -20,5 +20,5 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name= "user_id", nullable = false)
-    private UsuarioJpa user;
+    private Usuario user;
 }

@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.dto.EmployeeRequestDTO;
-import com.example.demo.domain.models.EmployeeJpa;
-import com.example.demo.repository.EmployeeJpaRepository;
+import com.example.demo.domain.dto.EmployeeRequestDto;
+import com.example.demo.domain.models.Employee;
+import com.example.demo.repository.EmployeeRepository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,25 +15,25 @@ public class EmployeeService {
     
     //JPA repository
     @Autowired
-    private EmployeeJpaRepository employeeJpaRepository;
+    private EmployeeRepository employeeRepository;
 
-    public EmployeeService(EmployeeJpaRepository employeeJpaRepository) {
-        this.employeeJpaRepository = employeeJpaRepository;
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
 
-    public List<EmployeeJpa> getAllEmployees() {
-        return employeeJpaRepository.findAll();
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
     }
 
-        public EmployeeJpa findById(Long id){
-        Optional<EmployeeJpa> entityOptional = employeeJpaRepository.findById(id);
+        public Employee findById(Long id){
+        Optional<Employee> entityOptional = employeeRepository.findById(id);
         return entityOptional.get();
     }
 
-    public String addEmployee(EmployeeRequestDTO employeeDTO) {
+    public String addEmployee(EmployeeRequestDto employeeDTO) {
 
-        EmployeeJpa employee = EmployeeJpa.builder()
+        Employee employee = Employee.builder()
                 .name(employeeDTO.name())
                 .phoneNumber(employeeDTO.phoneNumber())
                 .hourlySalary(employeeDTO.hourlySalary())
@@ -45,15 +45,15 @@ public class EmployeeService {
 
 
         // Here we save in dataBase
-        employeeJpaRepository.save(employee);
+        employeeRepository.save(employee);
         return "Employee added";
     }
 
-    public EmployeeJpa update(Long id, EmployeeRequestDTO entity){
-        Optional<EmployeeJpa> entityOptional = employeeJpaRepository.findById(id); 
-        EmployeeJpa employee = entityOptional.get();
+    public Employee update(Long id, EmployeeRequestDto entity){
+        Optional<Employee> entityOptional = employeeRepository.findById(id);
+        Employee employee = entityOptional.get();
         // We convert the DTO entity to an object
-        EmployeeJpa updatedEmployee = EmployeeJpa.builder()
+        Employee updatedEmployee = Employee.builder()
                 .name(entity.name())
                 .phoneNumber(entity.phoneNumber())
                 .hourlySalary(entity.hourlySalary())
@@ -63,13 +63,13 @@ public class EmployeeService {
                 .shift(entity.charge().getShift())
                 .build();
         // Saves updated entity to database
-        employee = employeeJpaRepository.save(updatedEmployee);
+        employee = employeeRepository.save(updatedEmployee);
         return employee;
     }
 
     public boolean delete(Long id){
-        if(employeeJpaRepository.existsById(id)){
-            employeeJpaRepository.deleteById(id);
+        if(employeeRepository.existsById(id)){
+            employeeRepository.deleteById(id);
             return true;
         } else{
             return false;

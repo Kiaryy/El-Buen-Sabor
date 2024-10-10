@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.dto.PlatoRequestDTO;
+import com.example.demo.domain.dto.PlatoRequestDto;
 import com.example.demo.domain.models.PlatoJpa;
 import com.example.demo.service.PlatosService;
 import lombok.AllArgsConstructor;
@@ -31,12 +31,12 @@ public class PlatoController {
     }
 
     @PostMapping("/platos/add")
-    public ResponseEntity<String> addPlatos(@RequestBody PlatoRequestDTO platoDTO){
+    public ResponseEntity<String> addPlatos(@RequestBody PlatoRequestDto platoDTO){
         return ResponseEntity.ok(platosService.addPlatos(platoDTO));
     }
     
     @PutMapping("/platos/{id}")
-    public ResponseEntity<PlatoJpa> update(@PathVariable Long id, @RequestBody PlatoRequestDTO platoDTO){
+    public ResponseEntity<PlatoJpa> update(@PathVariable Long id, @RequestBody PlatoRequestDto platoDTO){
         return ResponseEntity.status(HttpStatus.OK).body(platosService.update(id, platoDTO));
     }
 
