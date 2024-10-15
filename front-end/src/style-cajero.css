@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.section {
+    background-color: #d3d3d3;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.section h2 {
+    color: red;
+    font-size: 16px;
+    margin: 0 0 10px 0;
+}
+
+.section label {
+    display: inline-block;
+    width: 120px;
+    margin-bottom: 5px;
+}
+
+.section input[type="text"], .section input[type="number"], .section select, .section input[type="date"] {
+    width: 130px; 
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid black; 
+}
+
+.section .buttons {
+    margin-top: 10px;
+    margin-left: 110px;
+}
+
+.section .buttons button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.section .buttons button.cancel {
+    background-color: red;
+    color: white;
+}
+
+.section .buttons button.confirm {
+    background-color: green;
+    color: white;
+}
+
+.section .buttons button.print {
+    background-color: #ccc;
+    color: black;
+}
+
+.total {
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.total input {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    margin-right: 10px;
+}
+
+.tab {
+    display: inline-block;
+    width: 20px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.flex-item {
+    flex: 1;
+    margin-right: 10px;
+    min-width: 300px;
+}
+
+.flex-item:last-child {
+    margin-right: 0;
+}
+
+.form-group-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-group-inline label {
+    margin-right: 10px;
+}
+
+.spacer {
+    margin-bottom: 20px; 
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-container textarea {
+    flex: 1;
+    margin-right: 10px;
+}
