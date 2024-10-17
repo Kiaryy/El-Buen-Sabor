@@ -8,8 +8,7 @@
 </head>
     
 <body>
-    <header class="navbar">
-       
+    <header class="navbar" aria-label="Navegación Principal">
         <div class="logo">Buen<span>SABOR</span></div>
         <nav>
             <ul>
@@ -20,8 +19,8 @@
                 <li>  <a id="login" href="sign-up.html">Registro</a></li>
             </ul>
         </nav>
-        
     </header>
+
     <main>  
         <div id="barra">
             <nav>
@@ -37,49 +36,91 @@
         <!-- HAMBURGUESAS -->
         <h2 class="title-products" id="hamburguesas">HAMBURGUESAS</h2>
         <section class="container-menu" id="section-hamburguesa">
-          
+            <!-- Productos Hamburguesas (por agregar dinámicamente) -->
         </section>
-  
+
         <!-- PIZZAS -->
-            <h2 class="title-products" id="pizzas">PIZZAS</h2>
-            <section class="container-menu" id="section-pizza">
-              
-            </section>
+        <h2 class="title-products" id="pizzas">PIZZAS</h2>
+        <section class="container-menu" id="section-pizza">
+            <!-- Productos Pizzas (por agregar dinámicamente) -->
+        </section>
                 
         <!-- EMPANADAS -->
-    <h2 class="title-products" id="empanadas">EMPANADAS</h2>
-        <section class="container-menu" id="section-empanada">    
-          
+        <h2 class="title-products" id="empanadas">EMPANADAS</h2>
+            <section class="container-menu" id="section-empanada">    
+                <!-- Productos Empanadas (por agregar dinámicamente) -->
+            </section>
+
+            <!-- ENSALADAS -->
+        <h2 class="title-products" id="ensaladas">ENSALADAS</h2>
+        <section class="container-menu" id="section-ensalada"> 
+                <!-- Productos Ensaladas (por agregar dinámicamente) -->
         </section>
 
-        <!-- ENSALADAS -->
-    <h2 class="title-products" id="ensaladas">ENSALADAS</h2>
-    <section class="container-menu" id="section-ensalada">    
-       
-    </section>
-
-    <!-- ACOMPAÑAMIENTOS -->
-    <h2 class="title-products" id="acompañamientos">ACOMPAÑAMIENTOS</h2>
+        <!-- ACOMPAÑAMIENTOS -->
+        <h2 class="title-products" id="acompañamientos">ACOMPAÑAMIENTOS</h2>
         <section class="container-menu" id="section-acompañamiento">    
-           
+            <!-- Productos Acompañamientos (por agregar dinámicamente) -->
         </section>
-    <!-- POSTRES -->
-    <h2 class="title-products" id="postres">POSTRES</h2>
-    <section class="container-menu" id="section-postre">
-     
-    </section>
+
+        <!-- POSTRES -->
+        <h2 class="title-products" id="postres">POSTRES</h2>
+        <section class="container-menu" id="section-postre">
+            <!-- Productos Postres (por agregar dinámicamente) -->
+        </section>
+
     </main>
+
+
+    <footer>
+        <section id="footer-name">
+            <p>Buen<span>SABOR</span></p>
+            <div id="container-contact">
+                <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/telefono.png" alt="">+54 9 261 1234 567</div>
+                <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/ubi.png" alt="">Cnel. Rodriguez 273, Ciudad, Mendoza</div>
+                <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/relojFooter.png" alt="">Lunes a Viernes, 9 AM - 9 PM</div>
+            </div>
+        </section> 
+    </footer>
+
+    <!-- Modal -->
+    <div id="productModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <img id="modal-img" class="modal-image" src="" alt="Imagen del producto">
+            <h2 id="modal-title">Clásica de la casa</h2>
+        </div>
+        <div class="modal-content">
+            <p id="modal-description">Una hamburguesa clásica con carne super jugosa y sabor incomparable...</p>
+            <p id="modal-price">Precio: $5600</p>
+        </div>
+        <div class="options-container">
+            <div class="option">
+                <label for="opcion-clasica">Opción Clásica:</label>
+                <div class="quantity-control">
+                    <button onclick="decreaseQuantity('opcion-clasica')">-</button>
+                    <input type="number" id="opcion-clasica" value="0" min="0" readonly>
+                    <button onclick="increaseQuantity('opcion-clasica')">+</button>
+                </div>
+            </div>
+            <div class="option">
+                <label for="opcion-sin-tacc">Opción Sin TACC:</label>
+                <div class="quantity-control">
+                    <button onclick="decreaseQuantity('opcion-sin-tacc')">-</button>
+                    <input type="number" id="opcion-sin-tacc" value="0" min="0" readonly>
+                    <button onclick="increaseQuantity('opcion-sin-tacc')">+</button>
+                </div>
+            </div>
+            <div class="option">
+            <label for="opcion-bebidas">Agregar Bebidas</label>
+                <button class="btn-agregar-bebidas">Seleccionar</button>
+            </div>
+        </div>
+        <button class="btn-agregar-carrito">Agregar al Carrito - TOTAL: $0</button>
+    </div>
+
 
     <script type="module"  src="src/scripts/menu/show-plates.mjs"></script>
 </body>
-<footer>
-    <section id="footer-name">
-        <p>Buen<span>SABOR</span></p>
-        <div id="container-contact">
-            <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/telefono.png" alt="">+54 9 261 1234 567</div>
-            <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/ubi.png" alt="">Cnel. Rodriguez 273, Ciudad, Mendoza</div>
-            <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/relojFooter.png" alt="">Lunes a Viernes, 9 AM - 9 PM</div>
-        </div>
-    </section> 
-</footer>
+
 </html>
