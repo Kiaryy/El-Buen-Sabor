@@ -19,13 +19,14 @@
     })
 
 const regex = {
-    name:/^[a-zA-Z]{3,20}$/,
+    name:/^[a-zA-Z]{3,30}$/,
     phone_number: /^\d{10,15}$/,
-    adresse:/^[a-zA-Z0-9 ]{5,40}$/,
-    email: /^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
+    addresses:/^[a-zA-Z0-9 ]{5,40}$/,
+    login_email: /^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
+    sign_up_email:/^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
     login_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
-    repetir: function(value) {
+    repeat_password: function(value) {
         return value === document.querySelector('input[name="password"]').value;
     }
 };
@@ -38,31 +39,35 @@ const button_sign_up=document.getElementById('button-sign-up')
 const valueRegex = {
     name:false,
     phone_number:false,
-    adresse:false,
-    email: false,
+    addresses:false,
+    login_email:false,
+    sign_up_email:false,
     password: false,
-    repetir: false,
+    repeat_password: false,
     login_password: false,
 };
 
 inputs.forEach(input => {
-    // Cada vez que se ingrese una tecla
-    input.addEventListener('input', () => {
-        validation(input.name, input.value);
+  
+        // Cada vez que se ingrese una tecla
+       input.addEventListener('input', () => {
+       validation(input.name, input.value);
     });
-
+    
     // Cada vez que deje de hacer foco
-    input.addEventListener('blur', () => {
+       input.addEventListener('blur', () => {
+      
        
-        
-        validation(input.name, input.value);
+       validation(input.name, input.value);
     });
-});
+    
+   
+    });
 
 function validation(names, value) {
     if (names in regex) {
-        if (names === 'repetir') {
-            valueRegex[names] = regex.repetir(value);
+        if (names === 'repeat_password') {
+            valueRegex[names] = regex.repeat_password(value);
         } else {
             valueRegex[names] = regex[names].test(value);
         }
@@ -71,49 +76,74 @@ function validation(names, value) {
  
     // Mostrar u ocultar mensajes de advertencia
     for (let i = 0; i < parrafo.length; i++) {
-  
-        
+
         if (parrafo[i].getAttribute('name') === names) {
             if (valueRegex[names]) {
                 parrafo[i].classList.add('hide'); // Ocultar si es válido
+                
             } else {
+                console.log(names + " valor="+ value);
                 parrafo[i].classList.remove('hide'); // Mostrar si no es válido
             }
         }
     }
 }
 //------------------------------------AGREGAR USUARIO----------------------------
-button_sign_up.addEventListener('click',()=>{
+button_sign_up.addEventListener('click',async()=>{
 
-    let new_user={
-        name:"",
-        phone_number:"",
-        adresse:"",
-        cards:"",
-        email:"",
-        password:"",
-    }
-    inputs.forEach(input => {
-            validation(input.name,input.value)
-            if(input.name in new_user && valueRegex[input.name]){
-                new_user[input.name]=input.value
-            }
+    // new_user.cards.push(Number("14"))
+    // new_user.pedido.push("222")
+    
+    // new_user.email="otsuguariquelme@gmail.com"
+    
+    // // Recorre los input para verificar bien los datos
+    // inputs.forEach(input => {
+        //     if (input.name!="login_password" && input.name!="login_email") {
             
-    });
-    // Validar si todos los elementos son verdaderos excepto login_password
-    const allValidExceptLogin = Object.keys(valueRegex).every(key => 
-        key === 'login_password' || valueRegex[key]
-    );
-    if (allValidExceptLogin) {
+        //         validation(input.name,input.value)
+        //         if(input.name in new_user && valueRegex[input.name]){
+            //             if (input.name=="addresses") {
+                //                 new_user.addresses.push(input.value)
+                //             }else if (input.name=="phone_number") {
+                    //                 new_user.phoneNumber=Number(input.value)
+                    
+                    //             }else{
+                        
+                    //                 new_user[input.name]=input.value
+                    //             }
+                    //         }
+                    //     }
+                    
+                    // });
+                    // console.log(new_user);
+                    
+                    // // Validar si todos los elementos son verdaderos excepto login_password
+                    // const allValidExceptLogin = Object.keys(valueRegex).every(key => 
+                        //     key === 'login_password' || key === 'login_email'|| valueRegex[key]
+    // );
+    // console.log(valueRegex);
+    
+    // if (allValidExceptLogin) {
+        const new_user={
+            name: "Armando Esteban Quito",
+            phoneNumber : 123456789,
+            adresses: ["Calle Falsa 1234", "Calle Verdadera 4321"],
+            cards: [123456, 123568],
+            mail: "Armando.Quito@gmail.com",
+            passWord:"123456789",
+          
+        }
         
-        const add = 'https://bsapi-latest.onrender.com/usuarios/add';
-        fetch(add,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' // Especificamos que los datos están en formato JSON
-            },
-            
-            body: JSON.stringify(new_user) // Convertimos los datos a formato JSON
+    const add = 'https://bsapi-latest.onrender.com/usuarios/add';
+    
+    
+    fetch(add,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // Especificamos que los datos están en formato JSON
+        },
+        
+        body: JSON.stringify(new_user) // Convertimos los datos a formato JSON
         })
         .then(response => {
             // Verificar si la respuesta fue exitosa
@@ -134,9 +164,9 @@ button_sign_up.addEventListener('click',()=>{
         });
 
         
-    }else{
-        console.log("no todo");
+    // }else{
+    //     console.log("no todo");
         
-    }
+    // }
     
 })
