@@ -1,67 +1,101 @@
-const section_hamburguesa=document.querySelector('#section-hamburguesa')
-const section_pizza=document.querySelector('#section-pizza')
-const section_empanada=document.querySelector('#section-empanada')
-const section_ensalada=document.querySelector('#section-ensalada')
-const section_acompañamiento=document.querySelector('#section-acompañamiento')
-const section_postre=document.querySelector('#section-postre')
+// Selección de las secciones donde se mostrarán los productos
+const section_hamburguesa = document.querySelector('#section-hamburguesa');
+const section_pizza = document.querySelector('#section-pizza');
+const section_empanada = document.querySelector('#section-empanada');
+const section_ensalada = document.querySelector('#section-ensalada');
+const section_acompañamiento = document.querySelector('#section-acompañamiento');
+const section_postre = document.querySelector('#section-postre');
 
+// Referencias al modal
+const modal = document.getElementById('productModal');
+const modalImage = document.getElementById('modal-img');
+const modalName = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
+const modalPrice = document.getElementById('modal-price');
+const closeModal = document.querySelector('.close');
 
-window.onload =async function () {
-    console.log("hola");
+// Al cargar la página
+window.onload = async function () {
+    console.log("Cargando productos...");
+
+    // URL de la API para obtener los platos
     const url = 'https://bsapi-latest.onrender.com/platos/findAll';
-    // const add = 'https://bsapi-latest.onrender.com/platos/add';
-// Realizar la solicitud GET
- //------------------------------OBTIENEE---------------------------------------------------------
-fetch(url,{
-    method: 'GET'
-})
-.then(response => {
-    // Verificar si la respuesta fue exitosa
-    if (!response.ok) {
-    throw new Error('Error en la solicitud: ' + response.status);
-    }
-    // Convertir la respuesta a JSON
-    return response.json();
-})
-.then(data => {
- 
-    
-    // Mapeamos las secciones a los tipos de comida
-    const sectionMap = {
-        HAMBURGUESA: section_hamburguesa,
-        PIZZA: section_pizza,
-        EMPANADA: section_empanada,
-        ENSALADA: section_ensalada,
-        ACOMPAÑANMIENTO: section_acompañamiento,
-        POSTRE: section_postre
-    };
 
-    // Trabajar con los datos recibidos
-    data.forEach(item => {
-        // Si existe una sección para el tipo de comida
-        if (sectionMap[item.type]) {
-            sectionMap[item.type].innerHTML += `
-                <div class="card-food">
-                    <a href="#" class="food"></a>
-                    <img alt="imagen comida" src="${item.img}">
-                    <h3>${item.name}</h3>
-                </div>
-            `;
+    // Realizar la solicitud GET a la API
+    try {
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la solicitud: ' + response.status);
         }
-    });
-})
-    
-    // Object.values(hamburguesaDict).forEach(hamburguesa => {
-    //     console.log(hamburguesa.name);
-    //  
-    // })
 
-.catch(error => {
-    // Manejar errores
-    console.error('Hubo un problema con la solicitud:', error);
+        // Convertir la respuesta a JSON
+        const data = await response.json();
+
+        // Mapeamos las secciones a los tipos de comida
+        const sectionMap = {
+            HAMBURGUESA: section_hamburguesa,
+            PIZZA: section_pizza,
+            EMPANADA: section_empanada,
+            ENSALADA: section_ensalada,
+            ACOMPAÑANMIENTO: section_acompañamiento,
+            POSTRE: section_postre
+        };
+
+        // Mostrar los productos en las respectivas secciones
+        data.forEach(item => {
+            // Verificar si existe una sección para el tipo de comida
+            if (sectionMap[item.type]) {
+                sectionMap[item.type].innerHTML += `
+                    <div class="card-food" data-name="${item.name}" data-description="${item.description}" data-price="${item.price}">
+                        <img alt="imagen comida" src="${item.img}">
+                        <h5>${item.name}</h5>
+                        <!-- Eliminar o comentar esta línea para ocultar el precio -->
+                        <!-- <p>$${item.price}</p> -->
+                    </div>
+                `;
+            }
+        });
+    } catch (error) {
+        // Manejar errores
+        console.error('Hubo un problema con la solicitud:', error);
+    }
+};
+
+// Función para abrir el modal al hacer clic en una tarjeta de comida
+document.addEventListener('click', function(event) {
+    if (event.target.closest('.card-food')) {
+        const card = event.target.closest('.card-food');
+        const imgSrc = card.querySelector('img').src;
+        const name = card.dataset.name;
+        const description = card.dataset.description;
+        const price = card.dataset.price;
+
+        // Mostrar los datos en el modal
+        modalImage.src = imgSrc;
+        modalName.textContent = name;
+        modalDescription.textContent = description;
+        modalPrice.textContent = `$${price}`;
+
+        // Mostrar el modal
+        modal.style.display = "block";
+    }
 });
 
- //------------------------------AGREGA---------------------------------------------------------
+// Función para cerrar el modal al hacer clic en la 'X'
+closeModal.onclick = function() {
+    modal.style.display = "none";
+};
+
+// Función para cerrar el modal al hacer clic fuera de la ventana modal
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+};
+//------------------------------AGREGA---------------------------------------------------------
 //  const nuevo_plato= {
 //     name: 'Empanada de Carne',
 //     description: 'Empanada rellena con carne picada',
@@ -90,48 +124,9 @@ fetch(url,{
 // })
 // .then(data => {
 //     // Mapeamos las secciones a los tipos de comida
-
 // })
-    
 
 // .catch(error => {
 //     // Manejar errores
 //     console.error('Hubo un problema con la solicitud:', error);
 // });
-
-
- //--------------------------------MODIFICA---------------------------------------------------------
-// const modifcar = 'https://bsapi-latest.onrender.com/platos/42';
-
-// // Datos actualizados para el plato
-// const updatedData = {
-//     name: 'Empanada de Carne',
-//     description: 'Empanada rellena con carne picada',
-//     type: 'EMPANADA',
-//     price: 9000,
-//     stock: 25,
-//     available: true,
-//     img:"buea gil"
-// };
-
-// // Llamada PUT con fetch
-// fetch(modifcar, {
-//     method: 'PUT',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(updatedData),
-// })
-// .then(response => {
-//     if (!response.ok) {
-//         throw new Error('Error en la actualización del plato');
-//     }
-//     return response.json();
-// })
-// .then(data => {
-//     console.log('Plato actualizado exitosamente:', data);
-// })
-// .catch(error => {
-//     console.error('Error:', error);
-// });
-}
