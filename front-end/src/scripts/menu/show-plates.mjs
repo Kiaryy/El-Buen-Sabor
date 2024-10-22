@@ -51,7 +51,7 @@ window.onload = async function () {
                 sectionMap[item.type].innerHTML += `
                     <div class="card-food" data-name="${item.name}" data-description="${item.description}" data-price="${item.price}">
                         <img alt="imagen comida" src="${item.img}">
-                        <h3>${item.name}</h3>
+                        <h5>${item.name}</h5>
                         <!-- Eliminar o comentar esta línea para ocultar el precio -->
                         <!-- <p>$${item.price}</p> -->
                     </div>
@@ -105,7 +105,6 @@ window.onclick = function(event) {
 //     available: true,
 //     img:"buea gil"
 //  }
-       
 
 // fetch(add,{
 //     method: 'POST',
