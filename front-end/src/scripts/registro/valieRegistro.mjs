@@ -82,91 +82,144 @@ function validation(names, value) {
                 parrafo[i].classList.add('hide'); // Ocultar si es válido
                 
             } else {
-                console.log(names + " valor="+ value);
+                
                 parrafo[i].classList.remove('hide'); // Mostrar si no es válido
             }
         }
     }
 }
 //------------------------------------AGREGAR USUARIO----------------------------
-button_sign_up.addEventListener('click',async()=>{
 
-    // new_user.cards.push(Number("14"))
-    // new_user.pedido.push("222")
-    
-    // new_user.email="otsuguariquelme@gmail.com"
-    
-    // // Recorre los input para verificar bien los datos
-    // inputs.forEach(input => {
-        //     if (input.name!="login_password" && input.name!="login_email") {
-            
-        //         validation(input.name,input.value)
-        //         if(input.name in new_user && valueRegex[input.name]){
-            //             if (input.name=="addresses") {
-                //                 new_user.addresses.push(input.value)
-                //             }else if (input.name=="phone_number") {
-                    //                 new_user.phoneNumber=Number(input.value)
+button_sign_up.addEventListener('click',async()=>{
+    const new_user={
+        name: "",
+        phoneNumber : 0,
+        addresses: [],
+        cards: [],
+        email: "",
+        password:"",
+        pedido:[],
+      
+    }
+
+    // Recorre los input para verificar bien los datos
+    inputs.forEach(input => {
+            if (input.name!="login_password" && input.name!="login_email" && input.name!="repeat_password") {
+                
+                
+                validation(input.name,input.value)
+                if(valueRegex[input.name]){
+                        if (input.name=="addresses") {
+                                new_user.addresses.push(input.value)
+                            }else if (input.name=="phone_number") {
+                                    new_user.phoneNumber=Number(input.value)
                     
-                    //             }else{
+                                }else if (input.name=="sign_up_email"){
+                                    new_user.email=input.value
+
+                                }
+                                else{
+                                    new_user[input.name]=input.value
                         
-                    //                 new_user[input.name]=input.value
-                    //             }
-                    //         }
-                    //     }
+                                }
+                            }
+                        }
                     
-                    // });
-                    // console.log(new_user);
+                        });
+                
                     
-                    // // Validar si todos los elementos son verdaderos excepto login_password
-                    // const allValidExceptLogin = Object.keys(valueRegex).every(key => 
-                        //     key === 'login_password' || key === 'login_email'|| valueRegex[key]
-    // );
+                    // Validar si todos los elementos son verdaderos excepto login_password
+                    const allValidExceptLogin = Object.keys(valueRegex).every(key => 
+                            key === 'login_password' || key === 'login_email'|| valueRegex[key]
+                            
+    );
     // console.log(valueRegex);
     
-    // if (allValidExceptLogin) {
-        const new_user={
-            name: "Armando Esteban Quito",
-            phoneNumber : 123456789,
-            adresses: ["Calle Falsa 1234", "Calle Verdadera 4321"],
-            cards: [123456, 123568],
-            mail: "Armando.Quito@gmail.com",
-            passWord:"123456789",
+
+    async function there_is_email(email){
+       
+        try{
+            const response=await fetch('https://bsapi-latest.onrender.com/usuarios/findAll',{
+                method:'GET'
+            });
+            const data =  await response.json();
           
+            
+            for (let user of data) {
+               if (user.email=email) {
+                    return false
+               }
+                
+            }
+           return true
+            
+        } 
+        catch(error){
+                // Manejar errores
+                console.error('Hubo un problema con la solicitud:', error);
+        }
+       
+        
+
+    }
+    if (allValidExceptLogin) {
+        const emailExists=await there_is_email(new_user.email)
+        if (emailExists) {
+            
+        // const add = 'https://bsapi-latest.onrender.com/usuarios/add';
+        
+        
+        // fetch(add, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json' // Especificamos que los datos están en formato JSON
+        //     },
+        //     body: JSON.stringify(new_user) // Convertimos los datos a formato JSON
+        // })
+        // .then(response => {
+        //     // Verificar si la respuesta fue exitosa
+        //     if (!response.ok) {
+        //         throw new Error('Error en la solicitud: ' + response.status);
+        //     }
+            
+        //     // Verificar si el tipo de contenido es JSON
+        //     const contentType = response.headers.get('Content-Type');
+            
+        //     if (contentType && contentType.includes('application/json')) {
+        //         return response.json(); // Leer como JSON si es de tipo JSON
+        //     } else {
+        //         return response.text(); // Leer como texto si no es JSON
+        //     }
+        // })
+        // .then(data => {
+        //     if (typeof data === 'object') {
+        //         console.log('Respuesta JSON:', data); // Manejo de datos JSON
+        //     } else {
+        //         console.log('Respuesta texto:', data); // Manejo de respuesta en texto
+        //     }
+        
+        //     // Mostrar mensaje de éxito
+        //     alert("Usuario registrado con éxito");
+        //     section_login.classList.remove('hide');
+        //     section_sign_up.classList.add('hide');
+        // })
+        // .catch(error => {
+        //     // Manejar errores
+        //     console.error('Hubo un problema con la solicitud:', error);
+        //     alert("No se pudo registrar el usuario");
+        // });
+        
+            
+        }else{
+            alert("Ya existe usuario con ese email, use otro");
         }
         
-    const add = 'https://bsapi-latest.onrender.com/usuarios/add';
-    
-    
-    fetch(add,{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json' // Especificamos que los datos están en formato JSON
-        },
+}else{
+    alert("Faltan ingresar datos");
+   
         
-        body: JSON.stringify(new_user) // Convertimos los datos a formato JSON
-        })
-        .then(response => {
-            // Verificar si la respuesta fue exitosa
-            if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.status);
-            }else{
-                
-                alert("Usuario registrado con exito");
-                section_login.classList.remove('hide')
-                section_sign_up.classList.add('hide')
-            }
-            // Convertir la respuesta a JSON
-            return response.json();
-        })
-        .catch(error => {
-            // Manejar errores
-            console.error('Hubo un problema con la solicitud:', error);
-        });
+   
 
-        
-    // }else{
-    //     console.log("no todo");
-        
-    // }
+}
     
 })
