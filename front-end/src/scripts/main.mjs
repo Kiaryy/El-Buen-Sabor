@@ -1,7 +1,17 @@
 
 
     const $ = selector => document.querySelector(selector);
-//     const º = selector => document.querySelectorAll(selector);
+    const button_profile=document.getElementById('profile')
+    window.onload = async function () {
+        const profile = localStorage.getItem('profile');
+            if (profile === 'true') {
+                button_profile
+                if (button_profile) {
+                    button_profile.innerHTML = 'Perfil';
+                    
+                }
+            }}
+    //     const º = selector => document.querySelectorAll(selector);
 
 // const contenedor = $("#popular");
 
