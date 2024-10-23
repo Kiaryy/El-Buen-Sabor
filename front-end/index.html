@@ -9,20 +9,15 @@
 </head>
 
 <body>
-    <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
-    <header class="navbar">
-       
+    <header class="navbar" aria-label="Navegación Principal">
         <div class="logo">Buen<span>SABOR</span></div>
         <nav>
             <ul>
-                <li>  <a href="index.html">Inicio</a></li>
-                <li>  <a href="#">Promociones</a></li>
-                <li>  <a href="carrito.html">Carrito</a></li>
-                <li>  <a href="menu.html" id="menu">MENÚ</a></li>
-                <li>  <a id="profile" href="sign-up.html">Registro</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">MENÚ</a></li>
+                <li><a id="profile" href="sign-up.html">Registro</a></li>
             </ul>
         </nav>
-        
     </header>
 
     <section id="home">
@@ -33,28 +28,26 @@
                 darle <span class="highlight-orange">BUEN SABOR</span>
             </h1>
             <p>Un plato para cada antojo, un sabor para cada día</p><br>
-            <div class="buttons">
-                <a href="#" class="promo">NUESTRAS PROMOS</a>
-                <a href="#" class="orders">LOS MAS PEDIDOS</a>
-            </div>
+            
         </div>
         <div id="image">
             <img src="IMAGENES BUEN SABOR/MAIN/pizza rueda2.webp" alt="pizza" id="pizza2">
             <img src="/front-end/IMAGENES BUEN SABOR/MAIN/pala-pizzera.png" alt="pala" id="pala">
         </div>
     </section>
-    <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
+
+    <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
     <main class="main">
 
         <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~POPULAR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
+         <!-- 
         <section id="popular">
-            <br><br>
-            <H2>POPULARES</H2>
+            <h2> POPULARES </h2>
             <div id="container-pop">
                 <div class="product-pop">
                     <img src="IMAGENES BUEN SABOR/MAIN/muzza doble.png" alt="">
                     <div class="name-food">
-                        <h5><center>Pizza<br>Muzzarella</center></h5>
+                        <h5><center>Pizza<br>Hawaiana</center></h5>
                     </div>
                     
                     <div class="add-car">
@@ -66,7 +59,7 @@
                             <img src="IMAGENES BUEN SABOR/MAIN/estrellas.png" alt="">
                             <br>
                         </div>
-                        <button class="button-to-product">IR AL <br> PRODUCTO</button>
+                        <button class="button-to-product">IR AL<br>PRODUCTO</button>
                     </div>
                 </div>
 
@@ -125,9 +118,11 @@
                 </div>   
             </div>
         </section>
-        <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CATEGORY~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
-        <section id="categories">
-            <H2>CATEGORIAS</H2>
+        -->
+
+        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~PROMOCIONES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <section id="promos">
+            <H2>PROMOCIONES</H2>
             <div id="container-cat">
 
                 <div class="product-cat">
@@ -161,23 +156,33 @@
             </div>
         </section>
 
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~VERDADEDRO SABOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <section id="taste">
+            <div id="text-taste">
+            <h2 id="taste-title">SOBRE NOSOTROS</h2>
+            <p>En Buen Sabor, nuestra misión es reinventar los platos clásicos con un toque único que haga cada bocado memorable. Combinamos        ingredientes frescos y de alta calidad para crear una experiencia culinaria que se adapta a todos los gustos y antojos. </p>
+            <p>Nos dedicamos a crear una oferta culinaria diversa, que incluye desde pizzas artesanales hasta empanadas y hamburguesas, siempre         asegurándonos de que encuentres algo delicioso que se ajuste a tus antojos.
+            Cada día buscamos innovar y sorprender a nuestros clientes con sabores que reflejen nuestra dedicación y amor por la buena comida. ¡Te      invitamos a descubrir el verdadero significado del buen sabor!</p>
+            </div>
+            <img src="/front-end/IMAGENES BUEN SABOR/MAIN/verdadero-sabor.png" alt="chica comiendo hamburguesa">
+        </section>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ABOUT US~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <section id="about-us">
             <img src="IMAGENES BUEN SABOR/MAIN/nosotros.png" alt="">
             <div id="description-about-us">
             <h2>SOBRE NOSOTROS</h2>
-               <p>En Buen Sabor, nuestra misión es reinventar los platos clásicos con un toque único que haga cada bocado memorable. Combinamos ingredientes frescos y de alta calidad para crear una experiencia culinaria que se adapta a todos los gustos y antojos. </p>
-               <p>
-                Nos dedicamos a crear una oferta culinaria diversa, que incluye desde pizzas artesanales hasta empanadas y hamburguesas, siempre asegurándonos de que encuentres algo delicioso que se ajuste a tus antojos.
-                 Cada día buscamos innovar y sorprender a nuestros clientes con sabores que reflejen nuestra dedicación y amor por la buena comida. ¡Te invitamos a descubrir el verdadero significado del buen sabor!</p>
-                
+            <p>En Buen Sabor, nuestra misión es reinventar los platos clásicos con un toque único que haga cada bocado memorable. Combinamos ingredientes frescos y de alta calidad para crear una experiencia culinaria que se adapta a todos los gustos y antojos. </p>
+            <p>Nos dedicamos a crear una oferta culinaria diversa, que incluye desde pizzas artesanales hasta empanadas y hamburguesas, siempre asegurándonos de que encuentres algo delicioso que se ajuste a tus antojos.
+            Cada día buscamos innovar y sorprender a nuestros clientes con sabores que reflejen nuestra dedicación y amor por la buena comida. ¡Te invitamos a descubrir el verdadero significado del buen sabor!</p>
             </div>
         </section>
-
     </main>
+
     <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
     <footer>
         <section id="footer-name">
-           <p>Buen<span>SABOR</span></p>
+            <p>Buen<span>SABOR</span></p>
             <div id="container-contact">
                 <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/telefono.png" alt="">+54 9 261 123 4567</div>
                 <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/ubi.png" alt="">Cnel. Rodriguez 273, Ciudad, Mendoza</div>

@@ -7,19 +7,15 @@
     <title>BuenSABOR - Registrate</title>
 </head>
 <body>
-    <header class="navbar">
-       
+    <header class="navbar" aria-label="Navegación Principal">
         <div class="logo">Buen<span>SABOR</span></div>
         <nav>
             <ul>
-                <li>   <a href="index.html">Inicio</a></li>
-                <li>  <a href="#">Promociones</a></li>
-                <li>    <a href="#">Carrito</a></li>
-                <li>  <a id="menu" href="menu.html">MENÚ</a></li>
-                <li > <a class="hide" id="profile" href="sign-up.html">Perfil</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">MENÚ</a></li>
+                <li><a id="profile" href="sign-up.html">Registro</a></li>
             </ul>
         </nav>
-        
     </header>
     
     <section class="hide" id="section-login">
@@ -28,12 +24,10 @@
                 <img src="IMAGENES BUEN SABOR/LOGIN/person.png" alt="logo de peril">
                 <div id="login">
 
-              
                     <label for="login_email">Mail</label>
                     <input id="login_email" type="email" name="login_email">
                     <p class="warning hide"  name="login_email"># Ingrese un correo valido</p>
 
-               
                     <label for="login_password">Contraseña</label>
                     <input id="login_password" type="password" name="login_password">
                     <p class="warning hide" name="login_password"># La contraseña debe tener 8 a 12 dígitos y una mayusculas y una minusculas por lo menos</p>
@@ -83,8 +77,7 @@
                     </div>  
             </div>
     </section>
-    
-           
+
     <script type="module"  src="src/scripts/registro/valieRegistro.mjs"></script>
 </body>
 </html>
