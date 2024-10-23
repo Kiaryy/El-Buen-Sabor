@@ -11,9 +11,9 @@
         <div class="logo">Buen<span>SABOR</span></div>
         <nav>
             <ul>
-                <li>   <a href="index.html">Inicio</a></li>
-                <li>  <a href="menu.html">MENÚ</a></li>
-                <li>  <a id="profile" href="sign-up.html">Registro</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">MENÚ</a></li>
+                <li><a id="profile" href="sign-up.html">Registro</a></li>
             </ul>
         </nav>
     </header>
@@ -84,7 +84,7 @@
             <div class="pedido">
                 <h2>TU PEDIDO</h2>
                 <ul>
-                
+                    
                 </ul>
                 <p class="total-pedido">TOTAL: $0</p>
                 <button class="pagar">IR A PAGAR</button>
@@ -119,7 +119,7 @@
                 <label for="opcion-clasica">Opción Clásica:</label>
                 <div class="quantity-control">
                     <button class="less" onclick="decreaseQuantity('opcion-clasica')">-</button>
-                    <input class="number" type="number" id="opcion-clasica" value="0" min="0" readonly>
+                    <input type="number" id="opcion-clasica" value="0" min="0" readonly>
                     <button class ="more" onclick="increaseQuantity('opcion-clasica')">+</button>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                 <label for="opcion-sin-tacc">Opción Sin TACC:</label>
                 <div class="quantity-control">
                     <button class="less_tact"onclick="decreaseQuantity('opcion-sin-tacc')">-</button>
-                    <input class="number_tact" type="number" id="opcion-sin-tacc" value="0" min="0" readonly>
+                    <input type="number" id="opcion-sin-tacc" value="0" min="0" readonly>
                     <button class="more_tact" onclick="increaseQuantity('opcion-sin-tacc')">+</button>
                 </div>
             </div>
@@ -136,10 +136,10 @@
                 <button class="btn-agregar-bebidas">Seleccionar</button>
             </div>
         </div>
-        <button class="btn-agregar-carrito">Agregar al Carrito - TOTAL: $ 0</button>
+        <button class="btn-agregar-carrito">Agregar al Carrito - TOTAL: $0</button>
     </div>
 
-    <script src="src/scripts/menu/show-plates.mjs"></script>
+    <script type="module"  src="src/scripts/menu/show-plates.mjs"></script>
     
 </body>
 </html>
