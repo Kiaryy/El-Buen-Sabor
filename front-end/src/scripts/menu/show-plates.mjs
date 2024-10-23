@@ -18,6 +18,7 @@ const button_profile=document.getElementById('profile')
 
 
 // Al cargar la página
+
 window.onload = async function () {
     const profile = localStorage.getItem('profile');
         if (profile === 'true') {
@@ -77,6 +78,9 @@ window.onload = async function () {
 
 // Función para abrir el modal al hacer clic en una tarjeta de comida
 document.addEventListener('click', function(event) {
+   
+
+    
     if (event.target.closest('.card-food')) {
         const card = event.target.closest('.card-food');
         const imgSrc = card.querySelector('img').src;
@@ -91,34 +95,22 @@ document.addEventListener('click', function(event) {
         modalPrice.textContent = `$${price}`;
         
         // Mostrar el modal
-        modal.style.display = "block";
-    }else if (event.target.closest('.more')) {
+        let qtyClasica = document.getElementById('opcion-clasica');
+        let qtySinTacc = document.getElementById('opcion-sin-tacc');
+        qtyClasica.value=0;
+        qtySinTacc.value=0;
+        document.querySelector('.btn-agregar-carrito').textContent = `Agregar al Carrito - TOTAL: $0`
         
-        const modals =document.querySelector('.modal #modal-price')
-        console.log(modals);
+        modal.style.display = "block";
     }
+ 
 });
 
-// Función para disminuir la cantidad
-function decreaseQuantity(id) {
-    const inputField = document.getElementById(id);
-    let currentValue = parseInt(inputField.value);
-    if (currentValue > 0) {
-        inputField.value = currentValue - 1;
-        updateTotal(); // Actualiza el total en el botón
-    }
-}
 
-// const button_more_clasic = document.querySelector("button[onclick=\"increaseQuantity('opcion-clasica')\"]");
- 
-//  console.log(button_more_clasic);
- 
-//  button_more_clasic.addEventListener('click', ()=>{
-//     console.log("hola");
-//  })
 
 // Función para cerrar el modal al hacer clic en la 'X'
 closeModal.onclick = function() {
+  
     modal.style.display = "none";
 };
 
@@ -129,11 +121,62 @@ window.onclick = function(event) {
     }
 };
 
+// Función para aumentar la cantidad
+function increaseQuantity(id) {
+    const inputField = document.getElementById(id);
+    let currentValue = parseInt(inputField.value);
+    inputField.value = currentValue + 1;
+    updateTotal(); // Actualiza el total en el botón "Agregar al Carrito"
+}
 
+// Función para disminuir la cantidad
+function decreaseQuantity(id) {
+    const inputField = document.getElementById(id);
+    let currentValue = parseInt(inputField.value);
+    if (currentValue > 0) {
+        inputField.value = currentValue - 1;
+        updateTotal(); // Actualiza el total en el botón "Agregar al Carrito"
+    }
+}
 
+// Función para actualizar el total en el botón "Agregar al Carrito"
+function updateTotal() {
+    const price = parseInt(modalPrice.textContent.replace('$',''));
+    let qtyClasica = parseInt(document.getElementById('opcion-clasica').value);
+    let qtySinTacc = parseInt(document.getElementById('opcion-sin-tacc').value);
+    const total = price * (qtyClasica + qtySinTacc);
+    console.log(total);
+    
+    document.querySelector('.btn-agregar-carrito').textContent = `Agregar al Carrito - TOTAL: $${total}`;
+}
+const button_add =document.querySelector('.btn-agregar-carrito')
+const carrito=document.querySelector(".pedido ul")
 
-
-
+button_add.addEventListener("click", () => {
+    let name = modalName.textContent; // Nombre del producto del modal
+    let qtyClasica = parseInt(document.getElementById('opcion-clasica').value);
+    let qtySinTacc = parseInt(document.getElementById('opcion-sin-tacc').value);
+    let total_price = qtyClasica + qtySinTacc;
+    let priceFood = parseInt(button_add.textContent.replace('Agregar al Carrito - TOTAL: $', ''));
+    
+    if (total_price > 0) {
+        // Verifica si el producto ya está en el carrito
+        let existingItem = Array.from(carrito.querySelectorAll('.item-carrito')).find(item => 
+            item.textContent.includes(name)
+        );
+        
+        if (existingItem) {
+            // Si ya existe, actualiza la cantidad y el precio
+            alert("ya se a agregado al carrito")
+        } else {
+            // Si no existe, agrega un nuevo elemento al carrito
+            let newItem = document.createElement("li");
+            newItem.classList.add("item-carrito");
+            newItem.innerHTML = `${name} x${total_price} <span>$${priceFood}</span>`;
+            carrito.appendChild(newItem);
+        }
+    }
+});
 
 
 

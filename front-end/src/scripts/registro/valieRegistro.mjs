@@ -31,8 +31,8 @@ const regex = {
     login_email: /^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
     sign_up_email:/^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
-    // login_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
-    login_password: /^\d{2,15}$/,
+    login_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
+    // login_password: /^\d{2,15}$/,
     repeat_password: function(value) {
         return value === document.querySelector('input[name="password"]').value;
     }
@@ -204,9 +204,9 @@ button_sign_up.addEventListener('click',async()=>{
             }
         
             // Mostrar mensaje de éxito
-            alert("Usuario registrado con éxito");
             section_login.classList.remove('hide');
             section_sign_up.classList.add('hide');
+            alert("Usuario registrado con éxito");
         })
         .catch(error => {
             // Manejar errores
@@ -249,13 +249,10 @@ button_login.addEventListener('click',async()=>{
                 const allValidExceptLogin = ['login_password', 'login_email'].every(key => valueRegex[key]);
         let profile=false
         if (allValidExceptLogin) {
+            // Verifica si la base de datos local no está creada
             if (!localStorage.getItem('User')) {
                 const there_is_user=user_exists(validate_user.login_email,validate_user.login_password)
                 if (there_is_user) {
-                    // Verifica si la base de datos local no está creada
-                   alert("Iniciado correctamente")
-                
-                  
                    profile=true
                 }else{
                     alert("Email o Contraseña mal colocados");
@@ -266,9 +263,7 @@ button_login.addEventListener('click',async()=>{
                 console.log(users);
                 if (users.email==validate_user.login_email) {
                     if (users.password==validate_user.login_password) {
-                        alert("Iniciado correctamente")
-                       
-                       
+                        
                         profile=true
                     }else{
                         
@@ -286,6 +281,7 @@ button_login.addEventListener('click',async()=>{
             button_profile.classList.remove('hide')
             localStorage.setItem('profile', 'true'); // Guardar estado en localStorage
             window.location.href = 'menu.html'; // Redirigir a menu.html
+            alert("Iniciado correctamente");
         }
             
         }else{
