@@ -30,11 +30,11 @@ const regex = {
     addresses:/^[a-zA-Z0-9 ]{5,40}$/,
     login_email: /^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
     sign_up_email:/^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
-    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
+    passWord: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
     login_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
     // login_password: /^\d{2,15}$/,
     repeat_password: function(value) {
-        return value === document.querySelector('input[name="password"]').value;
+        return value === document.querySelector('input[name="passWord"]').value;
     }
 };
 
@@ -45,7 +45,7 @@ const valueRegex = {
     addresses:false,
     login_email:false,
     sign_up_email:false,
-    password: false,
+    passWord: false,
     repeat_password: false,
     login_password: false,
 };
@@ -93,23 +93,44 @@ function validation(names, value) {
 }
 //------------------------------------REGISTRARSE----------------------------
 
+async function there_is_email(email){
+    try{
+        const response=await fetch('https://bsapi-latest.onrender.com/usuarios/findAll',{
+            method:'GET'
+        });
+        const data =  await response.json();
+        for (let user of data) {
+           if (user.mail==email) {
+                return false
+           }
+            
+        }
+       return true
+        
+    } 
+    catch(error){
+            // Manejar errores
+            console.error('Hubo un problema con la solicitud:', error);
+    }
+   
+    
+
+}
 
 button_sign_up.addEventListener('click',async()=>{
-    const new_user={
+    let new_user={
         name: "",
         phoneNumber : 0,
         addresses: [],
         cards: [],
-        email: "",
-        password:"",
+        mail: "",
+        passWord:"",
         pedido:[],
     }
 
     // Recorre los input para verificar bien los datos
     inputs.forEach(input => {
             if (input.name!="login_password" && input.name!="login_email" && input.name!="repeat_password") {
-                
-                
                 validation(input.name,input.value)
                 if(valueRegex[input.name]){
                         if (input.name=="addresses") {
@@ -118,8 +139,7 @@ button_sign_up.addEventListener('click',async()=>{
                                     new_user.phoneNumber=Number(input.value)
                     
                                 }else if (input.name=="sign_up_email"){
-                                    new_user.email=input.value
-
+                                    new_user.mail=input.value
                                 }
                                 else{
                                     new_user[input.name]=input.value
@@ -132,43 +152,16 @@ button_sign_up.addEventListener('click',async()=>{
                 
                     
                     // Validar si todos los elementos son verdaderos excepto login_password
-                    const allValidExceptLogin = Object.keys(valueRegex).every(key => 
-                            key === 'login_password' || key === 'login_email'|| valueRegex[key]
-                            
-    );
+                 
     // console.log(valueRegex);
-    
-
-    async function there_is_email(email){
-       
-        try{
-            const response=await fetch('https://bsapi-latest.onrender.com/usuarios/findAll',{
-                method:'GET'
-            });
-            const data =  await response.json();
-          
-            
-            for (let user of data) {
-                console.log(user.email +"  "+ user.password);
-                
-               if (user.email==email) {
-                    return false
-               }
-                
-            }
-           return true
-            
-        } 
-        catch(error){
-                // Manejar errores
-                console.error('Hubo un problema con la solicitud:', error);
-        }
-       
+    const allValidExceptLogin = Object.keys(valueRegex).every(key => 
+        key === 'login_password' || key === 'login_email'|| valueRegex[key]
         
+    );
 
-    }
+                
     if (allValidExceptLogin) {
-        const emailExists=await there_is_email(new_user.email)
+        const emailExists=await there_is_email(new_user.mail)
         if (emailExists) {
             
         const add = 'https://bsapi-latest.onrender.com/usuarios/add';
@@ -179,6 +172,9 @@ button_sign_up.addEventListener('click',async()=>{
             headers: {
                 'Content-Type': 'application/json' // Especificamos que los datos están en formato JSON
             },
+        
+         
+            
             body: JSON.stringify(new_user) // Convertimos los datos a formato JSON
         })
         .then(response => {
@@ -197,11 +193,6 @@ button_sign_up.addEventListener('click',async()=>{
             }
         })
         .then(data => {
-            if (typeof data === 'object') {
-                console.log('Respuesta JSON:', data); // Manejo de datos JSON
-            } else {
-                console.log('Respuesta texto:', data); // Manejo de respuesta en texto
-            }
         
             // Mostrar mensaje de éxito
             section_login.classList.remove('hide');
@@ -248,41 +239,47 @@ button_login.addEventListener('click',async()=>{
                 // Valida solo los datos de email y contraseña
                 const allValidExceptLogin = ['login_password', 'login_email'].every(key => valueRegex[key]);
         let profile=false
-        if (allValidExceptLogin) {
-            // Verifica si la base de datos local no está creada
-            if (!localStorage.getItem('User')) {
-                const there_is_user=user_exists(validate_user.login_email,validate_user.login_password)
+        if (allValidExceptLogin) { 
+            // Verifica si la base de datos local no está cread
+            
+            if (!localStorage.getItem('Users')) {
+
+                const there_is_user= await user_exists(validate_user.login_email,validate_user.login_password)
+           
+                
                 if (there_is_user) {
-                   profile=true
+                    profile=true
                 }else{
                     alert("Email o Contraseña mal colocados");
                 }
                 
             }else{
-                const users = JSON.parse(localStorage.getItem('User'));
-                console.log(users);
-                if (users.email==validate_user.login_email) {
-                    if (users.password==validate_user.login_password) {
-                        
+                let users = JSON.parse(localStorage.getItem('Users')) ||[];
+                for (let user of users) {
+                    if (user.email==validate_user.login_email) {
+                        if (user.password==validate_user.login_password) {
+                            
+                            profile=true
+                            break
+                        }
+                    }else if ( await user_exists(validate_user.login_email,validate_user.login_password)) {
                         profile=true
-                    }else{
-                        
-                        alert("Email o Contraseña mal colocados");
                     }
-                }else{
-                    alert("Email o Contraseña mal colocados");
                     
-
                 }
+               
             }
              // Si el login fue exitoso, guardar el estado en localStorage
-        if (profile) {
-            button_profile.innerHTML='Mi perfil'
-            button_profile.classList.remove('hide')
-            localStorage.setItem('profile', 'true'); // Guardar estado en localStorage
-            window.location.href = 'menu.html'; // Redirigir a menu.html
-            alert("Iniciado correctamente");
-        }
+            if (profile) {
+                button_profile.innerHTML='Mi perfil'
+                button_profile.classList.remove('hide')
+                // Guardar estado en localStorage
+                window.location.href = 'menu.html'; // Redirigir a menu.html
+                alert("Iniciado correctamente");
+            }else{
+                alert("Email o Contraseña mal colocados");
+            }
+            
             
         }else{
             alert("Faltan ingresar datos");
@@ -291,24 +288,45 @@ button_login.addEventListener('click',async()=>{
         
         
     })
-   
-    
+    let user_save={
+        name: "",
+        phoneNumber : 0,
+        addresses: [],
+        cards: [],
+        mail: "",
+        passWord:"",
+        pedido:[],
+        state:false,
+    };
+
     async function user_exists(email,password){
+       
+        
         try{
             const response=await fetch('https://bsapi-latest.onrender.com/usuarios/findAll',{
                 method:'GET'
             });
             const data =  await response.json();
             
+            console.log(email);
+            console.log(password);
             
             for (let user of data) {
-                if (user.email==email && user.password==password) {
+                if (user.mail==email && user.passWord==password) {
                 user_save.name=user.name
                 user_save.phoneNumber=user.phoneNumber
                 user_save.addresses.push(user.addresses)
-                user_save.email=user.email
-                user_save.password=user.password
-                localStorage.setItem('User', JSON.stringify(user_save));
+                user_save.mail=user.mail
+                user_save.passWord=user.passWord
+                user_save.state=true
+                if (localStorage.getItem('Users')) {
+                    let users = JSON.parse(localStorage.getItem('Users')) || [];
+                    users.push(user_save)
+                    localStorage.setItem('Users', JSON.stringify([user_save]));
+                }else{
+                    
+                    localStorage.setItem('Users', JSON.stringify([user_save]));
+                }
                 
                 return true
            }
@@ -322,15 +340,8 @@ button_login.addEventListener('click',async()=>{
             console.error('Hubo un problema con la solicitud:', error);
     }
 }
-const user_save={
-    name: "",
-    phoneNumber : 0,
-    addresses: [],
-    cards: [],
-    email: "",
-    password:"",
-    pedido:[],
-}
+  
+
 // const handleLogInState = (name = "",   phoneNumber = 0, addresses = [],cards= [], email = "",password="",pedido=[], state = false) => {
 //     logInState.state = state
 //     logInState.user.firstName = firstName
