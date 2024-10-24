@@ -82,6 +82,11 @@ header {
 .hide {
     display: none !important
 }
+.warning{
+    color: red;
+    margin: 2px;
+    font-size: 12px;
+}
 
 .container {
     display: flex;
