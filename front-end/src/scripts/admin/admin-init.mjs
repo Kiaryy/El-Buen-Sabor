@@ -1,53 +1,34 @@
-const sections_admin =document.getElementById('platos')
-const table=sections_admin.querySelector("table")
-window.onload =async function () {
-    const url = 'https://bsapi-latest.onrender.com/platos/findAll';
-    //------------------------------OBTIENEE---------------------------------------------------------
-    fetch(url,{
-        method: 'GET'
-    })
-    .then(response => {
-        // Verificar si la respuesta fue exitosa
-        if (!response.ok) {
-            throw new Error('Error en la solicitud: ' + response.status);
-        }
-        
-        // Convertir la respuesta a JSON
-        return response.json();
-    })
-    .then(data => {
-        // Mapeamos las secciones a los tipos de comida 
-        // Trabajar con los datos recibidos
-        data.forEach(item => {
-        let tr=document.createElement('tr')
-        tr.innerHTML=
-        `
-        <td>${item.platoId}</td>
-        <td>${item.name}</td>
-        <td>${item.id}</td>
-        <td>${item.price}</td>
-        <td>falta</td>
-        <td>falta</td>
-        <td>${item.stock}</td>
-            <td>
-                            <button onclick="editItem()">
-                                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
-                            </button>
-                            <button onclick="deleteItem()">
-                                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/delete.png" alt="eliminar" title="Eliminar">
-                            </button>
-                            <button onclick="toggleStatus()">
-                                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
-                            </button>
-                        </td>
-         
-                `
-        table.appendChild(tr)
+import { platos } from "./all-platos.mjs"; 
+import { insumos } from "./all-insumos.mjs";
+import { personal } from "./all.personal.mjs";
+const section_platos =document.querySelectorAll('.content-section')
 
-    });
-})
-.catch(error => {
-    // Manejar errores
-    console.error('Hubo un problema con la solicitud:', error);
-});
+const funciones = {
+    platos: platos,
+    insumos: insumos,
+    personal:personal
+    // Agrega más funciones si las tienes
+};
+
+window.onload =async function () {
+    for (let section of section_platos) { 
+        if (funciones[section.id]) {
+            if (section.id=="platos") {
+                var url = 'https://bsapi-latest.onrender.com/platos/findAll';
+            }else if(section.id=="insumos"){
+                var url = 'https://bsapi-latest.onrender.com/article/findAll';
+            }else if(section.id=="personal"){
+                var url = 'https://bsapi-latest.onrender.com/employees/findAll';
+
+            }
+            const table=section.querySelector("table")
+          
+            
+            funciones[section.id](url,table)
+        }       
+       
+    
+    
 }
+}
+

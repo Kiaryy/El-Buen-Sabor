@@ -11,9 +11,9 @@
         <div class="logo">Buen<span>SABOR</span></div>
         <nav>
             <ul>
-                <li>   <a href="index.html">Inicio</a></li>
-                <li>  <a href="menu.html">MENÚ</a></li>
-                <li>  <a id="login" href="sign-up.html">Usuario</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">MENÚ</a></li>
+                <li><a class="profile" href="sign-up.html">Registro</a></li>
             </ul>
         </nav>
     </header>
@@ -84,13 +84,10 @@
             <div class="pedido">
                 <h2>TU PEDIDO</h2>
                 <ul>
-                    <li class="item-carrito">Empanada de carne x12 <span>$12000</span></li>
-                    <li class="item-carrito">Empanada de carne x12 <span>$12000</span></li>
-                    <li class="item-carrito">Empanada de carne x12 <span>$12000</span></li>
-                    <li class="item-carrito">Empanada de carne x12 <span>$12000</span></li>
+                    
                 </ul>
-                <p class="total-pedido">TOTAL: $0</p>
-                <button class="pagar">IR A PAGAR</button>
+                <p id="total-pedido">TOTAL: $0</p>
+                <button id="pagar">IR A PAGAR</button>
             </div>
         </aside>
     </div>
@@ -121,17 +118,17 @@
             <div class="option">
                 <label for="opcion-clasica">Opción Clásica:</label>
                 <div class="quantity-control">
-                    <button onclick="decreaseQuantity('opcion-clasica')">-</button>
+                    <button class="less" onclick="decreaseQuantity('opcion-clasica')">-</button>
                     <input type="number" id="opcion-clasica" value="0" min="0" readonly>
-                    <button onclick="increaseQuantity('opcion-clasica')">+</button>
+                    <button class ="more" onclick="increaseQuantity('opcion-clasica')">+</button>
                 </div>
             </div>
             <div class="option">
                 <label for="opcion-sin-tacc">Opción Sin TACC:</label>
                 <div class="quantity-control">
-                    <button onclick="decreaseQuantity('opcion-sin-tacc')">-</button>
+                    <button class="less_tact"onclick="decreaseQuantity('opcion-sin-tacc')">-</button>
                     <input type="number" id="opcion-sin-tacc" value="0" min="0" readonly>
-                    <button onclick="increaseQuantity('opcion-sin-tacc')">+</button>
+                    <button class="more_tact" onclick="increaseQuantity('opcion-sin-tacc')">+</button>
                 </div>
             </div>
             <div class="option">
@@ -142,6 +139,10 @@
         <button class="btn-agregar-carrito">Agregar al Carrito - TOTAL: $0</button>
     </div>
 
-    <script type="module"  src="src/scripts/menu/show-plates.mjs"></script>
+
+    <script src="src/scripts/menu/carrito/carrito.mjs"></script>
+    <script src="src/scripts/menu/modal/modal.mjs"></script>
+    <script type="module" src="src/scripts/menu/main-menu.mjs"></script>
+    
 </body>
 </html>

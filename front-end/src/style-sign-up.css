@@ -16,34 +16,33 @@ html,body {
     cursor: pointer;
 }
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+/*~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~*/
 ul {
     list-style: none;
 }
 
-.warning {
-    font-size: 12px;
-    margin: 0px;
-    color: red;
+header {
+    width: 100%;
+    z-index: 10;
+    top: 0;
 }
 
 .navbar {
     background-color: #FFD284;
-    padding: 10px 10px;
+    padding: 1% 0% 1% 0%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .navbar .logo {
     font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 25px;
+    font-size: 1.4em;
     font-weight: 700;
-    line-height: 30.48px;
     text-align: left;
     margin-left: 20px;
-    color: #333333;;
+    color: #333333;
 }
 
 .navbar .logo span {
@@ -58,33 +57,36 @@ ul {
 }
 
 .navbar nav ul li a {
-    margin: 0 15px;
-    padding: 5px 15px;
+    margin: 0 1.6em;
     text-decoration: none;
     font-family: 'Lato', sans-serif;
-    font-size: 17px;
+    font-size: 1.3em;
     font-weight: 700;
-    line-height: 24px;
     color: #333333;
 }
 
 .navbar nav ul li a:hover {
-    background-color: #FFAA33;
     color: #ffffff;
     border-radius: 5px;
 }
 
-#menu {
+.profile{
     border: 3px solid #FFA101;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 0.5em 1em;
+    border-radius: 15px;
     margin-right: 25px;
 }
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .hide {
     display: none !important
+}
+.warning{
+    color: red;
+    margin: 2px;
+    font-size: 12px;
 }
 
 .container {
