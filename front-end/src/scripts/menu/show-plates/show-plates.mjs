@@ -19,21 +19,15 @@ const button_profile=document.getElementById('profile')
 
 // Al cargar la página
 
-
 window.onload = async function () {
-    let users = JSON.parse(localStorage.getItem('Users')) || [];
-    
-    let index = users.findIndex(u => u.state == true);
-    if (index==-1) {
-        alert("para comprar debe iniciar sesion")
-    }else{
-        if (button_profile) {
-            button_profile.innerHTML = 'Perfil';
-            
+    const profile = localStorage.getItem('profile');
+        if (profile === 'true') {
+            button_profile
+            if (button_profile) {
+                button_profile.innerHTML = 'Perfil';
+                
+            }
         }
-       
-    }
-       
         console.log("Cargando productos...");
         
         // URL de la API para obtener los platos
@@ -84,7 +78,7 @@ window.onload = async function () {
 
 // Función para abrir el modal al hacer clic en una tarjeta de comida
 document.addEventListener('click', function(event) {
-   
+    
     if (event.target.closest('.card-food')) {
         const card = event.target.closest('.card-food');
         const imgSrc = card.querySelector('img').src;
@@ -149,12 +143,12 @@ function updateTotal() {
     let qtyClasica = parseInt(document.getElementById('opcion-clasica').value);
     let qtySinTacc = parseInt(document.getElementById('opcion-sin-tacc').value);
     const total = price * (qtyClasica + qtySinTacc);
+    console.log(total);
     
     document.querySelector('.btn-agregar-carrito').textContent = `Agregar al Carrito - TOTAL: $${total}`;
 }
 const button_add =document.querySelector('.btn-agregar-carrito')
 const carrito=document.querySelector(".pedido ul")
-let shopping_cart=0
 
 button_add.addEventListener("click", () => {
     let name = modalName.textContent; // Nombre del producto del modal
@@ -177,19 +171,12 @@ button_add.addEventListener("click", () => {
             let newItem = document.createElement("li");
             newItem.classList.add("item-carrito");
             newItem.innerHTML = `${name} x${total_price} <span>$${priceFood}</span>`;
-            shopping_cart+=priceFood
             carrito.appendChild(newItem);
-            update_cart(shopping_cart)
         }
     }
 });
-total_carrito=document.getElementById('total-pedido')
-function update_cart (total){
 
-    total_carrito.textContent.replace('TOTAL: $','');
-    total_carrito.innerHTML=`TOTAL: $${total}`;
 
-}
 
 
 
