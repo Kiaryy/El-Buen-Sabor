@@ -29,10 +29,11 @@ header {
 
 .navbar {
     background-color: #FFD284;
-    padding: 1%;
+    padding: 1% 0% 1% 0%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .navbar .logo {
@@ -69,7 +70,7 @@ header {
     border-radius: 5px;
 }
 
-#profile{
+.profile{
     border: 3px solid #FFA101;
     padding: 0.5em 1em;
     border-radius: 15px;
