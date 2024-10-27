@@ -1,6 +1,8 @@
+
+let lastPlatoId = null;
 export const platos =(url,table)=>{
       //------------------------------OBTIENEE---------------------------------------------------------
-      fetch(url,{
+    fetch(url,{
         method: 'GET'
     })
     .then(response => {
@@ -12,7 +14,7 @@ export const platos =(url,table)=>{
         // Convertir la respuesta a JSON
         return response.json();
     })
-   
+    
     .then(data => {      
             // Mapeamos las secciones a los tipos de comida 
             // Trabajar con los datos recibidos
@@ -43,14 +45,20 @@ export const platos =(url,table)=>{
             table.appendChild(tr)
     
         });
+        last_id(data)
         
-       
-})
+        
+    })
 .catch(error => {
     // Manejar errores
     console.error('Hubo un problema con la solicitud:', error);
 });
 }
+const last_id=(data)=>{
+    const lastItem = data[data.length - 1];
+    lastPlatoId = lastItem ? lastItem.platoId : null;
+    
    
-   
-            
+} 
+
+export { lastPlatoId };

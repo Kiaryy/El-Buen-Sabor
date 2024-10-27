@@ -7,7 +7,7 @@ const section_empanada = document.querySelector('#section-empanada');
 const section_ensalada = document.querySelector('#section-ensalada');
 const section_acompañamiento = document.querySelector('#section-acompañamiento');
 const section_postre = document.querySelector('#section-postre');
-
+const button_profile=document.querySelector('.profile')
 
 
 
@@ -15,9 +15,14 @@ const section_postre = document.querySelector('#section-postre');
 // Al cargar la página
 window.onload = async function () {
     let users = JSON.parse(localStorage.getItem('Users')) || [];
+
     
     let index = users.findIndex(u => u.state == true);
-    if (!index==-1) {
+
+    
+    if (index!=-1) {
+  
+        
         button_profile.innerHTML = 'Perfil';
     }
     const sectionMap = {
@@ -34,7 +39,7 @@ window.onload = async function () {
         // URL de la API para obtener los platos
         if (!localStorage.getItem('Platos')) {
         //   Realizar la solicitud GET a la API
-            show_plates(sectionMap)
+        show_plates(sectionMap)
          }else{
             show_plates_local(sectionMap)
 
