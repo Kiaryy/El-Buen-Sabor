@@ -27,16 +27,20 @@ const load_plates=async (sectionMap,url)=>{
         // Mapeamos las secciones a los tipos de comida
         // Mostrar los productos en las respectivas secciones
         var plates_new=[]
+  
         data.forEach(item => {
-
+            
             // Verificar si existe una sección para el tipo de comida
             if (sectionMap[item.type]) {
+
+                
                     sectionMap[item.type].innerHTML += `
                     <div class="card-food" data-name="${item.name}" data-description="${item.description}" data-price="${item.price}">
-                    <img alt="imagen comida" src="${item.img}">
+                    <img alt="imagen comida" src="data:image/png;base64,${item.imageData}">
                     <h5>${item.name}</h5>
                     </div>
                     `;
+                 
                     let plate={
                         name:item.name,
                         description:item.description,
@@ -46,8 +50,8 @@ const load_plates=async (sectionMap,url)=>{
                     }
                     plates_new.push(plate)
                 }
-                localStorage.setItem('Platos', JSON.stringify([]));
-                save_plates(plates_new)
+                // localStorage.setItem('Platos', JSON.stringify([]));
+                // save_plates(plates_new)
     });
 } catch (error) {
     // Manejar errores
