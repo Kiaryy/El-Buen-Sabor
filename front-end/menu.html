@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="menu.html">MENÚ</a></li>
-                <li><a class="profile" href="sign-up.html">Registro</a></li>
+                <li><a id="profile" href="sign-up.html">Registro</a></li>
             </ul>
         </nav>
     </header>
@@ -86,7 +86,7 @@
                 <ul>
                     
                 </ul>
-                <p id="total-pedido">TOTAL: $0</p>
+                <p class="total-pedido">TOTAL: $0</p>
                 <button id="pagar">IR A PAGAR</button>
             </div>
         </aside>
@@ -148,13 +148,13 @@
     </div>
 
 
-
-
-
-    <script src="src/scripts/menu/carrito/carrito.mjs"></script>
-    <script src="src/scripts/menu/modal/modal.mjs"></script>
-    <script type="module" src="src/scripts/menu/main-menu.mjs"></script>
-    <script type="module"  src="/front-end/src/scripts/menu/metodoPago.mjs"></script>
+    <!-- Mostrar platos-->
+    <script type="module"  src="/front-end/src/scripts/menu/show-plates/show-plates.mjs"></script>
     
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    
+    <!-- Seleccionar metodo de pago-->
+    <script type="module"  src="/front-end/src/scripts/menu/metodoPago.js"></script>
 </body>
 </html>
