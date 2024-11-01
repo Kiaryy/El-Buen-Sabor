@@ -13,7 +13,7 @@ const button_ver_cuentas=document.getElementById('ver-cuentas')
 
 
 button_ver_cuentas.addEventListener('click',()=>{
-    console.log("g");
+
     ver_cuenta()
     
     // const nombre_cuenta=document.getElementById('cuenta').value.toLowerCase()
