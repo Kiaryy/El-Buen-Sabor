@@ -83,7 +83,7 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
 
 function toggleColumns() {
     // Selecciona las columnas por clase o ID
-    const columnas = document.querySelectorAll("#imagenes, #description");
+    const columnas = document.querySelectorAll("#imagenes, #description, #categoria");
  
     // Alterna la visibilidad de cada columna
     columnas.forEach(columna => {
