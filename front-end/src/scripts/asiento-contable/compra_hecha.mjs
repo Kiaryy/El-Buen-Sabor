@@ -34,6 +34,6 @@ const llamar_api=(asiento)=>{
     })
     
     .catch((error) => {
-        console.error('Error:');
+        // console.error('Error:');
     });
 }

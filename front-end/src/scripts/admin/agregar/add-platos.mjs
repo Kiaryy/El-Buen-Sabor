@@ -18,7 +18,8 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
     isAdding = true;
     newRow.innerHTML = `
         <td>${(lastPlatoId+1)}</td>
-        <td><input type="text"   class="input-styles" placeholder="Nombre"></td>
+        <td><input type="text" class="input-styles" placeholder="Nombre"></td>
+        <td><input type="text" class="input-styles" placeholder="Categoria"></td>
         <td class="input-styles">N/A</td>
         <td><input type="number" class="input-styles" placeholder="Precio Venta"></td>
         <td class="input-styles">N/A</td>
@@ -69,7 +70,7 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
                 const byteArray = new Uint8Array(event.target.result);
                 
                 // Send the byte array to the API
-                sendDataToApi((lastPlatoId+1),values[0],values[1],values[2],byteArray);
+                sendDataToApi((lastPlatoId+1),values[0],values[1],values[2],values[4],values[7],byteArray);
                 
             };
             reader.readAsArrayBuffer(file); // Read the file as an ArrayBuffer
@@ -95,7 +96,7 @@ function toggleColumns() {
   
 }
 
-function sendDataToApi(id,name,price,stock,image) {
+function sendDataToApi(id,name,category,description,price,stock,image) {
     // Assuming your API endpoint is 'https://your-api-endpoint.com/upload'
     const apiEndpoint = 'https://bsapi-latest.onrender.com/platos/add';
 
@@ -103,8 +104,8 @@ function sendDataToApi(id,name,price,stock,image) {
     const new_plate = {
         platoId:id,
         name: name,
-        description: "Descripcion de prueba",
-        type: 0,
+        description: description,
+        type: category,
         price: price,
         stock: stock,
         avaliable:true,

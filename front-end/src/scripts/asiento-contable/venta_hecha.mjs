@@ -40,6 +40,6 @@ const llamar_api=(asiento)=>{
     })
   
     .catch((error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
     });
 }
