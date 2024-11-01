@@ -77,7 +77,7 @@ function updateTotal() {
     document.querySelector('.btn-agregar-carrito').textContent = `Agregar al Carrito - TOTAL: $${total}`;
 }
 const button_add =document.querySelector('.btn-agregar-carrito')
-const carrito=document.querySelector(".pedido ul")
+const carrito=document.querySelector("#pedido ul")
 let shopping_cart=0
 
 button_add.addEventListener("click", () => {
@@ -86,12 +86,14 @@ button_add.addEventListener("click", () => {
     let qtySinTacc = parseInt(document.getElementById('opcion-sin-tacc').value);
     let total_price = qtyClasica + qtySinTacc;
     let priceFood = parseInt(button_add.textContent.replace('Agregar al Carrito - TOTAL: $', ''));
+    console.log(total_price);
     
     if (total_price > 0) {
         // Verifica si el producto ya está en el carrito
         let existingItem = Array.from(carrito.querySelectorAll('.item-carrito')).find(item => 
             item.textContent.includes(name)
         );
+        
         
         if (existingItem) {
             // Si ya existe, actualiza la cantidad y el precio
@@ -103,6 +105,8 @@ button_add.addEventListener("click", () => {
             newItem.innerHTML = `${name} x${total_price} <span>$${priceFood}</span>`;
             shopping_cart+=priceFood
             carrito.appendChild(newItem);
+            console.log(shopping_cart);
+            
             update_cart(shopping_cart)
         }
     }
@@ -110,7 +114,8 @@ button_add.addEventListener("click", () => {
 
 let total_carrito=document.getElementById('total-pedido')
 function update_cart (total){
-
+    console.log(total_carrito);
+    
     total_carrito.textContent.replace('TOTAL: $','');
     total_carrito.innerHTML=`TOTAL: $${total}`;
 

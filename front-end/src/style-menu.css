@@ -196,7 +196,7 @@ main {
     padding-top: 3%;
 }
 
-.aside-right .pedido{
+.aside-right #pedido{
     justify-content: center;
     width: 100%;
     margin: auto;
@@ -207,7 +207,7 @@ main {
     box-shadow: 0px 0px 10px 5px #00000033;
 }
 
-.pedido h2{
+#pedido h2{
     margin: auto;
     padding: 5% 0;
     width: 80%;
@@ -215,12 +215,12 @@ main {
     border-bottom: 1px solid #AEACAC;
 }
 
-.pedido ul{
+#pedido ul{
     width: 90%;
     padding-left: 5%;
 }
 
-.pedido ul li{
+#pedido ul li{
     font-size: 0.8rem;
     font-weight: bold;
 	display: flex;
@@ -231,13 +231,13 @@ main {
     margin-bottom: 4%;
 }
 
-.pedido .total-pedido{
+#pedido #total-pedido{
     padding: 4% 0 0 0;
     text-align: center;
     font-weight: bold;
 }
 
-.pedido #pagar{
+#pedido #pagar{
     margin:0 0 4% 33%;
     padding: 5%;
     border: none;
@@ -483,7 +483,7 @@ footer {
         width: 60%; /* Aumentamos la imagen para mejor visibilidad */
     }
 
-    .aside-right .pedido {
+    .aside-right #pedido {
         width: 30%; /* Reducimos el ancho */
     }
 

@@ -27,13 +27,18 @@
                     <button type="submit">
                         <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Lupa">
                     </button>
+                   
+                    <input placeholder="precio" value="0" id="precio"  type="number"/>
+                </div>
+                
+                <div id="platos" class="content-section" data-id="section-platos">
+                    <h2>Platos</h2>
                 </form>
-            </div>
-
-            <div id="platos" class="content-section" data-id="section-platos">
-                <h2>Platos</h2>
                 <button id="add-item" class="sticky-top">Agregar Nuevo Plato</button>
-     
+                <button id="simu-compra">simular compra</button>
+                <button id="simu-venta">simular venta</button>
+                
+                <button id="ver-cuentas">ver cuentas</button>
                 <table>
                     <tr class="data-name sticky-top">
                         <th>#ID</th>
@@ -42,7 +47,9 @@
                         <th>Precio venta</th>
                         <th>Oferta%</th>
                         <th>Existencias</th>
-                        <th>Stock</th>                        
+                        <th>Stock</th>
+                        <th class="hide" id="imagenes">Imagenes</th>                        
+                        <th class="hide" id="description">Descripcion</th>                        
                         <th>Opciones</th>                        
                     </tr>
                    

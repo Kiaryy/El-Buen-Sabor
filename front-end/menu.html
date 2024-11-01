@@ -81,12 +81,12 @@
         </main>
 
         <aside class="aside-right">
-            <div class="pedido">
+            <div id="pedido">
                 <h2>TU PEDIDO</h2>
                 <ul>
                     
                 </ul>
-                <p class="total-pedido">TOTAL: $0</p>
+                <p id="total-pedido">TOTAL: $0</p>
                 <button id="pagar">IR A PAGAR</button>
             </div>
         </aside>
@@ -149,12 +149,15 @@
 
 
     <!-- Mostrar platos-->
-    <script type="module"  src="/front-end/src/scripts/menu/show-plates/show-plates.mjs"></script>
-    
+    <script type="module"src="/front-end/src/scripts/menu/main-menu.mjs"></script>
+  
+    <script src="src/scripts/menu/carrito/carrito.mjs"></script>
+    <script src="src/scripts/menu/modal/modal.mjs"></script>
+    <script type="module"  src="/front-end/src/scripts/menu/metodoPago.mjs"></script>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
     
     <!-- Seleccionar metodo de pago-->
-    <script type="module"  src="/front-end/src/scripts/menu/metodoPago.js"></script>
+    <!-- <script type="module"  src="/front-end/src/scripts/menu/metodoPago.js"></script> -->
 </body>
 </html>

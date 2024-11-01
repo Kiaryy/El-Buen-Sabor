@@ -7,7 +7,7 @@ const section_empanada = document.querySelector('#section-empanada');
 const section_ensalada = document.querySelector('#section-ensalada');
 const section_acompañamiento = document.querySelector('#section-acompañamiento');
 const section_postre = document.querySelector('#section-postre');
-const button_profile=document.querySelector('.profile')
+const button_profile=document.querySelector('#profile')
 
 
 
@@ -37,12 +37,12 @@ window.onload = async function () {
         console.log("Cargando productos...");
         
         // URL de la API para obtener los platos
-        if (!localStorage.getItem('Platos')) {
+        // if (!localStorage.getItem('Platos')) {
         //   Realizar la solicitud GET a la API
         show_plates(sectionMap)
-         }else{
-            show_plates_local(sectionMap)
+        //  }else{
+        //     show_plates_local(sectionMap)
 
-    }   
+    // }   
        
 };

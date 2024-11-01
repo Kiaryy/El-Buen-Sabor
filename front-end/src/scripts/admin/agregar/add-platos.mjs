@@ -1,6 +1,7 @@
 import { lastPlatoId } from "../mostrar/all-platos.mjs";
 
-
+const imagen=document.getElementById('imagenes')
+const description=document.getElementById('description')
 let isAdding = false; // Controla si ya hay una fila de inputs abierta
 const sections_admin = document.getElementById('platos');
 const table = sections_admin.querySelector("table");
@@ -10,6 +11,9 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
         alert('Ya hay una fila abierta. Guarde o cancele antes de agregar una nueva.');
         return;
     }
+    // imagen.classList.remove('hide')
+    toggleColumns()
+    // description.classList.remove('hide')
     let newRow = document.createElement('tr');
     isAdding = true;
     newRow.innerHTML = `
@@ -21,6 +25,7 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
         <td class="input-styles">N/A</td>
         <td><input type="number" class="input-styles" placeholder="Stock"></td>
         <td><input type="file" id="imageInput" accept="image/*"></td>
+        <td><input type="text"   class="input-styles" placeholder="Description"></td>
         <td>
             <button class="save-item">Guardar</button>
             <button class="cancel-item">Cancelar</button>
@@ -34,6 +39,10 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
         table.removeChild(newRow);
         isAdding = false;
         table.insertBefore(newRow, table.rows[last_table]);
+        // imagen.classList.add('hide')
+        // description.classList.add('hide')
+        toggleColumns()
+        location.reload()
     });
     // Evento "Guardar" para convertir la fila de inputs en una fila de datos
     newRow.querySelector('.save-item').addEventListener('click', function() {
@@ -44,6 +53,9 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
             alert("Por favor, complete todos los campos antes de guardar.");
             return;
         }    
+        // imagen.classList.add('hide')
+        toggleColumns()
+        // description.classList.add('hide')
 
         table.insertBefore(newRow, table.rows[last_table]);
         const fileInput = document.getElementById('imageInput');
@@ -63,11 +75,25 @@ export const add_platos =document.getElementById('add-item').addEventListener('c
             reader.readAsArrayBuffer(file); // Read the file as an ArrayBuffer
         } 
         isAdding = false; // Permitimos agregar una nueva fila
+        location.reload()
     });
    
 });
 
-
+function toggleColumns() {
+    // Selecciona las columnas por clase o ID
+    const columnas = document.querySelectorAll("#imagenes, #description");
+ 
+    // Alterna la visibilidad de cada columna
+    columnas.forEach(columna => {
+        if (columna.style.display === "none" || columna.style.display === "") {
+            columna.style.display = "table-cell"; // Muestra la columna
+        } else {
+            columna.style.display = "none"; // Oculta la columna
+        }
+    });
+  
+}
 
 function sendDataToApi(id,name,price,stock,image) {
     // Assuming your API endpoint is 'https://your-api-endpoint.com/upload'

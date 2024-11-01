@@ -147,6 +147,7 @@ table{
 .data-name{
     position: sticky;
     top: 17.9%;
+    width: 100%;
 }
 
 table th{

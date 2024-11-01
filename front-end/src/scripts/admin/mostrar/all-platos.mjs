@@ -1,7 +1,8 @@
 
 let lastPlatoId = null;
 export const platos =(url,table)=>{
-      //------------------------------OBTIENEE---------------------------------------------------------
+    //------------------------------OBTIENEE---------------------------------------------------------
+   
     fetch(url,{
         method: 'GET'
     })
@@ -16,6 +17,8 @@ export const platos =(url,table)=>{
     })
     
     .then(data => {      
+        
+        
             // Mapeamos las secciones a los tipos de comida 
             // Trabajar con los datos recibidos
             data.forEach(item => {
@@ -54,6 +57,7 @@ export const platos =(url,table)=>{
     console.error('Hubo un problema con la solicitud:', error);
 });
 }
+
 const last_id=(data)=>{
     const lastItem = data[data.length - 1];
     lastPlatoId = lastItem ? lastItem.platoId : null;
