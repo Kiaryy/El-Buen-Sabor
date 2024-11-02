@@ -1,6 +1,8 @@
-export const personal=(url,table)=>{
-     //------------------------------OBTIENEE---------------------------------------------------------
-     fetch(url,{
+import { last_id } from "../lastId.mjs";
+let lastProvedorId = null;
+
+export const proveedores=(url,table)=>{
+    fetch(url,{
         method: 'GET'
     })
     .then(response => {
@@ -20,14 +22,13 @@ export const personal=(url,table)=>{
             let tr=document.createElement('tr')    
             tr.innerHTML=
             `
-            <td>${item.articleId}</td>
-            <td>${item.name}</td>
-            <td>${item.charge}</td>
-            <td>${item.shift}</td>
-            <td>${item.hourlySalary}</td>
-            <td>${item.absences}</td>
-            <td>${item.phoneNumber}</td>
-            <td>${item.state}</td>
+            <td>${item.id}</td>
+            <td>falta</td>
+            <td>${item.purchaseDate}</td>
+            <td>${item.itemsPurchased}</td>
+            <td>falta</td>
+            <td>falta</td>
+            <td>falta</td>
                 <td>
             <button onclick="editItem()">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
@@ -44,7 +45,7 @@ export const personal=(url,table)=>{
             table.appendChild(tr)
     
         });
-        
+        lastProvedorId=last_id(data)
        
 })
 .catch(error => {
@@ -52,3 +53,4 @@ export const personal=(url,table)=>{
     console.error('Hubo un problema con la solicitud:', error);
 });
 }
+export {lastProvedorId}

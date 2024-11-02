@@ -1,10 +1,7 @@
 import { last_id } from "../lastId.mjs";
+let lastPromocionId = null;
 
-
-let lastPlatoId = null;
-export const platos =(url,table)=>{
-    //------------------------------OBTIENEE---------------------------------------------------------
-   
+export const promociones=(url,table)=>{
     fetch(url,{
         method: 'GET'
     })
@@ -17,23 +14,22 @@ export const platos =(url,table)=>{
         // Convertir la respuesta a JSON
         return response.json();
     })
-    
-    .then(data => { lastBebidaId     
-        
-        
+   
+    .then(data => {      
             // Mapeamos las secciones a los tipos de comida 
             // Trabajar con los datos recibidos
             data.forEach(item => {
             let tr=document.createElement('tr')    
             tr.innerHTML=
             `
-            <td>${item.platoId}</td>
-            <td>${item.name}</td>
             <td>${item.id}</td>
-            <td>${item.price}</td>
+            <td>falta</td>
+            <td>${item.platos}</td>
+            <td>${item.bebidas}</td>
+            <td>${item.precio}</td>
             <td>falta</td>
             <td>falta</td>
-            <td>${item.stock}</td>
+            <td>falta</td>
                 <td>
             <button onclick="editItem()">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
@@ -50,15 +46,12 @@ export const platos =(url,table)=>{
             table.appendChild(tr)
     
         });
-        lastPlatoId =last_id(data)
         
-    })
-    .catch(error => {
+       lastPromocionId=last_id(data)
+})
+.catch(error => {
     // Manejar errores
     console.error('Hubo un problema con la solicitud:', error);
 });
 }
-
-export { lastPlatoId };
-
-
+export {lastPromocionId}

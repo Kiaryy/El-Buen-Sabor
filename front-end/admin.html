@@ -16,7 +16,9 @@
                 <li><a href="#" class="nav-link" data-target="ventas">Historial de Ventas</a></li>
                 <li><a href="#" class="nav-link" data-target="personal">Personal</a></li>
                 <li><a href="#" class="nav-link" data-target="insumos">Insumos</a></li>
-                <li><a href="#" class="nav-link" data-target="proveedor">Proveedor</a></li>
+                <li><a href="#" class="nav-link" data-target="proveedores">Proveedor</a></li>
+                <li><a href="#" class="nav-link" data-target="promociones">Promociones</a></li>
+                <li><a href="#" class="nav-link" data-target="bebidas">Bebidas</a></li>
             </ul>
         </nav>
 
@@ -34,7 +36,7 @@
                 <div id="platos" class="content-section" data-id="section-platos">
                     <h2>Platos</h2>
                 </form>
-                <button id="add-item" class="sticky-top">Agregar Nuevo Plato</button>
+                <button class="add-item" class="sticky-top">Agregar Nuevo Plato</button>
                 <button id="simu-compra">simular compra</button>
                 <button id="simu-venta">simular venta</button>
                 
@@ -92,10 +94,9 @@
 
             <div id="personal" class="content-section hide">
                 <h2>Personal</h2>
-                <button id="add-item">Agregar Personal</button>
+                <button class="add-item">Agregar Personal</button>
                 <table>
                     <tr class="data-name">
-                        <th>#ID</th>
                         <th>Nombre</th>
                         <th>Cargo</th>
                         <th>Horario</th>
@@ -111,25 +112,27 @@
 
             <div id="insumos" class="content-section hide">
                 <h2>Insumo</h2>
-                <button id="add-item">Agregar Nuevo Insumo</button>
+                <button class="add-item">Agregar Nuevo Insumo</button>
                 <table>
                     <tr class="data-name">
                         <th>#ID</th>
                         <th>Nombre</th>
+                        <th>Denominacion</th>
                         <th>Categoria</th>
                         <th>Proveedor</th>
+                        <th>Precio Unidad</th>
                         <th>Precio Costo</th>
-                        <th>Ultima Compra</th>
-                        <th>Existencias</th>
                         <th>Stock</th>
+                        <th>Existencias</th>
+                        <th>Ultima Compra</th>
                         <th>Opciones</th>
                     </tr>
                 </table>
             </div>
 
-            <div id="proveedor" class="content-section hide">
+            <div id="proveedores" class="content-section hide">
                 <h2>Proveedores</h2>
-                <button id="add-item">Agregar Nuevo Proveedor</button>
+                <button class="add-item">Agregar Nuevo Proveedor</button>
                 <table>
                     <tr class="data-name">
                         <th>#ID</th>
@@ -145,8 +148,43 @@
                    
                 </table>
             </div>
+
+            <div id="promociones" class="content-section hide">
+                <h2>Promociones</h2>
+                <button class="add-item">Agregar Nueva Promocion</button>
+                <table>
+                    <tr class="data-name">
+                        <th>#ID</th>
+                        <th>Nombre</th>
+                        <th>Platos</th>
+                        <th>Bebidas</th>
+                        <th>Precio</th>      
+                        <th>Opciones</th>                      
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="bebidas" class="content-section hide">
+                <h2>Bebidas</h2>
+                <button class="add-item">Agregar Nueva Bebida</button>
+                <table>
+                    <tr class="data-name">
+                        <th>#ID</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>                    
+                        <th>Precio</th>                      
+                        <th>Stock</th>                      
+                        <th>Opciones</th>                      
+                    </tr>
+                   
+                </table>
+            </div>
+                
         </div>
+
+      
     </div>
+  
     <script type ="module" src="/front-end/src/scripts/admin/admin-app.mjs"></script>
     <script type ="module" src="/front-end/src/scripts/admin/admin-init.mjs"></script>
 </body>

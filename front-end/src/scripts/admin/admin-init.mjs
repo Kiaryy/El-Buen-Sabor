@@ -1,11 +1,18 @@
 import { platos } from "./mostrar/all-platos.mjs"; 
 import { insumos } from "./mostrar/all-insumos.mjs";
-import { personal } from "./mostrar/all.personal.mjs";
+import { personal } from "./mostrar/all-personal.mjs";
 import { add_platos } from "./agregar/add-platos.mjs";
 import { ver_cuenta } from "../asiento-contable/ver_cuenta.mjs";
 import { venta_hecha } from "../asiento-contable/venta_hecha.mjs";
 import { compra_hecha } from "../asiento-contable/compra_hecha.mjs";
-
+import { compras } from "./mostrar/all-historial-compra.mjs";
+import { ventas } from "./mostrar/all-historial-venta.mjs";
+import { proveedores } from "./mostrar/all-provedores.mjs";
+import { promociones } from "./mostrar/all-promociones.mjs";
+import { bebidas } from "./mostrar/all-bebidas.mjs";
+import { add_personal } from "./agregar/add-personal.mjs";
+import { add_insumos } from "./agregar/add-insumos.mjs";
+import { add_bebidas } from "./agregar/add-bebidas.mjs";
 const button_simu_venta=document.getElementById('simu-venta')
 const button_simu_compra=document.getElementById('simu-compra')
 const section_platos =document.querySelectorAll('.content-section')
@@ -33,33 +40,59 @@ button_simu_venta.addEventListener('click',()=>{
 })
 const funciones = {
     platos: platos,
+    compras:compras,
+    ventas:ventas,
+    personal:personal,
     insumos: insumos,
-    personal:personal
+    // proveedores:proveedores,
+    promociones:promociones,
+    bebidas:bebidas
     // Agrega más funciones si las tienes
 };
 
 window.onload =async function () {
 
     
-    for (let section of section_platos) { 
-        if (funciones[section.id]) {
-            if (section.id=="platos") {
-                var url = 'https://bsapi-latest.onrender.com/platos/simple';
-            }else if(section.id=="insumos"){
-                var url = 'https://bsapi-latest.onrender.com/article/findAll';
-            }else if(section.id=="personal"){
-                var url = 'https://bsapi-latest.onrender.com/employees/findAll';
-
-            }
-            const table=section.querySelector("table")
+//     for (let section of section_platos) { 
+//         if (funciones[section.id]) {
+//             if (section.id=="platos") {
+//                 var url = 'https://bsapi-latest.onrender.com/platos/simple';
+//             } 
+//             else if(section.id=="compras"){
+//                 var url='https://bsapi-latest.onrender.com/historypurchased/findAll'
+//             }
+//             else if(section.id=="ventas"){
+//                 var url='https://bsapi-latest.onrender.com/historySale/findAll'
+//             }
+            
+//             else if(section.id=="personal"){
+//                 var url='https://bsapi-latest.onrender.com/employees/findAll'
+//             }
+            
+//             else if(section.id=="insumos"){
+//                 var url = 'https://bsapi-latest.onrender.com/article/findAll';
+//             }
+//             else if(section.id=="promociones"){
+                
+//                 var url = 'https://bsapi-latest.onrender.com/promotions/findAll';
+//             }
+//             else if(section.id=="bebidas"){
+                
+//                 var url = 'https://bsapi-latest.onrender.com/bebidas/findAll';
+//             }
+            
+//            const table=section.querySelector("table")
           
             
-            funciones[section.id](url,table)
-        }       
+//            funciones[section.id](url,table)
+//         }       
        
     
     
-}
+// }
+    add_personal
+    add_bebidas
     add_platos
+    add_insumos
 }
 

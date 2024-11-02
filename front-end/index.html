@@ -15,7 +15,17 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="menu.html">MENÚ</a></li>
-                <li><a class="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu">
+                    <li><a id="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu-hamburguesa" class="menu-hidden">
+                    <ul>
+                        <li><a href="">Mi Perfil</a></li>
+                        <li><a href="">Configuración</a></li>
+                        <li id="cerrar_sesion"><a href="">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+                </div>
+                
             </ul>
         </nav>
     </header>
@@ -192,7 +202,7 @@
         </section>
         
     </footer>
-    <script type="module" src="src/scripts/main.mjs"></script>
+    <script type="module" src="src/scripts/menu/main-menu.mjs"></script>
 
 </body>
 </html>

@@ -8,6 +8,7 @@ const section_ensalada = document.querySelector('#section-ensalada');
 const section_acompañamiento = document.querySelector('#section-acompañamiento');
 const section_postre = document.querySelector('#section-postre');
 const button_profile=document.querySelector('#profile')
+const button_cerrar_sesion=document.querySelector('#cerrar_sesion')
 
 
 
@@ -21,10 +22,22 @@ window.onload = async function () {
 
     
     if (index!=-1) {
-  
-        
         button_profile.innerHTML = 'Perfil';
+        
+        button_profile.addEventListener("click", function(event) {
+            event.preventDefault();
+            const menu = document.getElementById("menu-hamburguesa");
+            menu.classList.toggle("menu-hidden");
+          });
+        
+    }else{
+        button_profile.innerHTML = 'Registro';
+        cerrar()
+        
+          
+        
     }
+    
     const sectionMap = {
         HAMBURGUESA: section_hamburguesa,
         PIZZA: section_pizza,
@@ -46,3 +59,19 @@ window.onload = async function () {
     // }   
        
 };
+
+function cerrar(){
+    let usuarios = JSON.parse(localStorage.getItem("Users"));
+
+        // Buscamos el usuario que tiene state: true
+        let usuario = usuarios.find(u => u.state === true);
+        
+    
+            // Modificamos las propiedades del usuario que tiene state: true
+            usuario.state = false;
+            
+            // Guardamos el array actualizado en el localStorage
+            localStorage.setItem("Users", JSON.stringify(usuarios));
+      
+ 
+}

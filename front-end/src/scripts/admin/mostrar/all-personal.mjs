@@ -1,11 +1,8 @@
 import { last_id } from "../lastId.mjs";
-
-
-let lastPlatoId = null;
-export const platos =(url,table)=>{
-    //------------------------------OBTIENEE---------------------------------------------------------
-   
-    fetch(url,{
+let lastPersonalId = null;
+export const personal=(url,table)=>{
+     //------------------------------OBTIENEE---------------------------------------------------------
+     fetch(url,{
         method: 'GET'
     })
     .then(response => {
@@ -17,23 +14,22 @@ export const platos =(url,table)=>{
         // Convertir la respuesta a JSON
         return response.json();
     })
-    
-    .then(data => { lastBebidaId     
-        
-        
+   
+    .then(data => {      
             // Mapeamos las secciones a los tipos de comida 
             // Trabajar con los datos recibidos
             data.forEach(item => {
             let tr=document.createElement('tr')    
             tr.innerHTML=
             `
-            <td>${item.platoId}</td>
             <td>${item.name}</td>
-            <td>${item.id}</td>
-            <td>${item.price}</td>
-            <td>falta</td>
-            <td>falta</td>
-            <td>${item.stock}</td>
+            <td>${item.charge}</td>
+            <td>${item.shift}</td>
+            <td>${item.hourlySalary}</td>
+            <td>${item.absences}</td>
+            <td>${item.phoneNumber}</td>
+            <td>${item.state}</td>
+        
                 <td>
             <button onclick="editItem()">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
@@ -50,15 +46,15 @@ export const platos =(url,table)=>{
             table.appendChild(tr)
     
         });
-        lastPlatoId =last_id(data)
+        lastPersonalId=last_id(data)
         
-    })
-    .catch(error => {
+       
+})
+.catch(error => {
     // Manejar errores
     console.error('Hubo un problema con la solicitud:', error);
 });
 }
 
-export { lastPlatoId };
 
-
+export { lastPersonalId };

@@ -13,7 +13,14 @@ body {
 button, a {
     cursor: url("/front-end/IMAGENES BUEN SABOR/pizza.png"), auto;
 }
+.hide {
+    display: none;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MENU HAMBURGUESA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 /*~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~*/
+
 ul {
     list-style: none;
 }
@@ -31,6 +38,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+   
 }
 
 .navbar .logo {
@@ -45,7 +53,9 @@ header {
 .navbar .logo span {
     color: #FFA101;
 }
-
+.navbar nav{
+    margin-right: 100px;
+}
 .navbar nav ul {
     margin-left: auto;
     display: flex;
@@ -67,13 +77,52 @@ header {
     border-radius: 5px;
 }
 
-.profile{
+#profile{
     border: 3px solid #FFA101;
     padding: 0.5em 1em;
     border-radius: 15px;
-    margin-right: 25px;
+    
+}
+.menu-hidden {
+    display: none;
+}
+#menu-hamburguesa {
+    position: absolute;
+    top: 77px;
+    background-color: #FFD184;
+    padding: 0px;
+    border-radius: 5px;
+    padding-left: 5px;
+    box-shadow: 5px 10px 0px 0px rgba(0,0,0,0.3);
+  
 }
 
+#menu-hamburguesa ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+
+}
+#menu-hamburguesa li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000000;
+  
+}
+#menu{
+    display: flex;
+    
+justify-content: center
+}
+#menu-hamburguesa li a {
+    font-size: 20px;
+    padding: 0.5em 1em;
+    border-radius: 15px;
+    margin: 2px;
+    
+}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HOME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #home {

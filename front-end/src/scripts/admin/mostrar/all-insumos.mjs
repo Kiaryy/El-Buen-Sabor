@@ -1,3 +1,7 @@
+import { last_id } from "../lastId.mjs";
+
+let lastInsumoId = null;
+
 export const insumos=(url,table)=>{
          //------------------------------OBTIENEE---------------------------------------------------------
          fetch(url,{
@@ -44,7 +48,7 @@ export const insumos=(url,table)=>{
                 table.appendChild(tr)
         
             });
-            
+            lastInsumoId=last_id(data)
            
     })
     .catch(error => {
@@ -53,3 +57,4 @@ export const insumos=(url,table)=>{
     });
     
 }
+export {lastInsumoId}

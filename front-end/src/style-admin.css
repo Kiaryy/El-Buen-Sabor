@@ -108,7 +108,7 @@ body  {
     height: 20px;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~ Estilos del boton ~~~~~~~~~~~~~~~~~~~~~~~ */
-#add-item{
+.add-item{
     position: sticky;
     top: 15%;
     width: 100%;
@@ -118,7 +118,7 @@ body  {
     border-right: 0;
 }
 
-#add-item:hover{
+.add-item:hover{
     background-color: #cccccc;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~ Estilos del contenido ~~~~~~~~~~~~~~~~~~~~~~~ */
