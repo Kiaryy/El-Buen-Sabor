@@ -24,6 +24,7 @@ export const ventas=(url,table)=>{
             <td>${item.nameofUser}</td>
             <td>${item.pedido}</td>
             <td>falta</td>
+            <td>${item.cards}</td>
             <td>falta</td>
                 <td>
             <button onclick="editItem()">

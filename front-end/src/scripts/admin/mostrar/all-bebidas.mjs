@@ -2,8 +2,7 @@ import { last_id } from "../lastId.mjs";
 let lastBebidaId = null;
 
 export const bebidas=(url,table)=>{
-    console.log(url);
-    
+   
     fetch(url,{
         method: 'GET'
     })
@@ -25,12 +24,10 @@ export const bebidas=(url,table)=>{
             tr.innerHTML=
             `
             <td>${item.id}</td>
-            <td>falta</td>
-            <td>${item.purchaseDate}</td>
-            <td>${item.itemsPurchased}</td>
-            <td>falta</td>
-            <td>falta</td>
-            <td>falta</td>
+            <td>${item.nombre}</td>
+            <td>${item.descripcion}</td>
+            <td>${item.precio}</td>
+            <td>${item.stock}</td
                 <td>
             <button onclick="editItem()">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">

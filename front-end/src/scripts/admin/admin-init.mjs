@@ -53,43 +53,43 @@ const funciones = {
 window.onload =async function () {
 
     
-//     for (let section of section_platos) { 
-//         if (funciones[section.id]) {
-//             if (section.id=="platos") {
-//                 var url = 'https://bsapi-latest.onrender.com/platos/simple';
-//             } 
-//             else if(section.id=="compras"){
-//                 var url='https://bsapi-latest.onrender.com/historypurchased/findAll'
-//             }
-//             else if(section.id=="ventas"){
-//                 var url='https://bsapi-latest.onrender.com/historySale/findAll'
-//             }
+    for (let section of section_platos) { 
+        if (funciones[section.id]) {
+            if (section.id=="platos") {
+                var url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/simple';
+            } 
+            else if(section.id=="compras"){
+                var url='https://proactive-intuition-production-15d4.up.railway.app/historypurchased/findAll'
+            }
+            else if(section.id=="ventas"){
+                var url='https://proactive-intuition-production-15d4.up.railway.app/historySale/findAll'
+            }
             
-//             else if(section.id=="personal"){
-//                 var url='https://bsapi-latest.onrender.com/employees/findAll'
-//             }
+            else if(section.id=="personal"){
+                var url='https://proactive-intuition-production-15d4.up.railway.app/employees/findAll'
+            }
             
-//             else if(section.id=="insumos"){
-//                 var url = 'https://bsapi-latest.onrender.com/article/findAll';
-//             }
-//             else if(section.id=="promociones"){
+            else if(section.id=="insumos"){
+                var url = 'https://proactive-intuition-production-15d4.up.railway.app/article/findAll';
+            }
+            else if(section.id=="promociones"){
                 
-//                 var url = 'https://bsapi-latest.onrender.com/promotions/findAll';
-//             }
-//             else if(section.id=="bebidas"){
+                var url = 'https://proactive-intuition-production-15d4.up.railway.app/promotions/findAll';
+            }
+            else if(section.id=="bebidas"){
                 
-//                 var url = 'https://bsapi-latest.onrender.com/bebidas/findAll';
-//             }
+                var url = 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/findAll';
+            }
             
-//            const table=section.querySelector("table")
+           const table=section.querySelector("table")
           
             
-//            funciones[section.id](url,table)
-//         }       
+           funciones[section.id](url,table)
+        }       
        
     
     
-// }
+}
     add_personal
     add_bebidas
     add_platos

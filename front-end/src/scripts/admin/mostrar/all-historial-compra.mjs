@@ -21,6 +21,7 @@ export const compras=(url,table)=>{
             `
             <td>${item.id}</td>
             <td>falta</td>
+            <td>${item.provider}</td>
             <td>${item.purchaseDate}</td>
             <td>${item.itemsPurchased}</td>
             <td>falta</td>

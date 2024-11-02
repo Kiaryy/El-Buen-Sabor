@@ -9,7 +9,7 @@ const table = sections_personal.querySelector("table");
 // Función para agregar una nueva fila con inputs al principio de la tabla
 
 const agregar = document.querySelectorAll('.add-item')
-console.log(agregar);
+
 
 export const add_personal = agregar[1].addEventListener('click', function () {
     if (isAdding) {

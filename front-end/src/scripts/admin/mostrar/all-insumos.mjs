@@ -26,12 +26,14 @@ export const insumos=(url,table)=>{
                 `
                 <td>${item.articleId}</td>
                 <td>${item.name}</td>
+                <td>${item.denominacion}</td>
                 <td>${item.category}</td>
                 <td>${item.provider}</td>
+                <td>${item.priceUnit}</td>
                 <td>${item.precioCompra}</td>
-                <td>${item.lastPurchased}</td>
-                <td>${item.existencies}</td>
                 <td>${item.stockActual}</td>
+                <td>${item.existencies}</td>
+                <td>${item.lastPurchased}</td>
                     <td>
                 <button onclick="editItem()">
                     <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">

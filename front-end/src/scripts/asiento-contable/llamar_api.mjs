@@ -1,5 +1,5 @@
 export const  llamar_api=(asiento)=>{
-    const apiEndpoint = 'https://bsapi-latest.onrender.com/contabilidad/registrar-asiento';
+    const apiEndpoint = 'https://proactive-intuition-production-15d4.up.railway.app/registrar-asiento';
     fetch(apiEndpoint, {
         method: 'POST',
         headers: {

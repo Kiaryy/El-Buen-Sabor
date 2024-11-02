@@ -18,7 +18,7 @@ export const platos =(url,table)=>{
         return response.json();
     })
     
-    .then(data => { lastBebidaId     
+    .then(data => {      
         
         
             // Mapeamos las secciones a los tipos de comida 
