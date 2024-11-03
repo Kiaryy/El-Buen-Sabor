@@ -52,6 +52,8 @@ window.onload = async function () {
         // URL de la API para obtener los platos
         // if (!localStorage.getItem('Platos')) {
         //   Realizar la solicitud GET a la API
+        console.log("hola");
+        
         show_plates(sectionMap)
         //  }else{
         //     show_plates_local(sectionMap)

@@ -3,9 +3,9 @@ var modal = document.getElementById("modal-pagar");
 var btn = document.getElementById("pagar");
 var btn_salir = document.getElementById("seguir-comprando");
 
-const mp = new MercadoPago("PUBLIC-KEY", {
-    locale: "es-AR",
-})
+// const mp = new MercadoPago("PUBLIC-KEY", {
+//     locale: "es-AR",
+// })
 
 document.getElementById("pagar").addEventListener("click", async () => {
     try{

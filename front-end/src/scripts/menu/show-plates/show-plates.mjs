@@ -1,12 +1,15 @@
 import { save_plates } from "./local-plates/save-plates.mjs";
 export const show_plates =(sectionMap)=>{
-    const url = 'https://bsapi-latest.onrender.com/platos/findAll';
-    load_plates(sectionMap,url)
 
+    
+    const url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/findAll';
+    load_plates(sectionMap,url)
+    
     // }
 }
 
 const load_plates=async (sectionMap,url)=>{
+
 
     try {
         const response = await fetch(url, {
@@ -16,16 +19,18 @@ const load_plates=async (sectionMap,url)=>{
         if (!response.ok) {
             throw new Error('Error en la solicitud: ' + response.status);
         }
+    
         
         // Convertir la respuesta a JSON
         const data = await response.json();
+   
         
-
         // Mapeamos las secciones a los tipos de comida+
         // Mostrar los productos en las respectivas secciones
-        var plates_new=[]
+        // var plates_new=[]
 
         data.forEach(item => {
+            console.log(item);
             
             // Verificar si existe una sección para el tipo de comida
             if (sectionMap[item.type]) {
@@ -38,14 +43,14 @@ const load_plates=async (sectionMap,url)=>{
                     </div>
                     `;
 
-                    let plate={
-                        name:item.name,
-                        description:item.description,
-                        price:item.price,
-                        img:item.img,
-                        type:item.type
-                    }
-                    plates_new.push(plate)
+                    // let plate={
+                    //     name:item.name,
+                    //     description:item.description,
+                    //     price:item.price,
+                    //     img:item.img,
+                    //     type:item.type
+                    // }
+                    // plates_new.push(plate)
                 }
                 // localStorage.setItem('Platos', JSON.stringify([]));
                 // save_plates(plates_new)
