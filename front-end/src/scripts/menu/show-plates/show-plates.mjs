@@ -1,8 +1,9 @@
 import { save_plates } from "./local-plates/save-plates.mjs";
 export const show_plates =(sectionMap)=>{
 
-    
-    const url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/findAll';
+   
+    const url = ' http://localhost:8080/platos/findAll';
+    // const url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/findAll';
     load_plates(sectionMap,url)
     
     // }

@@ -17,6 +17,7 @@ export const ventas=(url,table)=>{
             // Trabajar con los datos recibidos
             data.forEach(item => {
             let tr=document.createElement('tr')    
+            tr.classList.add(`fila${item.id}`) 
             tr.innerHTML=
             `
             <td>${item.id}</td>
@@ -26,17 +27,7 @@ export const ventas=(url,table)=>{
             <td>falta</td>
             <td>${item.cards}</td>
             <td>falta</td>
-                <td>
-            <button onclick="editItem()">
-                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
-            </button>
-            <button onclick="deleteItem()">
-                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/delete.png" alt="eliminar" title="Eliminar">
-            </button>
-            <button onclick="toggleStatus()">
-                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
-            </button>
-            </td>
+              
                     `
 
             table.appendChild(tr)

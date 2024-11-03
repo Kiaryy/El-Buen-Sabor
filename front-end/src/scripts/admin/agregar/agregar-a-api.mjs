@@ -27,4 +27,5 @@ export function sendDataToApi(add,url) {
     .catch((error) => {
         console.error('Error:', error);
     });
+    
 }

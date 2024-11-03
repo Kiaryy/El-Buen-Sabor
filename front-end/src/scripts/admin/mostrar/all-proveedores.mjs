@@ -19,7 +19,8 @@ export const proveedores=(url,table)=>{
             // Mapeamos las secciones a los tipos de comida 
             // Trabajar con los datos recibidos
             data.forEach(item => {
-            let tr=document.createElement('tr')    
+            let tr=document.createElement('tr')
+            tr.classList.add(`fila${item.id}`)     
             tr.innerHTML=
             `
             <td>${item.id}</td>
@@ -30,13 +31,11 @@ export const proveedores=(url,table)=>{
             <td>falta</td>
             <td>falta</td>
                 <td>
-            <button onclick="editItem()">
+            <button onclick="editItem(${item.id},'proveedores')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
             </button>
-            <button onclick="deleteItem()">
-                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/delete.png" alt="eliminar" title="Eliminar">
-            </button>
-            <button onclick="toggleStatus()">
+          
+            <button onclick="toggleStatus(${item.id},'proveedores')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
             </button>
             </td>
@@ -45,7 +44,7 @@ export const proveedores=(url,table)=>{
             table.appendChild(tr)
     
         });
-        lastProvedorId=last_id(data)
+        lastProvedorId=last_id(data,'id')
        
 })
 .catch(error => {

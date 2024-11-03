@@ -25,6 +25,7 @@ export const platos =(url,table)=>{
             // Trabajar con los datos recibidos
             data.forEach(item => {
             let tr=document.createElement('tr')    
+            tr.classList.add(`fila${item.platoId}`) 
             tr.innerHTML=
             `
             <td>${item.platoId}</td>
@@ -35,13 +36,11 @@ export const platos =(url,table)=>{
             <td>falta</td>
             <td>${item.stock}</td>
                 <td>
-            <button onclick="editItem()">
+            <button onclick="editItem(${item.platoId},'platos')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
             </button>
-            <button onclick="deleteItem()">
-                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/delete.png" alt="eliminar" title="Eliminar">
-            </button>
-            <button onclick="toggleStatus()">
+           
+            <button onclick="toggleStatus(${item.platoId},'platos')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
             </button>
             </td>
@@ -50,7 +49,7 @@ export const platos =(url,table)=>{
             table.appendChild(tr)
     
         });
-        lastPlatoId =last_id(data)
+        lastPlatoId =last_id(data,'platoId')
         
     })
     .catch(error => {

@@ -1,5 +1,6 @@
-import { lastPlatoId } from "../mostrar/all-platos.mjs";
+import { lastInsumoId } from "../mostrar/all-insumos.mjs";
 
+import { proveedores_select } from "../proveedores/proveedores-select.mjs";
 
 
 
@@ -19,10 +20,10 @@ export const add_insumos = agregar[2].addEventListener('click', function () {
     let newRow = document.createElement('tr');
     isAdding = true;
     newRow.innerHTML = `
-        <td>${(lastPlatoId + 1)}</td>
+        <td>${(lastInsumoId + 1)}</td>
         <td><input type="text" class="input-styles" placeholder="Nombre"></td>
         <td><input type="text" class="input-styles" placeholder="Denominacion"></td>
-          <select id="categoria">
+          <select id="categoria_select">
                 <option>Categoria</option>
                 <option>Vegetal</option>
     
@@ -49,6 +50,7 @@ export const add_insumos = agregar[2].addEventListener('click', function () {
             <button class="cancel-item">Cancelar</button>
         </td>
     `;
+   
     let last_table = table[table.length - 1]
     // Insertamos la nueva fila al principio, justo después del encabezado
     table.insertBefore(newRow, table.rows[1]);
@@ -69,7 +71,7 @@ export const add_insumos = agregar[2].addEventListener('click', function () {
         categories=document.getElementById('categoria').value
         table.insertBefore(newRow, table.rows[last_table]);
         const new_insumo = {
-            articleId:(lastPlatoId + 1),
+            articleId:(lastInsumoId + 1),
             name:values[0],
             denominacion:values[1],
             category:categories,
@@ -80,13 +82,21 @@ export const add_insumos = agregar[2].addEventListener('click', function () {
             existencies:values[6],
             lastPurchased:values[7]
         };
-        const url = 'https://bsapi-latest.onrender.com/employees/findAll';
+        const url = 'http://localhost:8080/article/add';
+        // const url = 'https://bsapi-latest.onrender.com/article/add';
         // Send the byte array to the API
         sendDataToApi(new_insumo, url);
 
         isAdding = false; // Permitimos agregar una nueva fila
 
     });
+    const selectCategoria = document.getElementById('categoria_select');
+
+    
+    selectCategoria.addEventListener('change', function () {
+        const celdas = newRow.querySelectorAll('td');
+        proveedores_select(selectCategoria,celdas,'add')
+    })
 
 });
 

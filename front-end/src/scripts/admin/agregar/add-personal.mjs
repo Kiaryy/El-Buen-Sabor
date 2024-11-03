@@ -71,7 +71,9 @@ export const add_personal = agregar[1].addEventListener('click', function () {
             state: estado,
 
         };
-        const url = 'https://bsapi-latest.onrender.com/employees/findAll';
+      
+        const url = 'http://localhost:8080/employees/add';
+        // const url = 'https://bsapi-latest.onrender.com/employees/add';
         // Send the byte array to the API
         sendDataToApi(new_personal, url);
 

@@ -22,6 +22,7 @@ export const insumos=(url,table)=>{
                 // Trabajar con los datos recibidos
                 data.forEach(item => {
                 let tr=document.createElement('tr')    
+                tr.classList.add(`fila${item.articleId}`) 
                 tr.innerHTML=
                 `
                 <td>${item.articleId}</td>
@@ -35,13 +36,10 @@ export const insumos=(url,table)=>{
                 <td>${item.existencies}</td>
                 <td>${item.lastPurchased}</td>
                     <td>
-                <button onclick="editItem()">
+                <button onclick="editItem(${item.articleId},'insumos')">
                     <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
                 </button>
-                <button onclick="deleteItem()">
-                    <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/delete.png" alt="eliminar" title="Eliminar">
-                </button>
-                <button onclick="toggleStatus()">
+                <button onclick="toggleStatus(${item.articleId},'insumos')">
                     <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
                 </button>
                 </td>
@@ -50,7 +48,8 @@ export const insumos=(url,table)=>{
                 table.appendChild(tr)
         
             });
-            lastInsumoId=last_id(data)
+            lastInsumoId=last_id(data,'articleId')
+           
            
     })
     .catch(error => {

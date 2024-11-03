@@ -89,8 +89,9 @@ export const add_platos = agregar[0].addEventListener('click', function () {
                     avaliable: true,
                     imageData: Array.from(byteArray) // Convert Uint8Array to regular array for JSON serialization
                 };
-
-                const url = 'https://bsapi-latest.onrender.com/platos/add';
+              
+                const url = 'http://localhost:8080/platos/add';
+                // const url = 'https://bsapi-latest.onrender.com/platos/add';
                 // Send the byte array to the API
                 sendDataToApi(new_plate, url);
 

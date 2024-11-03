@@ -20,22 +20,22 @@ export const bebidas=(url,table)=>{
             // Mapeamos las secciones a los tipos de comida 
             // Trabajar con los datos recibidos
             data.forEach(item => {
-            let tr=document.createElement('tr')    
+            let tr=document.createElement('tr')   
+            tr.classList.add(`fila${item.id}`) 
             tr.innerHTML=
             `
             <td>${item.id}</td>
             <td>${item.nombre}</td>
             <td>${item.descripcion}</td>
             <td>${item.precio}</td>
-            <td>${item.stock}</td
-                <td>
-            <button onclick="editItem()">
+            <td>${item.stock}</td>
+            
+            <td>
+            <button onclick="editItem(${item.id},'bebidas')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
             </button>
-            <button onclick="deleteItem()">
-                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/delete.png" alt="eliminar" title="Eliminar">
-            </button>
-            <button onclick="toggleStatus()">
+         
+            <button onclick="toggleStatus(${item.id},'bebidas')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
             </button>
             </td>
@@ -44,7 +44,7 @@ export const bebidas=(url,table)=>{
             table.appendChild(tr)
     
         });
-        lastBebidaId=last_id(data)
+        lastBebidaId=last_id(data,'id')
        
 })
 .catch(error => {

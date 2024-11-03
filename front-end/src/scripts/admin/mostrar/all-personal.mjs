@@ -20,6 +20,7 @@ export const personal=(url,table)=>{
             // Trabajar con los datos recibidos
             data.forEach(item => {
             let tr=document.createElement('tr')    
+            tr.classList.add(`fila${item.name}`) 
             tr.innerHTML=
             `
             <td>${item.name}</td>
@@ -31,13 +32,11 @@ export const personal=(url,table)=>{
             <td>${item.state}</td>
         
                 <td>
-            <button onclick="editItem()">
+            <button onclick="editItem(${item.name},'personal')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
             </button>
-            <button onclick="deleteItem()">
-                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/delete.png" alt="eliminar" title="Eliminar">
-            </button>
-            <button onclick="toggleStatus()">
+            
+            <button onclick="toggleStatus(${item.name},'personal')">
                 <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
             </button>
             </td>
@@ -46,7 +45,7 @@ export const personal=(url,table)=>{
             table.appendChild(tr)
     
         });
-        lastPersonalId=last_id(data)
+        lastPersonalId=last_id(data,'name')
         
        
 })

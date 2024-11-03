@@ -7,7 +7,7 @@ import { venta_hecha } from "../asiento-contable/venta_hecha.mjs";
 import { compra_hecha } from "../asiento-contable/compra_hecha.mjs";
 import { compras } from "./mostrar/all-historial-compra.mjs";
 import { ventas } from "./mostrar/all-historial-venta.mjs";
-import { proveedores } from "./mostrar/all-provedores.mjs";
+import { proveedores } from "./mostrar/all-proveedores.mjs";
 import { promociones } from "./mostrar/all-promociones.mjs";
 import { bebidas } from "./mostrar/all-bebidas.mjs";
 import { add_personal } from "./agregar/add-personal.mjs";
@@ -55,36 +55,44 @@ window.onload =async function () {
     
     for (let section of section_platos) { 
         if (funciones[section.id]) {
-            if (section.id=="platos") {
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/simple';
-            } 
-            else if(section.id=="compras"){
-                var url='https://proactive-intuition-production-15d4.up.railway.app/historypurchased/findAll'
-            }
-            else if(section.id=="ventas"){
-                var url='https://proactive-intuition-production-15d4.up.railway.app/historySale/findAll'
-            }
+            // if (section.id=="platos") {
             
-            else if(section.id=="personal"){
-                var url='https://proactive-intuition-production-15d4.up.railway.app/employees/findAll'
-            }
+            //     var url = 'http://localhost:8080/platos/simple';
+            //     // var url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/simple';
+            // } 
+            // else if(section.id=="compras"){
+            //     var url='http://localhost:8080/historypurchased/findAll'
+            //     // var url='https://proactive-intuition-production-15d4.up.railway.app/historypurchased/findAll'
+            // }
+            // else if(section.id=="ventas"){
+            //     var url='http://localhost:8080/historySale/findAll'
+            //     // var url='https://proactive-intuition-production-15d4.up.railway.app/historySale/findAll'
+            // }
             
-            else if(section.id=="insumos"){
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/article/findAll';
-            }
-            else if(section.id=="promociones"){
+            // else if(section.id=="personal"){
+            //     var url='http://localhost:8080/employees/findAll'
+            //     // var url='https://proactive-intuition-production-15d4.up.railway.app/employees/findAll'
+            // }
+            
+            // if(section.id=="insumos"){
+            //     var url = 'http://localhost:8080/article/findAll';
+            //     // var url = 'https://proactive-intuition-production-15d4.up.railway.app/article/findAll';
+            // }
+            // else if(section.id=="promociones"){
                 
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/promotions/findAll';
-            }
-            else if(section.id=="bebidas"){
+            //     var url = 'http://localhost:8080/promotions/findAll';
+            //     // var url = 'https://proactive-intuition-production-15d4.up.railway.app/promotions/findAll';
+            // }
+            if(section.id=="bebidas"){
                 
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/findAll';
+                var url = 'http://localhost:8080/bebidas/findAll';
+                // var url = 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/findAll';
+                const table=section.querySelector("table")
+               
+                 
+                funciones[section.id](url,table)
+                
             }
-            
-           const table=section.querySelector("table")
-          
-            
-           funciones[section.id](url,table)
         }       
        
     
@@ -94,5 +102,7 @@ window.onload =async function () {
     add_bebidas
     add_platos
     add_insumos
+
+  
 }
 

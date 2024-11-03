@@ -1,4 +1,5 @@
-import { lastPlatoId } from "../mostrar/all-platos.mjs";
+import { lastBebidaId } from "../mostrar/all-bebidas.mjs";
+
 
 
 
@@ -19,7 +20,7 @@ export const add_bebidas = agregar[5].addEventListener('click', function () {
     let newRow = document.createElement('tr');
     isAdding = true;
     newRow.innerHTML = `
-        <td>${(lastPlatoId + 1)}</td>
+        <td>${(lastBebidaId + 1)}</td>
         <td><input type="text" class="input-styles" placeholder="Nombre"></td>
         <td><input type="text" class="input-styles" placeholder="Description"></td>
         <td><input type="number" class="input-styles" placeholder="Precio"></td>
@@ -48,12 +49,13 @@ export const add_bebidas = agregar[5].addEventListener('click', function () {
         }
         table.insertBefore(newRow, table.rows[last_table]);
         const new_insumo = {
-            id:(lastPlatoId + 1),
+            id:(lastBebidaId + 1),
             nombre:values[0],
             descripcion:values[1],
             stock:values[2],
         };
-        const url = 'https://bsapi-latest.onrender.com/employees/findAll';
+        const url = 'http://localhost:8080/bebidas/add';
+        // const url = 'https://bsapi-latest.onrender.com/bebidas/add';
         // Send the byte array to the API
         sendDataToApi(new_insumo, url);
 
