@@ -40,7 +40,7 @@ export const vali_registro=async(section_login,section_sign_up,new_user)=>{
     if (allValidExceptLogin) {
         const emailExists=await there_is_email(new_user.mail)
         if (emailExists) {
-            const add = 'https://bsapi-latest.onrender.com/usuarios/add';
+            const add = 'https://localhost:8080/usuarios/add';
             api_call(add,section_login,section_sign_up,new_user)
         }else{
             alert("Ya existe usuario con ese email, use otro");
