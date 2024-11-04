@@ -54,7 +54,8 @@ const sections = {
             <td><input type="number" class="input-styles" placeholder="Precio Costo"></td>
             <td><input type="text" class="input-styles" placeholder="Stock"></td>
             <td><input type="text" class="input-styles" placeholder="Existencias"></td>
-            <td id="fecha-actual-insumo"></td>
+            <td><input type="date" class="input-styles" placeholder="Ultima Compra"></td>
+        
             <td>
                 <button class="save-item">Guardar</button>
                 <button class="cancel-item">Cancelar</button>
@@ -129,6 +130,88 @@ const sections = {
             </td>
         `,
         url: 'http://localhost:8080/platos/add'
+    },
+    proveedores: {
+        lastId: lastIds.proveedores,
+        tableId: 'proveedores',
+        addBtnIndex: 3,
+        createRow: () => `
+            <td>${(lastIds.proveedores + 1)}</td>
+            <td><input type="text" class="input-styles" placeholder="Nombre"></td>
+            <tr id="product-row">
+                <td id="product-cell">
+                <input type="text" name="producto" class="input-styles placeholder="Producto" />
+                <button type="button" onclick="addProductInput()">Agregar otro producto</button>
+                </td>
+            </tr>
+            <td><input type="date" class="input-styles" placeholder="Último envío"></td>
+            <td><input type="number" class="input-styles" placeholder="Pecio"></td>
+            <td><input type="number" class="input-styles" placeholder="Numero telefono"></td>
+            <td>
+                <button class="save-item">Guardar</button>
+                <button class="cancel-item">Cancelar</button>
+            </td>
+        `,
+        url: 'http://localhost:8080/proveedores/add'
+    },
+    promociones: {
+        lastId: lastIds.promociones,
+        tableId: 'promociones',
+        addBtnIndex: 4,
+        createRow: () => 
+            `<td>${(lastIds.promociones + 1)}</td>
+            <td><input type="text" class="input-styles" placeholder="Nombre"></td>
+            <tr id="plato-row">
+                <td id="plato-cell">
+                 <select class="plato-select">
+                     <option>Platos</option>
+                 </select>
+                 <button type="button" onclick="addPlatoInput()">Agregar otro plato</button>
+                </td>
+            </tr>
+            <tr id="bebida-row">
+                <td id="bebida-cell">
+                  <select class="bebida-select">
+                     <option>Bebidas</option>
+                     </select>
+                     <button type="button" onclick="addBebidaInput()">Agregar otra bebida</button>
+                </td>
+            </tr>
+            <td><input type="number" class="input-styles" placeholder="Precio"></td>
+            <td>
+                <button class="save-item">Guardar</button>
+                <button class="cancel-item">Cancelar</button>
+            </td>
+            `,
+        populateSelects: (platos, bebidas) => {
+            
+            
+            const platoSelects = document.querySelectorAll('.plato-select');
+            console.log(platoSelects);
+            
+            const bebidaSelects = document.querySelectorAll('.bebida-select');
+    
+            // Limpiar las opciones existentes
+            platoSelects.forEach(select => {
+                select.innerHTML = '<option>Platos</option>'; // Reiniciar opciones
+                platos.forEach(plato => {
+                    const option = document.createElement('option');
+                    option.value = plato.id; // Asumiendo que cada plato tiene un ID
+                    option.textContent = plato.nombre; // Asumiendo que cada plato tiene un nombre
+                    select.appendChild(option);
+                });
+            });
+    
+            bebidaSelects.forEach(select => {
+                select.innerHTML = '<option>Bebidas</option>'; // Reiniciar opciones
+                bebidas.forEach(bebida => {
+                    const option = document.createElement('option');
+                    option.value = bebida.id; // Asumiendo que cada bebida tiene un ID
+                    option.textContent = bebida.nombre; // Asumiendo que cada bebida tiene un nombre
+                    select.appendChild(option);
+                });
+            });
+        }
     }
 };
 
@@ -158,9 +241,22 @@ export const addItem = (section) => {
 
             obtener_proveedor(newRow)
             //FUNCION PARA OPTENER LA FEHCA
-            obtener_fecha()
+
         }else if (section=="personal") {
             obtener_horarios(newRow)
+        }else if (section=="promociones") {
+            const platos = [
+                { id: 1, nombre: 'Pizza' },
+                { id: 2, nombre: 'Pasta' }
+                ];
+                
+                const bebidas = [
+                { id: 1, nombre: 'Coca Cola' },
+                { id: 2, nombre: 'Agua' }
+                ];
+                
+                // Llamar a la función para llenar los selects
+                sections.promociones.populateSelects(platos, bebidas);
         }
         // Evento "Cancelar" para eliminar la fila de inputs
         newRow.querySelector('.cancel-item').addEventListener('click', function () {
@@ -258,6 +354,15 @@ const saveData = async(fileData, section, values, additionalData, url,newRow) =>
             imageData: fileData,
             articles:["pan"] // Datos de la imagen (si existe)
         };
+    }else if(section=='proveedores'){
+        newItem={
+            id:section[section].lastId+1,
+            name:values[0],
+            product:values[1],
+            lastShipment:values[2],
+            namshippingCoste:Number(values[3]),
+            phoneNumber:Number(values[4]),
+        }
     }
 
     console.log(newItem); // Para verificar el objeto creado antes de enviarlo
@@ -289,17 +394,7 @@ function toggleColumns() {
     });
 
 }
-const obtener_fecha = () => {
 
-    const fecha = new Date(); // Obtiene la fecha actual
-    const año = fecha.getFullYear();
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
-    const dia = String(fecha.getDate()).padStart(2, '0');
-    const fechaFormateada = `${año}-${mes}-${dia}`; // Formato YYYY-MM-DD
-    console.log(fechaFormateada);
-
-    document.getElementById('fecha-actual-insumo').textContent = fechaFormateada; // Establece el contenido del <td>
-}
 const obtener_proveedor = (newRow) => {
     const selectCategoria = document.getElementById('categoria_select');
     selectCategoria.addEventListener('change', function () {
@@ -318,3 +413,132 @@ const obtener_horarios=(newRow)=>{
     })
         
 }
+export function addProductInput() {
+    const productCell = document.getElementById("product-cell");
+
+    // Crear un contenedor para el nuevo input y el botón de eliminar
+    const inputContainer = document.createElement("div");
+    inputContainer.className = "product-input-container";
+
+    // Crear un nuevo input para producto
+    const newInput = document.createElement("input");
+    newInput.type = "text";
+    newInput.name = "producto";
+    newInput.placeholder = "Producto";
+
+    // Crear un botón para eliminar este input
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.innerText = "Eliminar";
+    deleteButton.onclick = function () {
+        productCell.removeChild(inputContainer);
+    };
+
+    // Añadir el input y el botón de eliminar al contenedor
+    inputContainer.appendChild(newInput);
+    inputContainer.appendChild(deleteButton);
+
+    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+    productCell.insertBefore(inputContainer, productCell.lastElementChild);
+    sections.promociones.populateSelects(platos, bebidas);
+}
+
+// Función para obtener los valores de los inputs de producto como lista y pasarlos
+export function submitProducts() {
+    const inputs = document.querySelectorAll('#product-cell input[name="producto"]');
+    const productList = Array.from(inputs).map(input => input.value);
+
+    console.log("Lista de productos:", productList);
+    // Aquí puedes usar productList según lo necesites, como enviarlo al servidor o pasarlo a otra función
+}
+window.addProductInput = addProductInput;
+// Funciones para agregar y eliminar selects
+window.addPlatoInput = addPlatoInput;
+window.addBebidaInput = addBebidaInput;
+
+export function addPlatoInput(){
+    const platos = [
+        { id: 1, nombre: 'Pizza' },
+        { id: 2, nombre: 'Pasta' }
+        ];
+        
+        const bebidas = [
+        { id: 1, nombre: 'Coca Cola' },
+        { id: 2, nombre: 'Agua' }
+        ];
+    const platoCell = document.getElementById('plato-cell');
+
+    // Crear un contenedor para el nuevo input y el botón de eliminar
+    const inputContainer = document.createElement("div");
+    inputContainer.className = "plato-select-container";
+  
+
+    // Crear un nuevo input para producto
+    const newInput = document.createElement("select");
+    newInput.option = "Platos";
+    newInput.className="plato-select"
+    
+    // Crear un botón para eliminar este input
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.innerText = "Eliminar";
+    deleteButton.onclick = function () {
+        platoCell.removeChild(inputContainer);
+    };
+
+    // Añadir el input y el botón de eliminar al contenedor
+    inputContainer.appendChild(newInput);
+    inputContainer.appendChild(deleteButton);
+    
+    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+    platoCell.insertBefore(inputContainer, platoCell.lastElementChild);
+    sections.promociones.populateSelects(platos, bebidas);
+ 
+   
+}
+export function addBebidaInput() {
+    const platos = [
+        { id: 1, nombre: 'Pizza' },
+        { id: 2, nombre: 'Pasta' }
+        ];
+    const bebidas = [
+        { id: 1, nombre: 'Coca Cola' },
+        { id: 2, nombre: 'Agua' }
+        ];
+    const bebidaCell = document.getElementById('bebida-cell');
+
+    // Crear un contenedor para el nuevo input y el botón de eliminar
+    const inputContainer = document.createElement("div");
+    inputContainer.className = "plato-select-container";
+  
+
+    // Crear un nuevo input para producto
+    const newInput = document.createElement("select");
+    newInput.option = "Bebidas";
+    newInput.className="bebida-select"
+    
+    // Crear un botón para eliminar este input
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.innerText = "Eliminar";
+    deleteButton.onclick = function () {
+        bebidaCell.removeChild(inputContainer);
+    };
+
+    // Añadir el input y el botón de eliminar al contenedor
+    inputContainer.appendChild(newInput);
+    inputContainer.appendChild(deleteButton);
+    
+    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+    bebidaCell.insertBefore(inputContainer, bebidaCell.lastElementChild);
+    sections.promociones.populateSelects(platos, bebidas);
+ 
+}
+
+function removeBebidaInput(button) {
+    const rowToRemove = button.closest('tr');
+    if (rowToRemove) {
+        rowToRemove.parentNode.removeChild(rowToRemove);
+    }
+}
+// Ejemplo de uso
