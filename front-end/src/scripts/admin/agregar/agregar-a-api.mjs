@@ -19,6 +19,8 @@ export function sendDataToApi(add,url) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
+        alert('Producto agregado:'); // Manejo de la respuesta aquí
+        location.reload(); // 
         return response.json();
     })
     .then(data => {

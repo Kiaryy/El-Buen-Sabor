@@ -62,20 +62,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-/* function editItem() {
-    alert("Editar este elemento");
-    // Lógica para editar el elemento
-}
-
-function deleteItem() {
-    if (confirm("¿Estás seguro de que quieres eliminar este elemento?")) {
-        alert("Elemento eliminado");
-        // Lógica para eliminar el elemento
-    }
-}
-
-function toggleStatus() {
-    alert("Estado del elemento cambiado");
-    // Lógica para habilitar/deshabilitar el elemento
-}
- */

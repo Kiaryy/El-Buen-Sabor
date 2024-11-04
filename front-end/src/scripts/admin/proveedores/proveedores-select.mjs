@@ -1,17 +1,14 @@
-export const proveedores_select=(selectCategoria,celdas,estado)=>{
+export const proveedores_select=(selectCategoria,celdas)=>{
  
            
             const categoriaSeleccionada = selectCategoria.value;
             const proveedor = proveedoresPorCategoria[categoriaSeleccionada] || ''; // Obtener el proveedor o un valor vacío
     
             // Actualizar la celda 4 con el proveedor correspondiente
-            if (estado =="add") {
+           
                 
-                celdas[3].textContent = proveedor;  // O celdas[4].innerHTML si necesitas agregar HTML
-            }else{
                 celdas[4].textContent = proveedor;  // O celdas[4].innerHTML si necesitas agregar HTML
-
-            }
+          
         
 }
 

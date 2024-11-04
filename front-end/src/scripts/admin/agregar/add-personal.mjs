@@ -1,4 +1,4 @@
-import { lastPlatoId } from "../mostrar/all-platos.mjs";
+// import { lastPlatoId } from "../mostrar/all-platos.mjs";
 
 
 

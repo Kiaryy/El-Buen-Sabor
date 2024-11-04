@@ -1,4 +1,4 @@
-import { bebidas } from "../mostrar/all-bebidas.mjs";
+// import { bebidas } from "../mostrar/all-bebidas.mjs";
 
 import {editar_fila} from "./editar-fila.mjs"
 
