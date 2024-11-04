@@ -17,6 +17,9 @@ export function editItem(id,articulo){
 
         seccion='bebidas'
     }
+    else if(articulo=="personal"){
+         seccion='personal'
+    }
     editar_fila(id,seccion)
     
 }

@@ -4,6 +4,7 @@
 import { lastIds } from "../mostrar/mostrar.mjs";
 import { sendDataToApi } from "./agregar-a-api.mjs";
 import { proveedores_select } from "../proveedores/proveedores-select.mjs";
+import { cargos } from "../cargos/cargos.mjs";
 
 const sections = {
     bebidas: {
@@ -67,17 +68,27 @@ const sections = {
         addBtnIndex: 1,
         createRow: () => `
             <td><input type="text" class="input-styles" placeholder="Nombre"></td>
-            <td><input type="text" class="input-styles" placeholder="Cargo"></td>
+            <td>
+                    <select id="charge">
+                <option>Categoria</option>
+                <option>CASHIER</option>
+                <option>MANAGER</option>
+                <option>DELIVERY</option>
+                <option>CHEF</option>
+                </select>
+           </td>
             <td><input type="text" class="input-styles" placeholder="Horario"></td>
             <td><input type="number" class="input-styles" placeholder="$Hora"></td>
             <td><input type="number" class="input-styles" placeholder="Ausencias"></td>
             <td><input type="text" class="input-styles" placeholder="Telefono"></td>
+            
+           
             <td>
                 <select id="estado">
                     <option>ESTADO</option>
-                    <option>ACTIVO</option>
-                    <option>INACTIVO</option>
-                    <option>VACACIONES</option> 
+                    <option>ACTIVE</option>
+                    <option>INACTIVE</option>
+                    <option>VACATION</option> 
                 </select>
             </td>
             <td>
@@ -148,6 +159,8 @@ export const addItem = (section) => {
             obtener_proveedor(newRow)
             //FUNCION PARA OPTENER LA FEHCA
             obtener_fecha()
+        }else if (section=="personal") {
+            obtener_horarios(newRow)
         }
         // Evento "Cancelar" para eliminar la fila de inputs
         newRow.querySelector('.cancel-item').addEventListener('click', function () {
@@ -169,11 +182,12 @@ export const addItem = (section) => {
 
             const additionalData = {};
             if (section === 'insumos') {
-                console.log("ds");
+
 
                 additionalData.category = newRow.querySelector('#categoria_select').value;
             } else if (section === 'personal') {
                 additionalData.state = newRow.querySelector('#estado').value;
+                additionalData.charge = newRow.querySelector('#charge').value;
             } else if (section === 'platos') {
                 const fileInput = document.getElementById('imageInput');
                 const file = fileInput.files[0];
@@ -181,22 +195,22 @@ export const addItem = (section) => {
                     const reader = new FileReader();
                     reader.onload = function (event) {
                         const byteArray = new Uint8Array(event.target.result);
-                        saveData(byteArray, section, values, additionalData, url);
+                        saveData(byteArray, section, values, additionalData, url,newRow);
                     };
                     reader.readAsArrayBuffer(file);
                 } else {
-                    saveData(null, section, values, additionalData, url);
+                    saveData(null, section, values, additionalData, url,newRow);
                 }
                 return;
             }
-            saveData(null, section, values, additionalData, url);
+            saveData(null, section, values, additionalData, url,newRow);
 
         });
     });
 
 };
 
-const saveData = async(fileData, section, values, additionalData, url) => {
+const saveData = async(fileData, section, values, additionalData, url,newRow) => {
     let newItem; // Definir la variable aquí para usarla más adelante
     // Creamos el objeto 'newItem' basado en la sección
     if (section === 'bebidas') {
@@ -221,29 +235,34 @@ const saveData = async(fileData, section, values, additionalData, url) => {
             lastPurchased: additionalData.lastPurchased || null // Última compra (de datos adicionales)
         };
     } else if (section === 'personal') {
+        console.log(values);
         newItem = {
             name: values[0], // Nombre del input
-            charge: values[1], // Cargo del input
-            shift: values[2], // Horario del input
-            hourlySalary: values[3], // $Hora (cuarto input)
-            absences: values[4], // Ausencias (quinto input)
-            phoneNumber: values[5], // Teléfono (sexto input)
+            charge: additionalData.charge, // Cargo del input
+            shift: values[1], // Horario del input
+            hourlySalary: Number(values[1]), // $Hora (cuarto input)
+            absences:Number(values[2]), // Ausencias (quinto input)
+            phoneNumber: Number(values[3]), // Teléfono (sexto input)
             state: additionalData.state // Estado de los datos adicionales
         };
     } else if (section === 'platos') {
+        
         newItem = {
             platoId: sections[section].lastId + 1, // Asignar el último platoId más uno
             name: values[0], // Nombre del input
-            description: values[1], // Descripción del input
+            description: values[4], // Descripción del input
             type: newRow.querySelector('#tipo').value, // Tipo del plato (select)
-            price: values[3], // Precio Venta (cuarto input)
-            stock: values[7], // Stock (octavo input)
-            available: values[5] || null, // Avaliable (puedes ajustar esto según sea necesario)
-            imageData: fileData // Datos de la imagen (si existe)
+            price:Number(values[1]) , // Precio Venta (cuarto input)
+            stock:Number(values[2]) , // Stock (octavo input)
+            available: true, // Avaliable (puedes ajustar esto según sea necesario)
+            imageData: fileData,
+            articles:["pan"] // Datos de la imagen (si existe)
         };
     }
 
     console.log(newItem); // Para verificar el objeto creado antes de enviarlo
+ 
+    
 
     // Envío de datos a la API
     sendDataToApi(newItem, url)
@@ -287,4 +306,15 @@ const obtener_proveedor = (newRow) => {
         const celdas = newRow.querySelectorAll('td');
         proveedores_select(selectCategoria, celdas)
     })
+}
+
+const obtener_horarios=(newRow)=>{
+    
+    const cargoEmpleado = document.getElementById('charge');
+    
+    const celdas = newRow.querySelectorAll('td');
+    cargoEmpleado.addEventListener('change', function () {
+        cargos(cargoEmpleado,celdas)
+    })
+        
 }

@@ -19,7 +19,7 @@ export const entityConfig = {
     compras: { columns: ['id', 'falta', 'provider', 'purchaseDate', 'itemsPurchased', 'falta', 'falta', 'falta'], idKey: 'id' },
     ventas: { columns: ['id', 'dateSale', 'nameofUser', 'pedido', 'falta', 'cards', 'falta'], idKey: 'id' },
     insumos: { columns: ['articleId', 'name', 'denominacion', 'category', 'provider', 'priceUnit', 'precioCompra', 'stockActual', 'existencies', 'lastPurchased'], idKey: 'articleId' },
-    personal: { columns: ['name', 'charge', 'shift', 'hourlySalary', 'absences', 'phoneNumber', 'state'], idKey: 'name' },
+    personal: { columns: ['name', 'charge', 'shift', 'hourlySalary', 'absences', 'phoneNumber', 'state'], idKey: 'id' },
     platos: { columns: ['platoId', 'name', 'id', 'price', 'falta', 'falta', 'stock'], idKey: 'platoId' },
     promociones: { columns: ['id', 'falta', 'platos', 'bebidas', 'precio', 'falta', 'falta', 'falta'], idKey: 'id' },
     proveedores: { columns: ['id', 'falta', 'purchaseDate', 'itemsPurchased', 'falta', 'falta', 'falta'], idKey: 'id' }
@@ -30,19 +30,26 @@ export const obtenerDatos = (entity, url, table) => {
     console.log(entity);
     
     const config = entityConfig[entity];
-
+    
     fetch(url, { method: 'GET' })
-        .then(response => {
-            if (!response.ok) throw new Error('Error en la solicitud: ' + response.status);
-            return response.json();
-        })
-        .then(data => {
-            data.forEach(item => {
-                let tr = document.createElement('tr');
+    .then(response => {
+        if (!response.ok) throw new Error('Error en la solicitud: ' + response.status);
+        return response.json();
+    })
+    
+    .then(data => {
+        data.forEach(item => {
+            if (entity=="personal") {
+                
+   
+                config.columns.map(col =>console.log(col,"=",item[col]));
+            }
+            let tr = document.createElement('tr');
                 tr.classList.add(`fila${item[config.idKey]}`);
+              
 
                 // Genera las celdas de la fila en función de las columnas definidas en la configuración
-                tr.innerHTML = config.columns.map(col => `<td>${item[col] || 'falta'}</td>`).join('') +
+                tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
                     <td>
                         <button onclick="editItem(${item[config.idKey]}, '${entity}')">

@@ -1,5 +1,6 @@
 import { editar_bebidas } from "./editar-ariticulo-especifico/editar-bebidas.mjs";
 import { proveedores_select } from"../proveedores/proveedores-select.mjs";
+import { cargos } from "../cargos/cargos.mjs";
 let isAdding = false;
 
 export const editar_fila = (id, seccion) => {
@@ -9,20 +10,23 @@ export const editar_fila = (id, seccion) => {
     }
     const div = document.getElementById(`${seccion}`)
     isAdding = true;
+    console.log(div);
     const fila = div.querySelector(`tr.fila${id}`)
+    console.log(fila);
+    
     const celdas = fila.querySelectorAll('td');
     const valoresOriginales = Array.from(celdas, celda => celda.textContent.trim());
     let valorOriginalUltimo = celdas[celdas.length - 1].innerHTML
 
 //AGREGAR EL BOTON PARA ELEGIR LAS CATEGORIA PRE DEFINIDAS Y QUE SE PONGAN LOS PROVEEDORES AUTOMATICO
+    celdas.forEach((celda, index) => {
+        if (index != 0) {
+            celda.innerHTML = `
+            <input type="text" class="input-styles"value="${celda.textContent.trim()}">
+            `
+        }
+    });
     if (seccion == "insumos") {
-        celdas.forEach((celda, index) => {
-            if (index != 0) {
-                celda.innerHTML = `
-                <input type="text" class="input-styles"value="${celda.textContent.trim()}">
-                `
-            }
-        });
      
         celdas[3].innerHTML = `
             <select id="categoria_select">
@@ -51,17 +55,26 @@ export const editar_fila = (id, seccion) => {
         proveedores_select(selectCategoria,celdas,'s')
     })
         
-    } else {
+    }if (seccion=="personal") {
+        celdas[1].innerHTML=`
+           <select id="cargo">
+           <option>Categoria</option>
+           <option>CASHIER</option>
+           <option>MANAGER</option>
+           <option>DELIVERY</option>
+           <option>CHEF</option>
+              </select>
+        `
 
-        celdas.forEach((celda, index) => {
-            if (index != 0) {
-                celda.innerHTML = `
-                <input type="text" class="input-styles"value="${celda.textContent.trim()}">
-                `
-            }
-        });
+   
+    const cargoEmpleado = document.getElementById('cargo');
 
+    cargoEmpleado.addEventListener('change', function () {
+        cargos(cargoEmpleado,celdas)
+    })
+        
     }
+   
     //CAMBIO LA PARTE DE OPCINES
     let opciones = celdas[celdas.length - 1]
     opciones.innerHTML = `
