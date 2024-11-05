@@ -1,8 +1,4 @@
-
-
-
-
-
+//FUNCION PARA ENVIAR LOS DATOS A LA API
 export function sendDataToApi(add,url) {
     // Assuming your API endpoint is 'https://your-api-endpoint.com/upload'
 

@@ -1,6 +1,6 @@
 
-import { categoriaCompletarProveedor, proveedores_select } from"../proveedores/proveedores-select.mjs";
-import { cargos } from "../cargos/cargos.mjs";
+import { proveedores_select ,categoriaCompletarProveedor} from "../agregar/obtener-provedores/obtener_proveedores.mjs";
+import { cargos } from "../agregar/cargos/cargos.mjs";
 import { saveData } from "../agregar/agregar.mjs";
 let isAdding = false;
 

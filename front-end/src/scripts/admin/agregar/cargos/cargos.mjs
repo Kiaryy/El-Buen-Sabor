@@ -1,4 +1,4 @@
-
+//FUNCION QUE OBTIENE LOS CARGOS CARGADOS
 export const cargos=(cargoEmpleado,celdas)=>{
     const cargoSeleccionado = cargoEmpleado.value;
     const cargo = cargosEmpleados[cargoSeleccionado] || '';
@@ -6,6 +6,7 @@ export const cargos=(cargoEmpleado,celdas)=>{
         celdas[2].textContent = cargo;  // O celdas[4].innerHTML si necesitas agregar HTML
    
 }
+//CARGOS CARGADOS
 const cargosEmpleados={
     
     CAJERO:"Lun a Vie 08:00am a 00:30am, Sab y Dom 11:00am a 15:30pm",

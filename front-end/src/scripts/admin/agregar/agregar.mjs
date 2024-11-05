@@ -1,10 +1,10 @@
-
-import { lastIds,proveedores_producto_id, tabla_insumos } from "../mostrar/mostrar.mjs";
+import { lastIds } from "../mostrar/mostrar.mjs";
 import { sendDataToApi } from "./agregar-a-api.mjs";
-import { categoriaCompletarProveedor, proveedores_select } from "../proveedores/proveedores-select.mjs";
-import { cargos } from "../cargos/cargos.mjs";
-import { api_editar } from "../editar/api-editar/api-editar.mjs";
+import { categoriaCompletarProveedor,proveedores_select ,obtener_proveedor } from "./obtener-provedores/obtener_proveedores.mjs";
 
+import { api_editar } from "../editar/api-editar/api-editar.mjs";
+import { obtener_horarios } from "../horarios/obtener-horario.mjs";
+//VARIABLE QUE CONTIENE LOS DATOS DE LAS SECCIONES
 const sections = {
     bebidas: {
         lastId: lastIds.bebidas,
@@ -208,35 +208,41 @@ const sections = {
 };
 
 let isAdding = false; // Controla si ya hay una fila de inputs abierta
-
+//FUNCION PARA EDITAR QUE RECIBE LA SECCION
 export const addItem = (section) => {
-
+    //de la seccion obtenemos la tableId, los datos que se suben y la url
     const { tableId, createRow, url } = sections[section];
     const sections_insumos = document.getElementById(tableId);
     const table = sections_insumos.querySelector("table");
+    //agarramos todos lo elmentos paqr editar
     const agregar = document.querySelectorAll('.add-item');
     
+    //valida si se le hace click a la seccion y la posicion de la seccion
     agregar[sections[section].addBtnIndex].addEventListener('click', function () {
+        //si ya hay una fila tiraq esta alerta
         if (isAdding) {
             alert('Ya hay una fila abierta. Guarde o cancele antes de agregar una nueva.');
             return;
         }
-
+        //creamos el elemnto de la fila y la colocams en la posicion 1 (en la cero esta el titulo de los valores)
         let newRow = document.createElement('tr');
         isAdding = true;
         newRow.innerHTML = createRow();
-        let last_table = table[table.length - 1];
+        
         table.insertBefore(newRow, table.rows[1]);
         toggleColumns()
-        //FUNCION PARA AUTOCOMPLETAR EL PROVEEDOR
         if (section == "insumos") {
+            
 
+            //llama a la funcion para obtener el proveedor
             obtener_proveedor(newRow)
+            //llama a la funcion para que aparezcan los proveedores
             categoriaCompletarProveedor()
 
             //FUNCION PARA OPTENER LA FEHCA
 
-        } else if (section == "personal") {
+        } else if (section == "personal") { 
+            //llama a la funcion para obtener los horarios
             obtener_horarios(newRow)
         } else if (section == "promociones") {
             let platos =platos_todos
@@ -412,6 +418,7 @@ const enviarData=async (byteArray,section,values,additionalData,url,urlEditar,ne
 for (const section in sections) {
     addItem(section);
 }
+//FUNCION PARA MOSTRAR LAS OTRAS COLUMNAS
 function toggleColumns() {
     // Selecciona las columnas por clase o ID
     const columnas = document.querySelectorAll("#imagenes, #description, #categoria");
@@ -427,41 +434,10 @@ function toggleColumns() {
 
 }
 
-const obtener_proveedor = (newRow) => {
-    const selectCategoria = document.getElementById('categoria_select');
-    selectCategoria.addEventListener('change', function () {
-        const celdas = newRow.querySelectorAll('td');
-        proveedores_select(selectCategoria, celdas)
-    })
-}
 
-const obtener_horarios = (newRow) => {
 
-    const cargoEmpleado = document.getElementById('charge');
 
-    const celdas = newRow.querySelectorAll('td');
-    cargoEmpleado.addEventListener('change', function () {
-        cargos(cargoEmpleado, celdas)
-    })
 
-}
-
-export const agregarInsumos=()=>{
-    const productSelect = document.querySelectorAll('.producto');
-    
-    
-    tabla_insumos.forEach(insumo => {
-        
-        const option = document.createElement('option');
-
-        option.value =insumo.name
-        option.textContent=insumo.name
-        productSelect.forEach(select=>{
-
-            select.appendChild(option.cloneNode(true))
-        })
-    }); 
-}
 export function addProductSelect() {
     const containerProduct=document.getElementById('cell_poduct')
   
@@ -487,16 +463,16 @@ export function addProductSelect() {
     // productCell.insertBefore(inputContainer, productCell.lastElementChild);
     // // sections.promociones.populateSelects(platos, bebidas);
 }
+window.addProductSelect = addProductSelect;
 
 // Función para obtener los valores de los inputs de producto como lista y pasarlos
-export function submitProducts() {
-    const inputs = document.querySelectorAll('#product-cell input[name="producto"]');
-    const productList = Array.from(inputs).map(input => input.value);
+// export function submitProducts() {
+//     const inputs = document.querySelectorAll('#product-cell input[name="producto"]');
+//     const productList = Array.from(inputs).map(input => input.value);
 
-    console.log("Lista de productos:", productList);
-    // Aquí puedes usar productList según lo necesites, como enviarlo al servidor o pasarlo a otra función
-}
-window.addProductSelect = addProductSelect;
+//     console.log("Lista de productos:", productList);
+//     // Aquí puedes usar productList según lo necesites, como enviarlo al servidor o pasarlo a otra función
+// }
 // Funciones para agregar y eliminar selects
 // window.addPlatoInput = addPlatoInput;
 // window.addBebidaInput = addBebidaInput;
@@ -576,11 +552,11 @@ window.addProductSelect = addProductSelect;
 
 // }
 
-function removeBebidaInput(button) {
-    const rowToRemove = button.closest('tr');
-    if (rowToRemove) {
-        rowToRemove.parentNode.removeChild(rowToRemove);
-    }
-}
+// function removeBebidaInput(button) {
+//     const rowToRemove = button.closest('tr');
+//     if (rowToRemove) {
+//         rowToRemove.parentNode.removeChild(rowToRemove);
+//     }
+// }
 // Ejemplo de uso
 

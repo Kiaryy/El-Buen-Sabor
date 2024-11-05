@@ -2,7 +2,7 @@
 // 
 
 import { last_id } from "../lastId.mjs";
-import { categoriaCompletarProveedor } from "../proveedores/proveedores-select.mjs";
+
 
 // Inicializa los últimos IDs para cada tipo de entidad
 export const lastIds = {
@@ -28,7 +28,7 @@ export const entityConfig = {
     promociones: { columns: ['id', 'falta', 'platos', 'bebidas', 'precio', 'falta', 'falta', 'falta'], idKey: 'id' },
     proveedores: { columns: ['id', 'name', 'product', 'shippingCost', 'phoneNumber', 'articles'], idKey: 'id' }
 };
-
+//Se crea y se exporta los datos
 export const platos_todos = [];
 export const bebidas_todas = [];
 export const proveedores_producto_id={}
@@ -49,35 +49,41 @@ export const obtenerDatos = async (entity, url, table) => {
         const promises = data.map(item => {
           
             let tr = document.createElement('tr');
+            //se le agrega una clase a la tr segun el ide del item
             tr.classList.add(`fila${item[config.idKey]}`);
             
-           
             if (entity === "proveedores" || entity === "insumos") {
-
+                
                 if (entity === "proveedores") {
+                    //ser guarda en proveedores el producto con valor del id
                     proveedores_producto_id[item[config.columns[2]]] = item[config.idKey];
-
+                    
                 }else{
+                    //valida si tabla en insumo ya existe el nombre del insumo
                     if (!tabla_insumos.find(insumo => insumo.name === item[config.columns[3]])) {
                         // Si no lo contiene, agrega un nuevo objeto con el 'name'
                         tabla_insumos.push({ name: item[config.columns[3]] });
                     }
                 }
+                //se agrega los valores y boton de editar
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
-                    `
-                    <td>
-                        <button onclick="editItem(${item[config.idKey]}, '${entity}')">
-                            <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
-                        </button>
-                    </td>
-                    `;
+                `
+                <td>
+                <button onclick="editItem(${item[config.idKey]}, '${entity}')">
+                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
+                </button>
+                </td>
+                `;
             } else if (entity === "compras" || entity === "ventas") {
+                //se agrega solo los valores
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('');
             } else if (entity === "platos") {
+                //valida si esta habilitado el plato
                 if (item[config.columns[4]]==false) {
                     tr.classList.add("deshabilitado")
                     
                 }
+                //Agrega los valores y el boton de deshabilitar
                 
                 // platos_todos.push({ id: item[config.idKey], name: item[config.columns[1]] },);
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
@@ -91,6 +97,7 @@ export const obtenerDatos = async (entity, url, table) => {
                   
                
             } else {
+                //se agrega el valor y el boton de editar
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
                     <td>
