@@ -126,7 +126,7 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'http://localhost:8080/platos/add'
+        url: 'https://proactive-intuition-production-15d4.up.railway.app/platos/add'
     },
     proveedores: {
         lastId: lastIds.proveedores,

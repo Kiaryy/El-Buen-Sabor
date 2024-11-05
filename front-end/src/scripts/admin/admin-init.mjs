@@ -49,7 +49,11 @@ window.onload =async function () {
         if (funciones[section.id]) {
             if (section.id=="platos") {
             
-                var url = 'http://localhost:8080/platos/simple';
+                var url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/simple';
+                const table=section.querySelector("table")
+                
+                
+                await obtenerDatos(funciones[section.id],url,table)
                 
                 // var url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/simple';
             } 
@@ -86,10 +90,6 @@ window.onload =async function () {
                 var url = 'http://localhost:8080/bebidas/findAll';
                 // var url = 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/findAll';
             }
-            const table=section.querySelector("table")
-            
-            
-            await obtenerDatos(funciones[section.id],url,table)
         }       
         
         

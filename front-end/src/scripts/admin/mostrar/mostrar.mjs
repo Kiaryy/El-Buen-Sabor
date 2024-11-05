@@ -43,8 +43,14 @@ export const obtenerDatos = async (entity, url, table) => {
         
         const data = await response.json();
         const promises = data.map(item => {
+          
             let tr = document.createElement('tr');
             tr.classList.add(`fila${item[config.idKey]}`);
+            
+            if (item[config.columns[4]]==false) {
+                tr.classList.add("deshabilitado")
+                
+            }
             if (entity === "proveedores" || entity === "insumos") {
                 if (entity === "proveedores") {
                     proveedores_producto_id[item[config.columns[2]]] = item[config.idKey];
@@ -60,6 +66,7 @@ export const obtenerDatos = async (entity, url, table) => {
             } else if (entity === "compras" || entity === "ventas") {
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('');
             } else if (entity === "platos") {
+                
                 platos_todos.push({ id: item[config.idKey], name: item[config.columns[1]] },);
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
@@ -69,6 +76,8 @@ export const obtenerDatos = async (entity, url, table) => {
                         </button>
                     </td>
                     `;
+                  
+               
             } else if (entity === "bebidas") {
                 bebidas_todas.push({ id: item[config.idKey], nombre: item[config.columns[1]] });
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +

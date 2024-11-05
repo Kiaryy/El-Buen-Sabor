@@ -12,7 +12,9 @@ body  {
     flex-direction: row;
     height: 100vh;
 }
-
+.deshabilitado{
+    background-color: red;
+}
 /* Estilos de la barra lateral */
 .sidebar {
     position: fixed;
