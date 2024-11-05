@@ -1,5 +1,5 @@
 
-import { proveedores_select } from"../proveedores/proveedores-select.mjs";
+import { categoriaCompletarProveedor, proveedores_select } from"../proveedores/proveedores-select.mjs";
 import { cargos } from "../cargos/cargos.mjs";
 import { saveData } from "../agregar/agregar.mjs";
 let isAdding = false;
@@ -35,28 +35,18 @@ export const editar_fila = (id, seccion) => {
      
     });
     if (seccion == "insumos") {
-     
-        celdas[3].innerHTML = `
-            <select id="categoria_select">
-               <option>CATEGORIA</option>
-                <option>VEGETAL</option>
-                <option>CARNE</option>
-                <option>LÁCTEOS</option>
-                <option>FRUTAS</option>
-                <option>HONGO</option>
-                <option>LEGUMBRES</option>
-                <option>SALSA</option>
-                <option>AZÚCAR</option>
-                <option>ESPECIAS</option>
-                <option>CEREALES</option>
-                <option>ADEREZOS</option>    
-            </select>
+        celdas[3].innerHTML=`
+        <select id="categoria_select"> 
+                <option>CATEGORIA</>
+                </select>
         `
-        
+    
         // Añadir un evento al select
         
+        categoriaCompletarProveedor()
     const selectCategoria = document.getElementById('categoria_select');
-
+    celdas[celdas.length-1].id="ultima-compra"
+    
     
     selectCategoria.addEventListener('change', function () {
         proveedores_select(selectCategoria,celdas,'s')
@@ -124,18 +114,18 @@ export const editar_fila = (id, seccion) => {
             return;
         }
         if (seccion == "bebidas") {
-            var url=`http://localhost:8080/bebidas/${id}`
+            var url=`https://proactive-intuition-production-15d4.up.railway.appbebidas/${id}`
         }else if(seccion=="platos"){
-            var url=`http://localhost:8080/platos/${id}`
+            var url=`https://proactive-intuition-production-15d4.up.railway.app/platos/${id}`
         }else if (seccion=="personal") {
-            var url=`http://localhost:8080/employees/${id}`
+            var url=`https://proactive-intuition-production-15d4.up.railway.app/employees/${id}`
         }else if (seccion=="insumos") {
-            var url=`http://localhost:8080/article/${id}`
+            var url=`https://proactive-intuition-production-15d4.up.railway.app/article/${id}`
         }else if(seccion="proveedores"){
-            var url=`http://localhost:8080/providers/${id}`
+            var url=`https://proactive-intuition-production-15d4.up.railway.app/providers/${id}`
             
         }else if(seccion="promociones"){
-            var url=`http://localhost:8080/promotions/${id}`
+            var url=`https://proactive-intuition-production-15d4.up.railway.apppromotions/${id}`
 
         }
         console.log(url);

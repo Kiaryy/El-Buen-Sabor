@@ -1,9 +1,7 @@
-// import { lastBebidaId } from "../mostrar/all-bebidas.mjs";
-// import { lastInsumoId } from "../mostrar/all-insumos.mjs";
-// import { lastPlatoId } from "../mostrar/all-platos.mjs";
-import { bebidas_todas, lastIds, platos_todos } from "../mostrar/mostrar.mjs";
+
+import { lastIds,proveedores_producto_id, tabla_insumos } from "../mostrar/mostrar.mjs";
 import { sendDataToApi } from "./agregar-a-api.mjs";
-import { proveedores_select } from "../proveedores/proveedores-select.mjs";
+import { categoriaCompletarProveedor, proveedores_select } from "../proveedores/proveedores-select.mjs";
 import { cargos } from "../cargos/cargos.mjs";
 import { api_editar } from "../editar/api-editar/api-editar.mjs";
 
@@ -23,7 +21,7 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'http://localhost:8080/bebidas/add'
+        url: 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/add'
     },
     insumos: {
         lastId: lastIds.insumos,
@@ -34,20 +32,8 @@ const sections = {
             <td><input type="text" class="input-styles" placeholder="Nombre"></td>
             <td><input type="text" class="input-styles" placeholder="Denominacion"></td>
             <td>
-                <select id="categoria_select">
-                 <option>CATEGORIA</option>
-                <option>VEGETAL</option>
-                <option>CARNE</option>
-                <option>LÁCTEOS</option>
-                <option>FRUTAS</option>
-                <option>HONGO</option>
-                <option>LEGUMBRES</option>
-                <option>SALSA</option>
-                <option>AZÚCAR</option>
-                <option>ESPECIAS</option>
-              
-                <option>CEREALES</option>
-                <option>ADEREZOS</option>  
+                <select id="categoria_select"> 
+                <option>CATEGORIA</>
                 </select>
             </td>
             <td id="proveedor" class="input-styles"> Proveedor</td>
@@ -62,7 +48,8 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'http://localhost:8080/article/add'
+      
+        url: 'https://proactive-intuition-production-15d4.up.railway.app/article/add'
     },
     personal: {
         lastId: lastIds.personal,
@@ -96,7 +83,7 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'http://localhost:8080/employees/add'
+        url: 'https://proactive-intuition-production-15d4.up.railway.app/employees/add'
     },
     platos: {
         lastId: lastIds.platos,
@@ -135,12 +122,19 @@ const sections = {
         createRow: () => `
             <td>${(lastIds.proveedores + 1)}</td>
             <td><input type="text" class="input-styles" placeholder="Nombre"></td>
-            <tr id="product-row">
-                <td id="product-cell">
-                <input type="text" name="producto" class="input-styles placeholder="Producto" />
-                <button type="button" onclick="addProductInput()">Agregar otro producto</button>
-                </td>
-            </tr>
+        <tr>
+          <td id="cell_poduct">
+          <button type="button" onclick="addProductSelect()">Agregar otro producto</button>
+                
+            <select class="producto">
+                <option>Producto</option>
+    
+            </select>
+
+            </td>
+        </tr>
+          
+      
             <td><input type="number" class="input-styles" placeholder="Pecio"></td>
             <td><input type="number" class="input-styles" placeholder="Numero telefono"></td>
             <td><input type="text" id="articleInput" class="input-styles" placeholder="Arituculo ID"></td>
@@ -149,7 +143,7 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'http://localhost:8080/providers/add'
+        url: 'https://proactive-intuition-production-15d4.up.railway.app/providers/add'
     },
     // promociones: {
     //     lastId: lastIds.promociones,
@@ -238,6 +232,8 @@ export const addItem = (section) => {
         if (section == "insumos") {
 
             obtener_proveedor(newRow)
+            categoriaCompletarProveedor()
+
             //FUNCION PARA OPTENER LA FEHCA
 
         } else if (section == "personal") {
@@ -247,7 +243,9 @@ export const addItem = (section) => {
             let bebidas =bebidas_todas
 
             // Llamar a la función para llenar los selects
-            sections.promociones.populateSelects(platos, bebidas);
+         
+        }else if(section=="proveedores"){
+            agregarInsumos()
         }
         // Evento "Cancelar" para eliminar la fila de inputs
         newRow.querySelector('.cancel-item').addEventListener('click', function () {
@@ -276,7 +274,11 @@ export const saveData = async (section, newRow,url,urlEditar) => {
 
     const additionalData = {};
     if (section === 'insumos') {
-        additionalData.proveedor=newRow.querySelector('#proveedor').textContent;        
+        console.log(newRow);
+        
+     
+        additionalData.proveedor=newRow.querySelector('#proveedor').textContent;
+                
         additionalData.category = newRow.querySelector('#categoria_select').value;
         additionalData.lastPurchased=newRow.querySelector('#ultima-compra').value
     } else if (section === 'personal') {
@@ -321,12 +323,12 @@ const enviarData=async (byteArray,section,values,additionalData,url,urlEditar,ne
             name: values[0], // Nombre del input
             denominacion: values[1], // Denominación del input
             category: additionalData.category, // Categoría de los datos adicionales
-            provider:additionalData.proveedor, // Proveedor (quinto input)
+            provider:Number(additionalData.proveedor), // Proveedor (quinto input)
             priceUnit: Number(values[2]), // Precio Unidad (sexto input)
             precioCompra: Number(values[3]), // Precio Costo (séptimo input)
             stockActual: Number(values[4]), // Stock (octavo input)
             existencies: Number(values[5]), // Existencias (noveno input)
-            lastPurchased: additionalData.lastPurchased || null // Última compra (de datos adicionales)
+            lastPurchased: additionalData.lastPurchased// Última compra (de datos adicionales)
         };
     } else if (section === 'personal') {
 
@@ -361,19 +363,26 @@ const enviarData=async (byteArray,section,values,additionalData,url,urlEditar,ne
         };
     } else if (section == 'proveedores') {
         const input = document.getElementById("articleInput").value;
-    
+        const arti = input.split(",").map(value => value.trim());
+        const articles = arti.map(value => `${value}`);
+        
+        const container_product=document.getElementById("cell_poduct")
+        console.log(container_product);
+        
+        const product=container_product.querySelectorAll("select")
+        const productValues = Array.from(product).map(input => input.value);
+        console.log(productValues);
+      
+        
         // Dividir el valor ingresado por comas
-        const values = input.split(",").map(value => value.trim());
         
         // Crear el formato deseado
-        const articles = values.map(value => `${value}`);
-        console.log(articles);
-        
+    
         newItem = {
             name: values[0],
-            product: values[1],
-            shippingCost:Number(values[2]),
-            phoneNumber: Number(values[3]),
+            product: productValues,
+            shippingCost:Number(values[values.length-3]),
+            phoneNumber: Number(values[values.length-2]),
             articles:articles,
         }
     }
@@ -436,34 +445,47 @@ const obtener_horarios = (newRow) => {
     })
 
 }
-export function addProductInput() {
-    const productCell = document.getElementById("product-cell");
 
-    // Crear un contenedor para el nuevo input y el botón de eliminar
-    const inputContainer = document.createElement("div");
-    inputContainer.className = "product-input-container";
+export const agregarInsumos=()=>{
+    const productSelect = document.querySelectorAll('.producto');
+    
+    
+    tabla_insumos.forEach(insumo => {
+        
+        const option = document.createElement('option');
 
+        option.value =insumo.name
+        option.textContent=insumo.name
+        productSelect.forEach(select=>{
+
+            select.appendChild(option.cloneNode(true))
+        })
+    }); 
+}
+export function addProductSelect() {
+    const containerProduct=document.getElementById('cell_poduct')
+  
     // Crear un nuevo input para producto
-    const newInput = document.createElement("input");
-    newInput.type = "text";
-    newInput.name = "producto";
-    newInput.placeholder = "Producto";
-
+    const newInput = document.createElement("select");
+    newInput.classList.add("producto")
+    
     // Crear un botón para eliminar este input
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
     deleteButton.innerText = "Eliminar";
     deleteButton.onclick = function () {
-        productCell.removeChild(inputContainer);
+        containerProduct.removeChild(deleteButton);
+        containerProduct.removeChild(newInput);
     };
 
-    // Añadir el input y el botón de eliminar al contenedor
-    inputContainer.appendChild(newInput);
-    inputContainer.appendChild(deleteButton);
+    // // Añadir el input y el botón de eliminar al contenedor
+    containerProduct.appendChild(newInput);
+    containerProduct.appendChild(deleteButton);
+    agregarInsumos()
 
-    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
-    productCell.insertBefore(inputContainer, productCell.lastElementChild);
-    sections.promociones.populateSelects(platos, bebidas);
+    // // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+    // productCell.insertBefore(inputContainer, productCell.lastElementChild);
+    // // sections.promociones.populateSelects(platos, bebidas);
 }
 
 // Función para obtener los valores de los inputs de producto como lista y pasarlos
@@ -474,85 +496,85 @@ export function submitProducts() {
     console.log("Lista de productos:", productList);
     // Aquí puedes usar productList según lo necesites, como enviarlo al servidor o pasarlo a otra función
 }
-window.addProductInput = addProductInput;
+window.addProductSelect = addProductSelect;
 // Funciones para agregar y eliminar selects
-window.addPlatoInput = addPlatoInput;
-window.addBebidaInput = addBebidaInput;
+// window.addPlatoInput = addPlatoInput;
+// window.addBebidaInput = addBebidaInput;
 
 
 
-export function addPlatoInput() {
-    console.log(platos_todos);
+// export function addPlatoInput() {
+//     console.log(platos_todos);
     
-    const platos = platos_todos
-    
-
-    const bebidas = bebidas_todas
-    
-    const platoCell = document.getElementById('plato-cell');
-
-    // Crear un contenedor para el nuevo input y el botón de eliminar
-    const inputContainer = document.createElement("div");
-    inputContainer.className = "plato-select-container";
-
-
-    // Crear un nuevo input para producto
-    const newInput = document.createElement("select");
-    newInput.option = "Platos";
-    newInput.className = "plato-select"
-
-    // Crear un botón para eliminar este input
-    const deleteButton = document.createElement("button");
-    deleteButton.type = "button";
-    deleteButton.innerText = "Eliminar";
-    deleteButton.onclick = function () {
-        platoCell.removeChild(inputContainer);
-    };
-
-    // Añadir el input y el botón de eliminar al contenedor
-    inputContainer.appendChild(newInput);
-    inputContainer.appendChild(deleteButton);
-
-    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
-    platoCell.insertBefore(inputContainer, platoCell.lastElementChild);
-    sections.promociones.populateSelects(platos, bebidas);
-
-
-}
-export function addBebidaInput() {
-  const platos = platos_todos
+//     const platos = platos_todos
     
 
-    const bebidas = bebidas_todas
-    const bebidaCell = document.getElementById('bebida-cell');
+//     const bebidas = bebidas_todas
+    
+//     const platoCell = document.getElementById('plato-cell');
 
-    // Crear un contenedor para el nuevo input y el botón de eliminar
-    const inputContainer = document.createElement("div");
-    inputContainer.className = "plato-select-container";
+//     // Crear un contenedor para el nuevo input y el botón de eliminar
+//     const inputContainer = document.createElement("div");
+//     inputContainer.className = "plato-select-container";
 
 
-    // Crear un nuevo input para producto
-    const newInput = document.createElement("select");
-    newInput.option = "Bebidas";
-    newInput.className = "bebida-select"
+//     // Crear un nuevo input para producto
+//     const newInput = document.createElement("select");
+//     newInput.option = "Platos";
+//     newInput.className = "plato-select"
 
-    // Crear un botón para eliminar este input
-    const deleteButton = document.createElement("button");
-    deleteButton.type = "button";
-    deleteButton.innerText = "Eliminar";
-    deleteButton.onclick = function () {
-        bebidaCell.removeChild(inputContainer);
-    };
+//     // Crear un botón para eliminar este input
+//     const deleteButton = document.createElement("button");
+//     deleteButton.type = "button";
+//     deleteButton.innerText = "Eliminar";
+//     deleteButton.onclick = function () {
+//         platoCell.removeChild(inputContainer);
+//     };
 
-    // Añadir el input y el botón de eliminar al contenedor
-    inputContainer.appendChild(newInput);
-    inputContainer.appendChild(deleteButton);
+//     // Añadir el input y el botón de eliminar al contenedor
+//     inputContainer.appendChild(newInput);
+//     inputContainer.appendChild(deleteButton);
 
-    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
-    bebidaCell.insertBefore(inputContainer, bebidaCell.lastElementChild);
-    sections.promociones.populateSelects(platos, bebidas);
+//     // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+//     platoCell.insertBefore(inputContainer, platoCell.lastElementChild);
+//     sections.promociones.populateSelects(platos, bebidas);
 
-}
+
+// }
+// export function addBebidaInput() {
+//   const platos = platos_todos
+    
+
+//     const bebidas = bebidas_todas
+//     const bebidaCell = document.getElementById('bebida-cell');
+
+//     // Crear un contenedor para el nuevo input y el botón de eliminar
+//     const inputContainer = document.createElement("div");
+//     inputContainer.className = "plato-select-container";
+
+
+//     // Crear un nuevo input para producto
+//     const newInput = document.createElement("select");
+//     newInput.option = "Bebidas";
+//     newInput.className = "bebida-select"
+
+//     // Crear un botón para eliminar este input
+//     const deleteButton = document.createElement("button");
+//     deleteButton.type = "button";
+//     deleteButton.innerText = "Eliminar";
+//     deleteButton.onclick = function () {
+//         bebidaCell.removeChild(inputContainer);
+//     };
+
+//     // Añadir el input y el botón de eliminar al contenedor
+//     inputContainer.appendChild(newInput);
+//     inputContainer.appendChild(deleteButton);
+
+//     // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+//     bebidaCell.insertBefore(inputContainer, bebidaCell.lastElementChild);
+//     sections.promociones.populateSelects(platos, bebidas);
+
+// }
 
 function removeBebidaInput(button) {
     const rowToRemove = button.closest('tr');
@@ -561,3 +583,4 @@ function removeBebidaInput(button) {
     }
 }
 // Ejemplo de uso
+

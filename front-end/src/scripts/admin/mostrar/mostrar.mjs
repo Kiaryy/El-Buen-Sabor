@@ -1,5 +1,8 @@
 // Importa la función `last_id` desde el archivo correspondiente
+// 
+
 import { last_id } from "../lastId.mjs";
+import { categoriaCompletarProveedor } from "../proveedores/proveedores-select.mjs";
 
 // Inicializa los últimos IDs para cada tipo de entidad
 export const lastIds = {
@@ -26,9 +29,10 @@ export const entityConfig = {
     proveedores: { columns: ['id', 'name', 'product', 'shippingCost', 'phoneNumber', 'articles'], idKey: 'id' }
 };
 
-export const proveedores_producto_id={}
 export const platos_todos = [];
 export const bebidas_todas = [];
+export const proveedores_producto_id={}
+export const tabla_insumos=[];
 
 
 // Función genérica para obtener y mostrar datos de cualquier entidad
@@ -47,13 +51,17 @@ export const obtenerDatos = async (entity, url, table) => {
             let tr = document.createElement('tr');
             tr.classList.add(`fila${item[config.idKey]}`);
             
-            if (item[config.columns[4]]==false) {
-                tr.classList.add("deshabilitado")
-                
-            }
+           
             if (entity === "proveedores" || entity === "insumos") {
+
                 if (entity === "proveedores") {
                     proveedores_producto_id[item[config.columns[2]]] = item[config.idKey];
+
+                }else{
+                    if (!tabla_insumos.find(insumo => insumo.name === item[config.columns[3]])) {
+                        // Si no lo contiene, agrega un nuevo objeto con el 'name'
+                        tabla_insumos.push({ name: item[config.columns[3]] });
+                    }
                 }
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
@@ -66,8 +74,12 @@ export const obtenerDatos = async (entity, url, table) => {
             } else if (entity === "compras" || entity === "ventas") {
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('');
             } else if (entity === "platos") {
+                if (item[config.columns[4]]==false) {
+                    tr.classList.add("deshabilitado")
+                    
+                }
                 
-                platos_todos.push({ id: item[config.idKey], name: item[config.columns[1]] },);
+                // platos_todos.push({ id: item[config.idKey], name: item[config.columns[1]] },);
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
                     <td>
@@ -78,19 +90,6 @@ export const obtenerDatos = async (entity, url, table) => {
                     `;
                   
                
-            } else if (entity === "bebidas") {
-                bebidas_todas.push({ id: item[config.idKey], nombre: item[config.columns[1]] });
-                tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
-                    `
-                    <td>
-                        <button onclick="editItem(${item[config.idKey]}, '${entity}')">
-                            <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
-                        </button>
-                        <button onclick="toggleStatus(${item[config.idKey]}, '${entity}')">
-                            <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
-                        </button>
-                    </td>
-                    `;
             } else {
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
@@ -98,9 +97,7 @@ export const obtenerDatos = async (entity, url, table) => {
                         <button onclick="editItem(${item[config.idKey]}, '${entity}')">
                             <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
                         </button>
-                        <button onclick="toggleStatus(${item[config.idKey]}, '${entity}')">
-                            <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
-                        </button>
+                        
                     </td>
                     `;
             }
@@ -119,6 +116,7 @@ export const obtenerDatos = async (entity, url, table) => {
     } catch (error) {
         console.error('Hubo un problema con la solicitud:', error);
     }
+   
 };
 
 // Exporta los IDs últimos
