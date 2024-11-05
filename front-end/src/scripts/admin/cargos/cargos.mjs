@@ -8,8 +8,8 @@ export const cargos=(cargoEmpleado,celdas)=>{
 }
 const cargosEmpleados={
     
-    CASHIER:"Mon to Fri 08:00am to 00:30am, Sat and Sun 11:00am to 15:30pm",
-    MANAGER:"Mon to Fri 08:00am to 00:30am, Sat and Sun 11:00am to 15:30pm",
-    DELIVERY:"Mon to Fri 08:00am to 00:30am, Sat and Sun 11:00am to 15:30pm", 
-    CHEF:"Mon to Fri 07:00am to 01:00am, Sat and Sun 1:00am to 14:00pm"
+    CAJERO:"Lun a Vie 08:00am a 00:30am, Sab y Dom 11:00am a 15:30pm",
+    MANAGER:"Lun a Vie 08:00am a 00:30am, Sab y Dom 11:00am a 15:30pm",
+    DELIVERY:"Lun a Vie 08:00am a 00:30am, Sab y Dom 11:00am a 15:30pm", 
+    CHEF:"Lun a Vie 07:00am a 01:00am, Sab y Dom 1:00am a 14:00pm"
 }

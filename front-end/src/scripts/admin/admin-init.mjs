@@ -36,7 +36,7 @@ const funciones = {
     ventas:'ventas',
     personal:'personal',
     insumos: 'insumos',
-    // proveedores:proveedores,
+    proveedores:'proveedores',
     promociones:'promociones',
     bebidas:'bebidas'
     // Agrega más funciones si las tienes
@@ -50,7 +50,7 @@ window.onload =async function () {
             if (section.id=="platos") {
             
                 var url = 'http://localhost:8080/platos/simple';
-               
+                
                 // var url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/simple';
             } 
             else if(section.id=="compras"){
@@ -77,8 +77,11 @@ window.onload =async function () {
                 
                 var url = 'http://localhost:8080/promotions/findAll';
                 // var url = 'https://proactive-intuition-production-15d4.up.railway.app/promotions/findAll';
+            }else if (section.id=="proveedores") {
+                var url = 'http://localhost:8080/providers/findAll';
+                
             }
-            if(section.id=="bebidas"){
+            else if(section.id=="bebidas"){
                 
                 var url = 'http://localhost:8080/bebidas/findAll';
                 // var url = 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/findAll';
@@ -86,12 +89,13 @@ window.onload =async function () {
             const table=section.querySelector("table")
             
             
-            obtenerDatos(funciones[section.id],url,table)
+            await obtenerDatos(funciones[section.id],url,table)
         }       
         
         
         
     }
+   
 
 
   

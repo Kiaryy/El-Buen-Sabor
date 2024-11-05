@@ -20,7 +20,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const navLinks = document.querySelectorAll(".nav-link");
     const sections = document.querySelectorAll(".content-section");
-
+    
     // Verificar si hay una sección activa guardada en localStorage
     const savedSection = localStorage.getItem("activeSection");
 

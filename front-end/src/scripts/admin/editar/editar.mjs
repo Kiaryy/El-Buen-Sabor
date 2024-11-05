@@ -18,7 +18,9 @@ export function editItem(id,articulo){
         seccion='bebidas'
     }
     else if(articulo=="personal"){
-         seccion='personal'
+        seccion='personal'
+    }else if(articulo=="proveedores"){
+        seccion="proveedores"
     }
     editar_fila(id,seccion)
     

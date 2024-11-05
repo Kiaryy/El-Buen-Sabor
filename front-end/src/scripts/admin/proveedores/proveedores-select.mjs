@@ -1,28 +1,36 @@
+import { proveedores_producto_id } from "../mostrar/mostrar.mjs";
+
+
 export const proveedores_select=(selectCategoria,celdas)=>{
+    console.log(proveedores_producto_id);
  
            
-            const categoriaSeleccionada = selectCategoria.value;
-            const proveedor = proveedoresPorCategoria[categoriaSeleccionada] || ''; // Obtener el proveedor o un valor vacío
-    
-            // Actualizar la celda 4 con el proveedor correspondiente
-           
-                
-                celdas[4].textContent = proveedor;  // O celdas[4].innerHTML si necesitas agregar HTML
+            const categoriaSeleccionada = selectCategoria.value;            
+            for (const [key, value] of Object.entries(proveedores_producto_id)) {
+                if (key === categoriaSeleccionada) {
+                    var id_proveedor=value
+                    break
+                }
+            }
+            console.log(id_proveedor);
+            
+            celdas[4].textContent=id_proveedor
+            // Actualizar la celda 4 con el proveedor correspondient
           
         
 }
 
 const proveedoresPorCategoria = {
-    Vegetal: 'YAGUAR',
-    Carne: 'PATTY',
-    Lácteos: 'SERENISIMA',
-    Frutas: 'BIMBO',  // Ejemplo
-    Hongo: 'Proveedor Hongo',  // Define según corresponda
-    Legumbres: 'Proveedor Legumbres',  // Define según corresponda
-    Salsa: 'KANSAS',
-    Azúcar: 'LEDESMA',
-    Especias: 'ABUANA',
-    'Salsa de caramelo': 'Proveedor Salsa de Caramelo',  // Define según corresponda
-    Cereales: 'Proveedor Cereales',  // Define según corresponda
-    Aderezos: 'KANSAS',  // Ejemplo
+    VEGETAL: 'YAGUAR',
+    CARNE: 'PATTY',
+    LÁCTEOS: 'SERENISIMA',
+    FRUTAS: 'BIMBO',  // Ejemplo
+    HONGO: 'Proveedor Hongo',  // Define según corresponda
+    LEGUMBRES: 'Proveedor Legumbres',  // Define según corresponda
+    SALSA: 'KANSAS',
+    AZÚCAR: 'LEDESMA',
+    ESPECIAS: 'ABUANA',
+    CEREALES: 'Proveedor Cereales',  // Define según corresponda
+    ADEREZOS: 'KANSAS',  // Ejemplo
 };
+

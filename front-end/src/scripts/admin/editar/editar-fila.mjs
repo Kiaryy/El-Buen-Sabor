@@ -1,6 +1,7 @@
-import { editar_bebidas } from "./editar-ariticulo-especifico/editar-bebidas.mjs";
+
 import { proveedores_select } from"../proveedores/proveedores-select.mjs";
 import { cargos } from "../cargos/cargos.mjs";
+import { saveData } from "../agregar/agregar.mjs";
 let isAdding = false;
 
 export const editar_fila = (id, seccion) => {
@@ -10,7 +11,7 @@ export const editar_fila = (id, seccion) => {
     }
     const div = document.getElementById(`${seccion}`)
     isAdding = true;
-    console.log(div);
+
     const fila = div.querySelector(`tr.fila${id}`)
     console.log(fila);
     
@@ -20,29 +21,35 @@ export const editar_fila = (id, seccion) => {
 
 //AGREGAR EL BOTON PARA ELEGIR LAS CATEGORIA PRE DEFINIDAS Y QUE SE PONGAN LOS PROVEEDORES AUTOMATICO
     celdas.forEach((celda, index) => {
-        if (index != 0) {
+        if (seccion=="personal") {
             celda.innerHTML = `
             <input type="text" class="input-styles"value="${celda.textContent.trim()}">
             `
+        }else{
+            if (index != 0) {
+                celda.innerHTML = `
+                <input type="text" class="input-styles"value="${celda.textContent.trim()}">
+                `
+            }
         }
+     
     });
     if (seccion == "insumos") {
      
         celdas[3].innerHTML = `
             <select id="categoria_select">
-                <option>Categoria</option>
-                <option>Vegetal</option>
-                <option>Carne</option>
-                <option>Lácteos</option>
-                <option>Frutas</option>
-                <option>Hongo</option>
-                <option>Legumbres</option>
-                <option>Salsa</option>
-                <option>Azúcar</option>
-                <option>Especias</option>
-                <option>Salsa de caramelo</option>
-                <option>Cereales</option>
-                <option>Aderezos</option>     
+               <option>CATEGORIA</option>
+                <option>VEGETAL</option>
+                <option>CARNE</option>
+                <option>LÁCTEOS</option>
+                <option>FRUTAS</option>
+                <option>HONGO</option>
+                <option>LEGUMBRES</option>
+                <option>SALSA</option>
+                <option>AZÚCAR</option>
+                <option>ESPECIAS</option>
+                <option>CEREALES</option>
+                <option>ADEREZOS</option>    
             </select>
         `
         
@@ -55,19 +62,26 @@ export const editar_fila = (id, seccion) => {
         proveedores_select(selectCategoria,celdas,'s')
     })
         
-    }if (seccion=="personal") {
+    }else if (seccion=="personal") {
         celdas[1].innerHTML=`
-           <select id="cargo">
+           <select id="charge">
            <option>Categoria</option>
-           <option>CASHIER</option>
+           <option>CAJERO</option>
            <option>MANAGER</option>
            <option>DELIVERY</option>
            <option>CHEF</option>
               </select>
         `
-
+        celdas[6].innerHTML=`
+              <select id="estado">
+                    <option>ESTADO</option>
+                    <option>ACTIVO</option>
+                    <option>INACTIVO</option>
+                    <option>VACACION</option> 
+                </select>
+        `
    
-    const cargoEmpleado = document.getElementById('cargo');
+    const cargoEmpleado = document.getElementById('charge');
 
     cargoEmpleado.addEventListener('change', function () {
         cargos(cargoEmpleado,celdas)
@@ -103,16 +117,30 @@ export const editar_fila = (id, seccion) => {
     fila.querySelector('.save-item').addEventListener('click', function () {
         const inputs = fila.querySelectorAll('input');
         const values = Array.from(inputs).map(input => input.value);
-        console.log(values);
+   
 
         if (values.some(value => value.trim() === "")) {
             alert("Por favor, complete todos los campos antes de guardar.");
             return;
         }
         if (seccion == "bebidas") {
-            editar_bebidas(values, id)
-        }
+            var url=`http://localhost:8080/bebidas/${id}`
+        }else if(seccion=="platos"){
+            var url=`http://localhost:8080/platos/${id}`
+        }else if (seccion=="personal") {
+            var url=`http://localhost:8080/employees/${id}`
+        }else if (seccion=="insumos") {
+            var url=`http://localhost:8080/article/${id}`
+        }else if(seccion="proveedores"){
+            var url=`http://localhost:8080/providers/${id}`
+            
+        }else if(seccion="promociones"){
+            var url=`http://localhost:8080/promotions/${id}`
 
+        }
+        console.log(url);
+        
+        saveData(seccion,fila,null,url)
         isAdding = false;
 
     })
