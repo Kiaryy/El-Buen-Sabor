@@ -1,7 +1,7 @@
 import { lastIds } from "../mostrar/mostrar.mjs";
 import { sendDataToApi } from "./agregar-a-api.mjs";
-import { categoriaCompletarProveedor,proveedores_select ,obtener_proveedor } from "./obtener-provedores/obtener_proveedores.mjs";
-
+import { categoriaCompletarProveedor, proveedores_select, obtener_proveedor } from "./obtener-provedores/obtener_proveedores.mjs";
+import { platos_todos, bebidas_todas } from "../mostrar/mostrar.mjs";
 import { api_editar } from "../editar/api-editar/api-editar.mjs";
 import { obtener_horarios } from "../horarios/obtener-horario.mjs";
 //VARIABLE QUE CONTIENE LOS DATOS DE LAS SECCIONES
@@ -9,7 +9,7 @@ const sections = {
     bebidas: {
         lastId: lastIds.bebidas,
         tableId: 'bebidas',
-        addBtnIndex: 4,
+        addBtnIndex: 5,
         createRow: () => `
             <td>${(lastIds.bebidas + 1)}</td>
             <td><input type="text" class="input-styles" placeholder="Nombre"></td>
@@ -48,7 +48,7 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-      
+
         url: 'https://proactive-intuition-production-15d4.up.railway.app/article/add'
     },
     personal: {
@@ -145,78 +145,83 @@ const sections = {
         `,
         url: 'https://proactive-intuition-production-15d4.up.railway.app/providers/add'
     },
-    // promociones: {
-    //     lastId: lastIds.promociones,
-    //     tableId: 'promociones',
-    //     addBtnIndex: 4,
-    //     createRow: () =>
-    //         `<td>${(lastIds.promociones + 1)}</td>
-    //         <td><input type="text" class="input-styles" placeholder="Nombre"></td>
-    //         <tr id="plato-row">
-    //             <td id="plato-cell">
-    //              <select class="plato-select">
-    //                  <option>Platos</option>
-    //              </select>
-    //              <button type="button" onclick="addPlatoInput()">Agregar otro plato</button>
-    //             </td>
-    //         </tr>
-    //         <tr id="bebida-row">
-    //             <td id="bebida-cell">
-    //               <select class="bebida-select">
-    //                  <option>Bebidas</option>
-    //                  </select>
-    //                  <button type="button" onclick="addBebidaInput()">Agregar otra bebida</button>
-    //             </td>
-    //         </tr>
-    //         <td><input type="number" class="input-styles" placeholder="Precio"></td>
-    //         <td>
-    //             <button class="save-item">Guardar</button>
-    //             <button class="cancel-item">Cancelar</button>
-    //         </td>
-    //         `,
-    //     populateSelects: (platos, bebidas) => {
+    promociones: {
+        lastId: lastIds.promociones,
+        tableId: 'promociones',
+        addBtnIndex: 4,
+        createRow: () =>
+            `<td>${(lastIds.promociones + 1)}</td>
+            <td><input type="text" class="input-styles" placeholder="Nombre"></td>
+            <tr id="plato-row">
+                <td id="plato-cell">
+                 <select class="plato-select">
+                     <option>Platos</option>
+                 </select>
+                 <button type="button" onclick="addPlatoInput()">Agregar otro plato</button>
+                </td>
+            </tr>
+            <tr id="bebida-row">
+                <td id="bebida-cell">
+                  <select class="bebida-select">
+                     <option>Bebidas</option>
+                     </select>
+                     <button type="button" onclick="addBebidaInput()">Agregar otra bebida</button>
+                </td>
+            </tr>
+            <td><input type="number" class="input-styles" placeholder="Precio"></td>
+                 <td><input type="file" id="imageInput" accept="image/*"></td>
+            <td>
+                <button class="save-item">Guardar</button>
+                <button class="cancel-item">Cancelar</button>
+            </td>
+            `,
+        populateSelects: (platos, bebidas) => {
 
 
-    //         const platoSelects = document.querySelectorAll('.plato-select');
+            const platoSelects = document.querySelectorAll('.plato-select');
 
-    //         const bebidaSelects = document.querySelectorAll('.bebida-select');
+            const bebidaSelects = document.querySelectorAll('.bebida-select');
 
-    //         // Limpiar las opciones existentes
-    //         platoSelects.forEach(select => {
-    //             console.log(select);
-                
-    //             select.innerHTML = '<option>Platos</option>'; // Reiniciar opciones
-    //             platos.forEach(plato => {
-    //                 const option = document.createElement('option');
-    //                 option.value = plato.id; // Asumiendo que cada plato tiene un ID
-    //                 option.textContent = plato.name; // Asumiendo que cada plato tiene un nombre
-    //                 select.appendChild(option);
-    //             });
-    //         });
+            // Limpiar las opciones existentes
+            platoSelects.forEach(select => {
+                console.log(select);
 
-    //         bebidaSelects.forEach(select => {
-    //             select.innerHTML = '<option>Bebidas</option>'; // Reiniciar opciones
-    //             bebidas.forEach(bebida => {
-    //                 const option = document.createElement('option');
-    //                 option.value = bebida.id; // Asumiendo que cada bebida tiene un ID
-    //                 option.textContent = bebida.nombre; // Asumiendo que cada bebida tiene un nombre
-    //                 select.appendChild(option);
-    //             });
-    //         });
-    //     }
-    // }
+                select.innerHTML = '<option>Platos</option>'; // Reiniciar opciones
+                platos.forEach(plato => {
+                    const option = document.createElement('option');
+                    option.value = plato.id; // Asumiendo que cada plato tiene un ID
+                    option.textContent = plato.name; // Asumiendo que cada plato tiene un nombre
+                    select.appendChild(option);
+                });
+            });
+
+            bebidaSelects.forEach(select => {
+                select.innerHTML = '<option>Bebidas</option>'; // Reiniciar opciones
+                bebidas.forEach(bebida => {
+                    const option = document.createElement('option');
+                    option.value = bebida.id; // Asumiendo que cada bebida tiene un ID
+                    option.textContent = bebida.name; // Asumiendo que cada bebida tiene un nombre
+                    select.appendChild(option);
+                });
+            });
+        },
+        url: 'http://localhost:8080/promotions/add'
+    }
 };
 
 let isAdding = false; // Controla si ya hay una fila de inputs abierta
 //FUNCION PARA EDITAR QUE RECIBE LA SECCION
 export const addItem = (section) => {
+
+
     //de la seccion obtenemos la tableId, los datos que se suben y la url
     const { tableId, createRow, url } = sections[section];
-    const sections_insumos = document.getElementById(tableId);
-    const table = sections_insumos.querySelector("table");
+    const sections_todo = document.getElementById(tableId);
+
+    const table = sections_todo.querySelector("table");
     //agarramos todos lo elmentos paqr editar
     const agregar = document.querySelectorAll('.add-item');
-    
+
     //valida si se le hace click a la seccion y la posicion de la seccion
     agregar[sections[section].addBtnIndex].addEventListener('click', function () {
         //si ya hay una fila tiraq esta alerta
@@ -228,12 +233,10 @@ export const addItem = (section) => {
         let newRow = document.createElement('tr');
         isAdding = true;
         newRow.innerHTML = createRow();
-        
-        table.insertBefore(newRow, table.rows[1]);
-        toggleColumns()
-        if (section == "insumos") {
-            
 
+        table.insertBefore(newRow, table.rows[1]);
+        toggleColumns(section)
+        if (section == "insumos") {
             //llama a la funcion para obtener el proveedor
             obtener_proveedor(newRow)
             //llama a la funcion para que aparezcan los proveedores
@@ -241,34 +244,35 @@ export const addItem = (section) => {
 
             //FUNCION PARA OPTENER LA FEHCA
 
-        } else if (section == "personal") { 
+        } else if (section == "personal") {
             //llama a la funcion para obtener los horarios
             obtener_horarios(newRow)
         } else if (section == "promociones") {
-            let platos =platos_todos
-            let bebidas =bebidas_todas
+            const platos = platos_todos
+            const bebidas = bebidas_todas
+            sections.promociones.populateSelects(platos, bebidas)
 
             // Llamar a la función para llenar los selects
-         
-        }else if(section=="proveedores"){
+
+        } else if (section == "proveedores") {
             agregarInsumos()
         }
         // Evento "Cancelar" para eliminar la fila de inputs
         newRow.querySelector('.cancel-item').addEventListener('click', function () {
             table.removeChild(newRow);
             isAdding = false;
-            toggleColumns()
+            toggleColumns(section)
         });
 
         // Evento "Guardar" para convertir la fila de inputs en una fila de datos
         newRow.querySelector('.save-item').addEventListener('click', function () {
-            saveData(section,newRow,url,null)
+            saveData(section, newRow, url, null)
 
         });
     });
 
 };
-export const saveData = async (section, newRow,url,urlEditar) => {
+export const saveData = async (section, newRow, url, urlEditar) => {
     const inputs = newRow.querySelectorAll('input');
     const values = Array.from(inputs).map(input => input.value);
     // Verificar si todos los campos están completos
@@ -276,43 +280,43 @@ export const saveData = async (section, newRow,url,urlEditar) => {
         alert("Por favor, complete todos los campos antes de guardar.");
         return;
     }
-    toggleColumns()
+    toggleColumns(section)
 
     const additionalData = {};
     if (section === 'insumos') {
         console.log(newRow);
-        
-     
-        additionalData.proveedor=newRow.querySelector('#proveedor').textContent;
-                
+
+
+        additionalData.proveedor = newRow.querySelector('#proveedor').textContent;
+
         additionalData.category = newRow.querySelector('#categoria_select').value;
-        additionalData.lastPurchased=newRow.querySelector('#ultima-compra').value
+        additionalData.lastPurchased = newRow.querySelector('#ultima-compra').value
     } else if (section === 'personal') {
         additionalData.state = newRow.querySelector('#estado').value;
         additionalData.charge = newRow.querySelector('#charge').value;
-    } else if (section === 'platos') {
-        if (urlEditar==null) {
-            const fileInput = document.getElementById('imageInput');
+    } else if (section === 'platos' || section == 'promociones') {
+        if (urlEditar == null) {
+                const fileInput = document.getElementById('imageInput');
             const file = fileInput.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (event) {
                     const byteArray = new Uint8Array(event.target.result);
-                    enviarData(byteArray, section, values, additionalData, url,urlEditar, newRow);
+                    enviarData(byteArray, section, values, additionalData, url, urlEditar, newRow);
                 };
                 reader.readAsArrayBuffer(file);
             } else {
-                enviarData(null, section, values, additionalData, url,urlEditar, newRow);
+                enviarData(null, section, values, additionalData, url, urlEditar, newRow);
             }
-        }else{
-            enviarData(null, section, values, additionalData, url,urlEditar, newRow);
+        } else {
+            enviarData(null, section, values, additionalData, url, urlEditar, newRow);
         }
-      
+
         return;
     }
-    enviarData(null, section, values, additionalData, url,urlEditar, newRow);
+    enviarData(null, section, values, additionalData, url, urlEditar, newRow);
 }
-const enviarData=async (byteArray,section,values,additionalData,url,urlEditar,newRow)=>{
+const enviarData = async (byteArray, section, values, additionalData, url, urlEditar, newRow) => {
     let newItem; // Definir la variable aquí para usarla más adelante
     // Creamos el objeto 'newItem' basado en la sección
     if (section === 'bebidas') {
@@ -329,7 +333,7 @@ const enviarData=async (byteArray,section,values,additionalData,url,urlEditar,ne
             name: values[0], // Nombre del input
             denominacion: values[1], // Denominación del input
             category: additionalData.category, // Categoría de los datos adicionales
-            provider:Number(additionalData.proveedor), // Proveedor (quinto input)
+            provider: Number(additionalData.proveedor), // Proveedor (quinto input)
             priceUnit: Number(values[2]), // Precio Unidad (sexto input)
             precioCompra: Number(values[3]), // Precio Costo (séptimo input)
             stockActual: Number(values[4]), // Stock (octavo input)
@@ -371,39 +375,85 @@ const enviarData=async (byteArray,section,values,additionalData,url,urlEditar,ne
         const input = document.getElementById("articleInput").value;
         const arti = input.split(",").map(value => value.trim());
         const articles = arti.map(value => `${value}`);
-        
-        const container_product=document.getElementById("cell_poduct")
-        console.log(container_product);
-        
-        const product=container_product.querySelectorAll("select")
+
+        const container_product = document.getElementById("cell_poduct")
+
+
+        const product = container_product.querySelectorAll("select")
         const productValues = Array.from(product).map(input => input.value);
-        console.log(productValues);
-      
-        
+
+
+
         // Dividir el valor ingresado por comas
-        
+
         // Crear el formato deseado
-    
+
         newItem = {
             name: values[0],
             product: productValues,
-            shippingCost:Number(values[values.length-3]),
-            phoneNumber: Number(values[values.length-2]),
-            articles:articles,
+            shippingCost: Number(values[values.length - 3]),
+            phoneNumber: Number(values[values.length - 2]),
+            articles: articles,
         }
+    } else if (section == "promociones") {
+
+
+
+        const platos = document.getElementById('plato-cell')
+        const bebidas = document.getElementById('bebida-cell')
+
+
+
+        const plato_pedido = platos.querySelectorAll("select")
+        const bebida_pedido = bebidas.querySelectorAll("select")
+        const idPlatos = Array.from(plato_pedido).map(input => input.value);
+        const idBebidas = Array.from(bebida_pedido).map(input => input.value);
+        const platosPedido = []
+        idPlatos.forEach(idPLato=>{
+            platos_todos.forEach((platoComparacion) => {
+                if (idPLato == platoComparacion.id) {
+                    
+                    platosPedido.push({ plateName: platoComparacion.name, price: Number(platoComparacion.price) });
+                    
+                  
+                     
+                    
+                }
+            });
+        })
+        const bebidasPedido = []
+        idBebidas.forEach(idBebida=>{
+            bebidas_todas.forEach((bebidaComparacion) => {
+              
+                if (idBebida == bebidaComparacion.id) {
+                    bebidasPedido.push({ plateName: bebidaComparacion.name, price: Number(bebidaComparacion.price) });
+                    
+                }
+            });
+        })
+       
+    
+        newItem = { // Asignar el último platoId más uno
+            name: values[0], // Nombre del input
+            precio: Number(values[1]), // Avaliable (puedes ajustar esto según sea necesario)
+            imageData: Array.from(byteArray),
+            platos: platosPedido, // Tipo del plato (select)
+            bebidas: bebidasPedido,  // Precio Venta (cuarto input)
+
+        };
     }
 
     console.log(newItem); // Para verificar el objeto creado antes de enviarlo
 
     // Envío de datos a la API
 
-    if (url==null) {
-        if(await api_editar(urlEditar,newItem)){
+    if (url == null) {
+        if (await api_editar(urlEditar, newItem)) {
 
             location.reload(); // 
         }
-    
-    }else{
+
+    } else {
 
         sendDataToApi(newItem, url)
     }
@@ -413,24 +463,42 @@ const enviarData=async (byteArray,section,values,additionalData,url,urlEditar,ne
     isAdding = false; // Permitimos agregar una nueva fila
 };
 
-   
+
 // Inicializar los listeners
 for (const section in sections) {
     addItem(section);
 }
 //FUNCION PARA MOSTRAR LAS OTRAS COLUMNAS
-function toggleColumns() {
-    // Selecciona las columnas por clase o ID
-    const columnas = document.querySelectorAll("#imagenes, #description, #categoria");
+function toggleColumns(section) {
+    if (section === "platos" || section === "promociones") {
+        if (section === "platos") {
 
-    // Alterna la visibilidad de cada columna
-    columnas.forEach(columna => {
-        if (columna.style.display === "none" || columna.style.display === "") {
-            columna.style.display = "table-cell"; // Muestra la columna
-        } else {
-            columna.style.display = "none"; // Oculta la columna
+            var columnas = document.querySelectorAll("#imagenes, #description, #categoria");
+            var estado = document.getElementById('estado')
+            columnas.forEach(columna => {
+                // Alterna la visibilidad de cada columna
+                if (columna.style.display === "none" || columna.style.display === "") {
+                    columna.style.display = "table-cell"; // Muestra la columna
+                    estado.style.display = "none"
+                } else {
+                    columna.style.display = "none"; // Oculta la columna
+                    estado.style.display = "table-cell"
+                }
+            });
+        } else if (section === "promociones") {
+            var columna = document.querySelector("#imagenes_promo");
+            if (columna.style.display === "none" || columna.style.display === "") {
+                columna.style.display = "table-cell"; // Muestra la columna
+            } else {
+                columna.style.display = "none"; // Oculta la columna
+            }
         }
-    });
+        // Selecciona las columnas por clase o ID
+
+    }
+
+
+
 
 }
 
@@ -439,12 +507,12 @@ function toggleColumns() {
 
 
 export function addProductSelect() {
-    const containerProduct=document.getElementById('cell_poduct')
-  
+    const containerProduct = document.getElementById('cell_poduct')
+
     // Crear un nuevo input para producto
     const newInput = document.createElement("select");
     newInput.classList.add("producto")
-    
+
     // Crear un botón para eliminar este input
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
@@ -474,89 +542,89 @@ window.addProductSelect = addProductSelect;
 //     // Aquí puedes usar productList según lo necesites, como enviarlo al servidor o pasarlo a otra función
 // }
 // Funciones para agregar y eliminar selects
-// window.addPlatoInput = addPlatoInput;
-// window.addBebidaInput = addBebidaInput;
+window.addPlatoInput = addPlatoInput;
+window.addBebidaInput = addBebidaInput;
 
 
 
-// export function addPlatoInput() {
-//     console.log(platos_todos);
-    
-//     const platos = platos_todos
-    
-
-//     const bebidas = bebidas_todas
-    
-//     const platoCell = document.getElementById('plato-cell');
-
-//     // Crear un contenedor para el nuevo input y el botón de eliminar
-//     const inputContainer = document.createElement("div");
-//     inputContainer.className = "plato-select-container";
+export function addPlatoInput() {
 
 
-//     // Crear un nuevo input para producto
-//     const newInput = document.createElement("select");
-//     newInput.option = "Platos";
-//     newInput.className = "plato-select"
-
-//     // Crear un botón para eliminar este input
-//     const deleteButton = document.createElement("button");
-//     deleteButton.type = "button";
-//     deleteButton.innerText = "Eliminar";
-//     deleteButton.onclick = function () {
-//         platoCell.removeChild(inputContainer);
-//     };
-
-//     // Añadir el input y el botón de eliminar al contenedor
-//     inputContainer.appendChild(newInput);
-//     inputContainer.appendChild(deleteButton);
-
-//     // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
-//     platoCell.insertBefore(inputContainer, platoCell.lastElementChild);
-//     sections.promociones.populateSelects(platos, bebidas);
+    const platos = platos_todos
 
 
-// }
-// export function addBebidaInput() {
-//   const platos = platos_todos
-    
+    const bebidas = bebidas_todas
 
-//     const bebidas = bebidas_todas
-//     const bebidaCell = document.getElementById('bebida-cell');
+    const platoCell = document.getElementById('plato-cell');
 
-//     // Crear un contenedor para el nuevo input y el botón de eliminar
-//     const inputContainer = document.createElement("div");
-//     inputContainer.className = "plato-select-container";
+    // Crear un contenedor para el nuevo input y el botón de eliminar
+    const inputContainer = document.createElement("div");
+    inputContainer.className = "plato-select-container";
 
 
-//     // Crear un nuevo input para producto
-//     const newInput = document.createElement("select");
-//     newInput.option = "Bebidas";
-//     newInput.className = "bebida-select"
+    // Crear un nuevo input para producto
+    const newInput = document.createElement("select");
+    newInput.option = "Platos";
+    newInput.className = "plato-select"
 
-//     // Crear un botón para eliminar este input
-//     const deleteButton = document.createElement("button");
-//     deleteButton.type = "button";
-//     deleteButton.innerText = "Eliminar";
-//     deleteButton.onclick = function () {
-//         bebidaCell.removeChild(inputContainer);
-//     };
+    // Crear un botón para eliminar este input
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.innerText = "Eliminar";
+    deleteButton.onclick = function () {
+        platoCell.removeChild(inputContainer);
+    };
 
-//     // Añadir el input y el botón de eliminar al contenedor
-//     inputContainer.appendChild(newInput);
-//     inputContainer.appendChild(deleteButton);
+    // Añadir el input y el botón de eliminar al contenedor
+    inputContainer.appendChild(newInput);
+    inputContainer.appendChild(deleteButton);
 
-//     // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
-//     bebidaCell.insertBefore(inputContainer, bebidaCell.lastElementChild);
-//     sections.promociones.populateSelects(platos, bebidas);
+    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+    platoCell.insertBefore(inputContainer, platoCell.lastElementChild);
+    sections.promociones.populateSelects(platos, bebidas);
 
-// }
 
-// function removeBebidaInput(button) {
-//     const rowToRemove = button.closest('tr');
-//     if (rowToRemove) {
-//         rowToRemove.parentNode.removeChild(rowToRemove);
-//     }
-// }
+}
+export function addBebidaInput() {
+    const platos = platos_todos
+
+
+    const bebidas = bebidas_todas
+    const bebidaCell = document.getElementById('bebida-cell');
+
+    // Crear un contenedor para el nuevo input y el botón de eliminar
+    const inputContainer = document.createElement("div");
+    inputContainer.className = "plato-select-container";
+
+
+    // Crear un nuevo input para producto
+    const newInput = document.createElement("select");
+    newInput.option = "Bebidas";
+    newInput.className = "bebida-select"
+
+    // Crear un botón para eliminar este input
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.innerText = "Eliminar";
+    deleteButton.onclick = function () {
+        bebidaCell.removeChild(inputContainer);
+    };
+
+    // Añadir el input y el botón de eliminar al contenedor
+    inputContainer.appendChild(newInput);
+    inputContainer.appendChild(deleteButton);
+
+    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+    bebidaCell.insertBefore(inputContainer, bebidaCell.lastElementChild);
+    sections.promociones.populateSelects(platos, bebidas);
+
+}
+
+function removeBebidaInput(button) {
+    const rowToRemove = button.closest('tr');
+    if (rowToRemove) {
+        rowToRemove.parentNode.removeChild(rowToRemove);
+    }
+}
 // Ejemplo de uso
 

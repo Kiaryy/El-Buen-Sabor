@@ -25,7 +25,7 @@ export const entityConfig = {
     insumos: { columns: ['articleId', 'name', 'denominacion', 'category', 'provider', 'priceUnit', 'precioCompra', 'stockActual', 'existencies', 'lastPurchased'], idKey: 'articleId' },
     personal: { columns: ['name', 'charge', 'shift', 'hourlySalary', 'absences', 'phoneNumber', 'state'], idKey: 'id' },
     platos: { columns: ['platoId', 'name', 'price', 'stock','available'], idKey: 'platoId' },
-    promociones: { columns: ['id', 'falta', 'platos', 'bebidas', 'precio', 'falta', 'falta', 'falta'], idKey: 'id' },
+    promociones: { columns: ['id', 'name','platos', 'bebidas', 'precio'], idKey: 'id' },
     proveedores: { columns: ['id', 'name', 'product', 'shippingCost', 'phoneNumber', 'articles'], idKey: 'id' }
 };
 //Se crea y se exporta los datos
@@ -52,19 +52,26 @@ export const obtenerDatos = async (entity, url, table) => {
             //se le agrega una clase a la tr segun el ide del item
             tr.classList.add(`fila${item[config.idKey]}`);
             
-            if (entity === "proveedores" || entity === "insumos") {
+            if (entity === "proveedores" || entity === "insumos" || entity==="bebidas") {
                 
                 if (entity === "proveedores") {
                     //ser guarda en proveedores el producto con valor del id
                     proveedores_producto_id[item[config.columns[2]]] = item[config.idKey];
                     
-                }else{
-                    //valida si tabla en insumo ya existe el nombre del insumo
-                    if (!tabla_insumos.find(insumo => insumo.name === item[config.columns[3]])) {
-                        // Si no lo contiene, agrega un nuevo objeto con el 'name'
-                        tabla_insumos.push({ name: item[config.columns[3]] });
-                    }
+                }else if(entity=="bebidas"){
+                    bebidas_todas.push({ id: item[config.idKey], name: item[config.columns[1]],price:item[config.columns[2]] });
+                 
+                    
                 }
+                    else{
+                        if (!tabla_insumos.find(insumo => insumo.name === item[config.columns[3]])) {
+                            // Si no lo contiene, agrega un nuevo objeto con el 'name'
+                            tabla_insumos.push({ name: item[config.columns[3]] });
+                        }
+                    }
+                    //valida si tabla en insumo ya existe el nombre del insumo
+                    
+                
                 //se agrega los valores y boton de editar
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                 `
@@ -85,7 +92,7 @@ export const obtenerDatos = async (entity, url, table) => {
                 }
                 //Agrega los valores y el boton de deshabilitar
                 
-                // platos_todos.push({ id: item[config.idKey], name: item[config.columns[1]] },);
+                platos_todos.push({ id: item[config.idKey], name: item[config.columns[1]] , price:item[config.columns[2]]});
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
                     <td>
@@ -96,7 +103,29 @@ export const obtenerDatos = async (entity, url, table) => {
                     `;
                   
                
-            } else {
+            } 
+            else if (entity == "promociones") {
+                tr.innerHTML = config.columns.map(col => {
+                    if (col === "platos") {
+                        // Crear una lista de nombres de platos concatenados en una sola celda
+                        const listItem = item.platos.map(plate => plate.plateName).join(', ');
+                        return `<td>${listItem !== undefined ? listItem : 'falta'}</td>`;
+                    }else if (col==="bebidas") {
+                        const listItem = item.bebidas.map(plate => plate.plateName).join(', ');
+                        return `<td>${listItem !== undefined ? listItem : 'falta'}</td>`;
+                    } else {
+                        // Para el resto de las columnas, simplemente mostramos el valor o 'falta' si no está definido
+                        return `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`;
+                    }
+                }).join('') + `
+                <td>
+                    <button onclick="editItem(${item[config.idKey]}, '${entity}')">
+                        <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
+                    </button>
+                </td>`;
+            }
+            
+            else {
                 //se agrega el valor y el boton de editar
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
@@ -119,7 +148,7 @@ export const obtenerDatos = async (entity, url, table) => {
         lastIds[entity] = last_id(data, config.idKey);
 
         // Muestra la alerta después de que se han cargado todos los datos
-        alert(`Los prouductos de:${entity} ya estan cargadas`);
+        alert(`Los productos de: ${entity} ya estan cargadas`);
     } catch (error) {
         console.error('Hubo un problema con la solicitud:', error);
     }

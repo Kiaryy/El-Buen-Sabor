@@ -125,7 +125,7 @@ export const editar_fila = (id, seccion) => {
             var url=`https://proactive-intuition-production-15d4.up.railway.app/providers/${id}`
             
         }else if(seccion="promociones"){
-            var url=`https://proactive-intuition-production-15d4.up.railway.apppromotions/${id}`
+            var url=`https://proactive-intuition-production-15d4.up.railway.app/promotions/${id}`
 
         }
         console.log(url);
