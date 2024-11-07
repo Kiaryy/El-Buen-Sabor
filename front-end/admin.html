@@ -32,17 +32,14 @@
                         <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Lupa">
                     </button>
                    
-                    <input placeholder="precio" value="0" id="precio"  type="number"/>
+                  
                 </div>
                 
                 <div id="platos" class="content-section" data-id="section-platos">
                     <h2>Platos</h2>
                 </form>
                 <button class="add-item" class="sticky-top">Agregar Nuevo Plato</button>
-                <button id="simu-compra">simular compra</button>
-                <button id="simu-venta">simular venta</button>
-                
-                <button id="ver-cuentas">ver cuentas</button>
+        
                 <table>
                     <tr class="data-name sticky-top">
                         <th>#ID</th>
@@ -181,27 +178,28 @@
             
             <div id="cuentas" class="content-section hide">
                 <h2>Cuentas</h2>
+                <button id="empezar_compra">Comprar a provedor</button>
+                <div id="section_comprar_proveedor" class="hide">
+                    <select id="metodo_pago">
+                        <option>METODO PAGO</option>
+                        <option>EFECTIVO</option>
+                        <option>TRANSFERENCIA</option>
+                        <option>CRYPTO</option>
+                    </select>
+                    
+                    <select id="nombre_proveedor">
+                        <option>NOMBRE DEL PROVEEDOR</option>
+                        
+                    </select>
+                    <button id="simu-compra">Realizar compra</button>
+                </div>
+                
                 <table>
                     <tr class="data-name">
                         <th>#ID</th>
                         <th>Nombre</th>
                         <th>Saldo Disponible</th>                      
                     </tr> 
-                    <tr>
-                        <td>1</td>
-                        <td>Cuenta 1</td>
-                        <td>1.000.000</td>                      
-                    </tr> 
-                    <tr>
-                        <td>2</td>
-                        <td>Cuenta 2</td>
-                        <td>5.000.000</td>                      
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Cuenta 3</td>
-                        <td>5.000.000</td>                      
-                    </tr>                   
                 </table>
             </div>  
 
@@ -210,10 +208,10 @@
                 <h2>Asientos Contables</h2>
                 <select name="libro mayor" id="libro-mayor">
                     <option value="">Libro Mayor</option>
-                    <option value="Cuenta 1">Cuenta 1</option>
-                    <option value="Cuenta 2">Cuenta 2</option>
-                    <option value="Cuenta 3">Cuenta 3</option>
-                    <option value="Cuenta 4">Cuenta 4</option>
+                    <option value="Efectivo">EFECTIVO</option>
+                    <option value="Banco">TRANSFERENCIA</option>
+                    <option value="Crypto">CRYPTO</option>
+                    <option value="Mercaderia">MERCADERIA</option>
                 </select>
                 <table>
                     <thead>
@@ -229,46 +227,7 @@
                         </tr> 
                     </thead>
                     <tbody id="tabla-asientos">
-                        <tr>
-                            <td>1</td>
-                            <td>19/08/24</td>
-                            <td>Cuenta 1</td>                  
-                            <td>500</td>                      
-                            <td>500</td> 
-                            <td>Cuenta 2</td>                  
-                            <td>500</td>                      
-                            <td>500</td>                    
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>19/08/24</td>
-                            <td>Cuenta 3</td>                  
-                            <td>500</td>                      
-                            <td>500</td> 
-                            <td>Cuenta 2</td>                  
-                            <td>500</td>                      
-                            <td>500</td>                    
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>19/08/24</td>
-                            <td>Cuenta 1</td>                  
-                            <td>500</td>                      
-                            <td>500</td> 
-                            <td>Cuenta 4</td>                  
-                            <td>500</td>                      
-                            <td>500</td>                    
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>19/08/24</td>
-                            <td>Cuenta 4</td>                  
-                            <td>500</td>                      
-                            <td>500</td> 
-                            <td>Cuenta 2</td>                  
-                            <td>500</td>                      
-                            <td>500</td>                    
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -291,5 +250,7 @@
     <script type ="module" src="/front-end/src/scripts/admin/habilitar-deshabilitar/habilitar-deshabilitar.mjs"></script>
     <script type ="module" src="/front-end/src/scripts/admin/admin-init.mjs"></script>
     <script type ="module" src="/front-end/src/scripts/admin/buscar/buscar.mjs"></script>
+    <script type ="module" src="/front-end/src/scripts/admin/cuentas/cargar-cuentas/cargar-cuentas.mjs"></script>
+    <script type ="module" src="/front-end/src/scripts/admin/cuentas/asiento-contable/mostrar_asientos.mjs"></script>
 </body>
 </html>

@@ -23,8 +23,7 @@ const modificar_vista=(valor)=>{
             if (!tr.classList.contains("data-name")) {
                 valores.forEach(td => {
                     
-                    console.log(td.textContent);
-                    console.log(valor);
+        
                     
                     if (td.textContent.toLowerCase().includes(valor.toLowerCase())) {
                         console.log(td.textContent)

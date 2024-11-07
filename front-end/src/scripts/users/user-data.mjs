@@ -6,35 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
 // Función para hacer una solicitud GET al backend y obtener los datos del usuario
 function cargarDatosUsuario() {
     // Obtener el ID del usuario desde el localStorage (o de la sesión si es más adecuado)
-    const userId = localStorage.getItem('userId');  // Aquí debería estar el ID del usuario logueado
-
-    if (!userId) {
-        alert("No se encontró el usuario. Inicia sesión.");
-        return;
-    }
-
+ // Aquídebería estar el ID del usuario logueado
     // URL del endpoint para obtener los datos del usuario
-    const url = `https://localhost:8080/usuarios/${userId}`; // Usar el ID del usuario
+    const users = JSON.parse(localStorage.getItem("Users")) || [];
+    const userIndex = users.findIndex(user => user.state === true);
 
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error al obtener los datos del usuario");
-            }
-            return response.json();
-        })
-        .then(usuario => {
-            cargarFormulario(usuario);  // Cargar los datos del usuario en el formulario
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Hubo un problema al cargar los datos.");
-        });
+// Buscar el usuario que tenga el 'state' en true
+    const activeUser = users.find(user => user.state === true);
+    cargarFormulario(activeUser)
 }
 
 // Función para cargar los datos en el formulario HTML
 function cargarFormulario(usuario) {
-    document.getElementById("nombre").value = usuario.nombre;
+    document.getElementById("nombre").value = usuario.name;
     document.getElementById("email").value = usuario.mail;
     document.getElementById("telefono").value = usuario.phoneNumber;
     document.getElementById("direccion").value = usuario.addresses;
@@ -57,7 +41,7 @@ document.getElementById("form-datos-usuario").addEventListener("submit", functio
     event.preventDefault(); // Evitar el envío por defecto del formulario
 
     const usuarioActualizado = {
-        nombre: document.getElementById("nombre").value,
+        name: document.getElementById("nombre").value,
         email: document.getElementById("email").value,
         telefono: document.getElementById("telefono").value,
         direccion: document.getElementById("direccion").value
@@ -70,7 +54,7 @@ document.getElementById("form-datos-usuario").addEventListener("submit", functio
         alert("No se pudo encontrar el usuario. Inicia sesión de nuevo.");
         return;
     }
-
+    user[userIndex]
     // URL del endpoint para actualizar datos del usuario
     const url = `https://localhost:8080/usuarios/${userId}`;
 

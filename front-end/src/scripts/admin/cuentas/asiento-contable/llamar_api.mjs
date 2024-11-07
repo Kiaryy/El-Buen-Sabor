@@ -1,5 +1,7 @@
+
+
 export const  llamar_api=(asiento)=>{
-    const apiEndpoint = 'https://proactive-intuition-production-15d4.up.railway.app/registrar-asiento';
+    const apiEndpoint = 'http://localhost:8080/contabilidad/registrar-asiento';
     fetch(apiEndpoint, {
         method: 'POST',
         headers: {
@@ -11,10 +13,34 @@ export const  llamar_api=(asiento)=>{
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
+        alert("asiento registrado")
         return response.json();
     })
     
     .catch((error) => {
         // console.error('Error:');
     });
+    
+    aumentar_prove()
+    
+}
+const aumentar_prove=()=>{
+    const idProveedor=document.getElementById('nombre_proveedor').value;
+    console.log(typeof idProveedor);
+    const id = `http://localhost:8080/providers/purchase/${idProveedor}`;
+fetch(id, {
+    method: 'POST',
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    alert("asiento registrado")
+    return response.json();
+})
+
+.catch((error) => {
+    // console.error('Error:');
+});
+    alert("productos agregago al stock")
 }

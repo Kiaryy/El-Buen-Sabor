@@ -1,33 +1,38 @@
 import { venta_hecha } from "./cuentas/asiento-contable/venta_hecha.mjs"; 
 import { compra_hecha } from "./cuentas/asiento-contable/compra_hecha.mjs";
 import { obtenerDatos } from "./mostrar/mostrar.mjs";
-
+import { proveedores_nombre } from "./mostrar/mostrar.mjs";
+import { obtener_nombre_proveedor } from "./agregar/obtener-provedores/obtener_proveedores.mjs";
 
 const button_simu_venta=document.getElementById('simu-venta')
 const button_simu_compra=document.getElementById('simu-compra')
 const section_platos =document.querySelectorAll('.content-section')
-const button_ver_cuentas=document.getElementById('ver-cuentas')
 
+const button_empezar_compra=document.getElementById('empezar_compra')
+const section_proveedor_comprar=document.getElementById('section_comprar_proveedor')
 
-button_ver_cuentas.addEventListener('click',()=>{
+button_empezar_compra.addEventListener('click',()=>{
+    if (section_proveedor_comprar.classList.contains("hide")) {
+        
+        section_proveedor_comprar.classList.remove("hide")
+        obtener_nombre_proveedor()
+    }else{
+        section_proveedor_comprar.classList.add("hide")
 
-    ver_cuenta()
-    
-    // const nombre_cuenta=document.getElementById('cuenta').value.toLowerCase()
-    // if (nombre_cuenta!="") {
-
-    // }
+    }
 })
-
 button_simu_compra.addEventListener('click',()=>{
-    const venta=document.getElementById('precio')
-    compra_hecha(venta.value)
+    const selectElement = document.getElementById('nombre_proveedor');
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const precio = selectedOption.getAttribute('data-precio');
+    const tipo=document.getElementById('metodo_pago')
+    compra_hecha(Number(precio),tipo.value)
 })
 
-button_simu_venta.addEventListener('click',()=>{
-    const compra=document.getElementById('precio')
-    venta_hecha(compra.value)
-})
+// button_simu_venta.addEventListener('click',()=>{
+//     const compra=document.getElementById('precio')
+//     venta_hecha(compra.value)
+// })
 const funciones = {
     platos: 'platos',
     compras:'compras',

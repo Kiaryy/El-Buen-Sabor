@@ -1,4 +1,5 @@
 import { proveedores_producto_id } from "../../mostrar/mostrar.mjs";
+import { proveedores_nombre } from "../../mostrar/mostrar.mjs";
 //FUNCION PARA QUE CUANDO SE PONGO OTRO OPCION SE AUTO COMPLETE EL PROVEEDOR
 export const obtener_proveedor = (newRow) => {
     const selectCategoria = document.getElementById('categoria_select');
@@ -49,4 +50,14 @@ export const proveedores_select=(selectCategoria,celdas)=>{
           
         
 }
-
+//FUNCION PARA OBTENER LE NOMBRE DEL PROVEDDOR Y EL ID
+export const obtener_nombre_proveedor = () => {
+    const nombre_proveedores = document.getElementById('nombre_proveedor');
+    proveedores_nombre.forEach(nombre => {
+        const option = document.createElement('option');
+        option.value = nombre.id;
+        option.textContent = nombre.nombre;
+        option.setAttribute('data-precio', nombre.precio); // Guardar el precio en un atributo data-precio
+        nombre_proveedores.appendChild(option);
+    });
+};

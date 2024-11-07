@@ -34,6 +34,7 @@ export const bebidas_todas = [];
 export const proveedores_producto_id={}
 export const tabla_insumos=[];
 export const tabla_nombre_insumos=[]
+export const proveedores_nombre=[]
 
 // Función genérica para obtener y mostrar datos de cualquier entidad
 export const obtenerDatos = async (entity, url, table) => {
@@ -57,7 +58,7 @@ export const obtenerDatos = async (entity, url, table) => {
                 if (entity === "proveedores") {
                     //ser guarda en proveedores el producto con valor del id
                     proveedores_producto_id[item[config.columns[2]]] = item[config.idKey];
-                    
+                    proveedores_nombre.push({nombre:item[config.columns[1]], id:item[config.columns[0]], precio:item[config.columns[3]]})
                 }else if(entity=="bebidas"){
                     bebidas_todas.push({ id: item[config.idKey], name: item[config.columns[1]],price:item[config.columns[2]] });
                  
