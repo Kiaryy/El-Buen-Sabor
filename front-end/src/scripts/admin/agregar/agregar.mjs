@@ -1,9 +1,12 @@
-import { lastIds } from "../mostrar/mostrar.mjs";
+import { completarPlatosBebidasSelect } from "./completar-platos-bebidas/completar-plato-bebidas.mjs";
+import { lastIds, tabla_nombre_insumos } from "../mostrar/mostrar.mjs";
 import { sendDataToApi } from "./agregar-a-api.mjs";
 import { categoriaCompletarProveedor, proveedores_select, obtener_proveedor } from "./obtener-provedores/obtener_proveedores.mjs";
 import { platos_todos, bebidas_todas } from "../mostrar/mostrar.mjs";
 import { api_editar } from "../editar/api-editar/api-editar.mjs";
 import { obtener_horarios } from "../horarios/obtener-horario.mjs";
+import { agregarInsumos } from "./obtener-insumos/agregar-insumo.mjs";
+import { articulosPLatos } from "./mostrar-articulos-para-platos/articulos-para-platos.mjs";
 //VARIABLE QUE CONTIENE LOS DATOS DE LAS SECCIONES
 const sections = {
     bebidas: {
@@ -21,7 +24,8 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/add'
+        url: 'http://localhost:8080/bebidas/add'
+        // url: 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/add'
     },
     insumos: {
         lastId: lastIds.insumos,
@@ -49,7 +53,8 @@ const sections = {
             </td>
         `,
 
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/article/add'
+        // url: 'https://proactive-intuition-production-15d4.up.railway.app/article/add'
+        url: 'http://localhost:8080/article/add'
     },
     personal: {
         lastId: lastIds.personal,
@@ -83,7 +88,8 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/employees/add'
+        // url: 'https://proactive-intuition-production-15d4.up.railway.app/employees/add'
+        url: 'http://localhost:8080/employees/add'
     },
     platos: {
         lastId: lastIds.platos,
@@ -108,12 +114,24 @@ const sections = {
             <td><input type="number" class="input-styles" placeholder="Stock"></td>
             <td><input type="file" id="imageInput" accept="image/*"></td>
             <td><input type="text" class="input-styles" placeholder="Description"></td>
+            <tr id=articulo-row>
+                <td id=articulo-cell>
+                <button type="button" onclick="addArticulo()">Agregar otro articulo</button>
+                    <select class="articulo-select">
+                        <option>Articulos</option>
+                
+                    </select>
+                </td>
+            </tr>  
+          
             <td>
                 <button class="save-item">Guardar</button>
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/platos/add'
+        
+        url: 'http://localhost:8080/platos/add'
+        // url: 'https://proactive-intuition-production-15d4.up.railway.app/platos/add'
     },
     proveedores: {
         lastId: lastIds.proveedores,
@@ -143,7 +161,8 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/providers/add'
+        url: 'http://localhost:8080/providers/add'
+        // url: 'https://proactive-intuition-production-15d4.up.railway.app/providers/add'
     },
     promociones: {
         lastId: lastIds.promociones,
@@ -175,36 +194,6 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
             `,
-        populateSelects: (platos, bebidas) => {
-
-
-            const platoSelects = document.querySelectorAll('.plato-select');
-
-            const bebidaSelects = document.querySelectorAll('.bebida-select');
-
-            // Limpiar las opciones existentes
-            platoSelects.forEach(select => {
-                console.log(select);
-
-                select.innerHTML = '<option>Platos</option>'; // Reiniciar opciones
-                platos.forEach(plato => {
-                    const option = document.createElement('option');
-                    option.value = plato.id; // Asumiendo que cada plato tiene un ID
-                    option.textContent = plato.name; // Asumiendo que cada plato tiene un nombre
-                    select.appendChild(option);
-                });
-            });
-
-            bebidaSelects.forEach(select => {
-                select.innerHTML = '<option>Bebidas</option>'; // Reiniciar opciones
-                bebidas.forEach(bebida => {
-                    const option = document.createElement('option');
-                    option.value = bebida.id; // Asumiendo que cada bebida tiene un ID
-                    option.textContent = bebida.name; // Asumiendo que cada bebida tiene un nombre
-                    select.appendChild(option);
-                });
-            });
-        },
         url: 'http://localhost:8080/promotions/add'
     }
 };
@@ -237,6 +226,7 @@ export const addItem = (section) => {
         table.insertBefore(newRow, table.rows[1]);
         toggleColumns(section)
         if (section == "insumos") {
+            agregarInsumos("insumo")
             //llama a la funcion para obtener el proveedor
             obtener_proveedor(newRow)
             //llama a la funcion para que aparezcan los proveedores
@@ -250,12 +240,14 @@ export const addItem = (section) => {
         } else if (section == "promociones") {
             const platos = platos_todos
             const bebidas = bebidas_todas
-            sections.promociones.populateSelects(platos, bebidas)
+            completarPlatosBebidasSelect(platos, bebidas)
 
             // Llamar a la función para llenar los selects
 
         } else if (section == "proveedores") {
-            agregarInsumos()
+            agregarInsumos("proveedor")
+        } else if (section == "platos") {
+            articulosPLatos(tabla_nombre_insumos)
         }
         // Evento "Cancelar" para eliminar la fila de inputs
         newRow.querySelector('.cancel-item').addEventListener('click', function () {
@@ -285,10 +277,7 @@ export const saveData = async (section, newRow, url, urlEditar) => {
     const additionalData = {};
     if (section === 'insumos') {
         console.log(newRow);
-
-
         additionalData.proveedor = newRow.querySelector('#proveedor').textContent;
-
         additionalData.category = newRow.querySelector('#categoria_select').value;
         additionalData.lastPurchased = newRow.querySelector('#ultima-compra').value
     } else if (section === 'personal') {
@@ -296,7 +285,7 @@ export const saveData = async (section, newRow, url, urlEditar) => {
         additionalData.charge = newRow.querySelector('#charge').value;
     } else if (section === 'platos' || section == 'promociones') {
         if (urlEditar == null) {
-                const fileInput = document.getElementById('imageInput');
+            const fileInput = document.getElementById('imageInput');
             const file = fileInput.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -352,6 +341,27 @@ const enviarData = async (byteArray, section, values, additionalData, url, urlEd
             state: additionalData.state // Estado de los datos adicionales
         };
     } else if (section === 'platos') {
+        //seleccionar las celdas
+        const articulos = document.getElementById('articulo-cell')
+        const articulo_pedido = articulos.querySelectorAll("select")
+        const idPlatos = Array.from(articulo_pedido).map(input => input.value);
+        const articulosPedido = []
+        idPlatos.forEach(articuloId => {
+            // Buscar si ya existe un artículo con el mismo articleId en articulosPedido
+            const articuloExistente = articulosPedido.find(art => art.articleId === articuloId);
+
+            if (articuloExistente) {
+                // Si el artículo ya existe, aumentamos la cantidad
+                articuloExistente.quantity += 1;
+            } else {
+                // Si el artículo no existe, lo agregamos a articulosPedido
+                articulosPedido.push({ articleId: articuloId, quantity: 1 });
+                console.log(`Agregando nuevo artículo: articleId ${articuloId} con cantidad: 1`);
+            }
+        });
+        console.log(articulosPedido);
+
+
         newItem = { // Asignar el último platoId más uno
             name: values[0], // Nombre del input
             description: values[4], // Descripción del input
@@ -360,16 +370,7 @@ const enviarData = async (byteArray, section, values, additionalData, url, urlEd
             available: true, // Avaliable (puedes ajustar esto según sea necesario)
             stock: Number(values[2]), // Stock (octavo input)
             imageData: Array.from(byteArray),
-            articles: [
-                {
-                    articleId: 1,
-                    quantity: 3
-                },
-                {
-                    articleId: 2,
-                    quantity: 2
-                }
-            ],// Datos de la imagen (si existe)
+            articles: articulosPedido,// Datos de la imagen (si existe)
         };
     } else if (section == 'proveedores') {
         const input = document.getElementById("articleInput").value;
@@ -398,47 +399,47 @@ const enviarData = async (byteArray, section, values, additionalData, url, urlEd
     } else if (section == "promociones") {
 
 
-
+        //seleccionar las celdas
         const platos = document.getElementById('plato-cell')
         const bebidas = document.getElementById('bebida-cell')
 
 
-
+        //selecciona todos los select
         const plato_pedido = platos.querySelectorAll("select")
         const bebida_pedido = bebidas.querySelectorAll("select")
+        //agarra todos los valores
         const idPlatos = Array.from(plato_pedido).map(input => input.value);
         const idBebidas = Array.from(bebida_pedido).map(input => input.value);
         const platosPedido = []
-        idPlatos.forEach(idPLato=>{
+        //comprar los valores con el id para ver si concuerdan
+        idPlatos.forEach(idPLato => {
             platos_todos.forEach((platoComparacion) => {
                 if (idPLato == platoComparacion.id) {
-                    
+
                     platosPedido.push({ plateName: platoComparacion.name, price: Number(platoComparacion.price) });
-                    
-                  
-                     
-                    
+
+
                 }
             });
         })
         const bebidasPedido = []
-        idBebidas.forEach(idBebida=>{
+        idBebidas.forEach(idBebida => {
             bebidas_todas.forEach((bebidaComparacion) => {
-              
+
                 if (idBebida == bebidaComparacion.id) {
                     bebidasPedido.push({ plateName: bebidaComparacion.name, price: Number(bebidaComparacion.price) });
-                    
+
                 }
             });
         })
-       
-    
+
         newItem = { // Asignar el último platoId más uno
             name: values[0], // Nombre del input
             precio: Number(values[1]), // Avaliable (puedes ajustar esto según sea necesario)
             imageData: Array.from(byteArray),
             platos: platosPedido, // Tipo del plato (select)
             bebidas: bebidasPedido,  // Precio Venta (cuarto input)
+            available: true
 
         };
     }
@@ -473,7 +474,7 @@ function toggleColumns(section) {
     if (section === "platos" || section === "promociones") {
         if (section === "platos") {
 
-            var columnas = document.querySelectorAll("#imagenes, #description, #categoria");
+            var columnas = document.querySelectorAll("#imagenes, #description, #articulos");
             var estado = document.getElementById('estado')
             columnas.forEach(columna => {
                 // Alterna la visibilidad de cada columna
@@ -486,11 +487,14 @@ function toggleColumns(section) {
                 }
             });
         } else if (section === "promociones") {
+            var estado = document.getElementById('estado_promo')
             var columna = document.querySelector("#imagenes_promo");
             if (columna.style.display === "none" || columna.style.display === "") {
                 columna.style.display = "table-cell"; // Muestra la columna
+                estado.style.display = "none"
             } else {
                 columna.style.display = "none"; // Oculta la columna
+                estado.style.display = "table-cell"
             }
         }
         // Selecciona las columnas por clase o ID
@@ -504,7 +508,23 @@ function toggleColumns(section) {
 
 
 
+export function addArticulo() {
+    const containerArticulo = document.getElementById('articulo-cell')
+    const newInput = document.createElement("select");
+    newInput.classList.add("articulo-select")
+    // Crear un botón para eliminar este select
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.innerText = "Eliminar";
+    deleteButton.onclick = function () {
+        containerArticulo.removeChild(deleteButton);
+        containerArticulo.removeChild(newInput);
+    };
 
+    containerArticulo.appendChild(newInput);
+    containerArticulo.appendChild(deleteButton);
+    articulosPLatos(tabla_nombre_insumos);
+}
 
 export function addProductSelect() {
     const containerProduct = document.getElementById('cell_poduct')
@@ -525,25 +545,14 @@ export function addProductSelect() {
     // // Añadir el input y el botón de eliminar al contenedor
     containerProduct.appendChild(newInput);
     containerProduct.appendChild(deleteButton);
-    agregarInsumos()
+    // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
+    productCell.insertBefore(inputContainer, productCell.lastElementChild);
+    agregarInsumos("proveedor")
 
-    // // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
-    // productCell.insertBefore(inputContainer, productCell.lastElementChild);
-    // // sections.promociones.populateSelects(platos, bebidas);
+ 
 }
-window.addProductSelect = addProductSelect;
 
-// Función para obtener los valores de los inputs de producto como lista y pasarlos
-// export function submitProducts() {
-//     const inputs = document.querySelectorAll('#product-cell input[name="producto"]');
-//     const productList = Array.from(inputs).map(input => input.value);
 
-//     console.log("Lista de productos:", productList);
-//     // Aquí puedes usar productList según lo necesites, como enviarlo al servidor o pasarlo a otra función
-// }
-// Funciones para agregar y eliminar selects
-window.addPlatoInput = addPlatoInput;
-window.addBebidaInput = addBebidaInput;
 
 
 
@@ -581,7 +590,7 @@ export function addPlatoInput() {
 
     // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
     platoCell.insertBefore(inputContainer, platoCell.lastElementChild);
-    sections.promociones.populateSelects(platos, bebidas);
+    completarPlatosBebidasSelect(platos, bebidas);
 
 
 }
@@ -616,15 +625,14 @@ export function addBebidaInput() {
 
     // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
     bebidaCell.insertBefore(inputContainer, bebidaCell.lastElementChild);
-    sections.promociones.populateSelects(platos, bebidas);
+    completarPlatosBebidasSelect(platos, bebidas);
 
 }
 
-function removeBebidaInput(button) {
-    const rowToRemove = button.closest('tr');
-    if (rowToRemove) {
-        rowToRemove.parentNode.removeChild(rowToRemove);
-    }
-}
+
 // Ejemplo de uso
 
+window.addPlatoInput = addPlatoInput;
+window.addArticulo = addArticulo;
+window.addBebidaInput = addBebidaInput;
+window.addProductSelect = addProductSelect;

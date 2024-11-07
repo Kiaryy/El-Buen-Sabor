@@ -24,8 +24,8 @@ export const entityConfig = {
     ventas: { columns: ['id', 'dateSale', 'nameofUser', 'pedido', 'cards'], idKey: 'id' },
     insumos: { columns: ['articleId', 'name', 'denominacion', 'category', 'provider', 'priceUnit', 'precioCompra', 'stockActual', 'existencies', 'lastPurchased'], idKey: 'articleId' },
     personal: { columns: ['name', 'charge', 'shift', 'hourlySalary', 'absences', 'phoneNumber', 'state'], idKey: 'id' },
-    platos: { columns: ['platoId', 'name', 'price', 'stock','available'], idKey: 'platoId' },
-    promociones: { columns: ['id', 'name','platos', 'bebidas', 'precio'], idKey: 'id' },
+    platos: { columns: ['platoId', 'name', 'type','price', 'stock','available'], idKey: 'platoId' },
+    promociones: { columns: ['id', 'name','platos', 'bebidas', 'precio','available'], idKey: 'id' },
     proveedores: { columns: ['id', 'name', 'product', 'shippingCost', 'phoneNumber', 'articles'], idKey: 'id' }
 };
 //Se crea y se exporta los datos
@@ -33,7 +33,7 @@ export const platos_todos = [];
 export const bebidas_todas = [];
 export const proveedores_producto_id={}
 export const tabla_insumos=[];
-
+export const tabla_nombre_insumos=[]
 
 // Función genérica para obtener y mostrar datos de cualquier entidad
 export const obtenerDatos = async (entity, url, table) => {
@@ -68,6 +68,10 @@ export const obtenerDatos = async (entity, url, table) => {
                             // Si no lo contiene, agrega un nuevo objeto con el 'name'
                             tabla_insumos.push({ name: item[config.columns[3]] });
                         }
+                        if (!tabla_nombre_insumos.find(insumo => insumo.name === item[config.columns[1]])) {
+                            // Si no lo contiene, agrega un nuevo objeto con el 'name'
+                            tabla_nombre_insumos.push({ name: item[config.columns[1]], id: item[config.columns[0]]});
+                        }
                     }
                     //valida si tabla en insumo ya existe el nombre del insumo
                     
@@ -86,7 +90,7 @@ export const obtenerDatos = async (entity, url, table) => {
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('');
             } else if (entity === "platos") {
                 //valida si esta habilitado el plato
-                if (item[config.columns[4]]==false) {
+                if (item[config.columns[5]]==false) {
                     tr.classList.add("deshabilitado")
                     
                 }
@@ -105,6 +109,10 @@ export const obtenerDatos = async (entity, url, table) => {
                
             } 
             else if (entity == "promociones") {
+                if (item[config.columns[5]]==false) {
+                    tr.classList.add("deshabilitado")
+                    
+                }
                 tr.innerHTML = config.columns.map(col => {
                     if (col === "platos") {
                         // Crear una lista de nombres de platos concatenados en una sola celda

@@ -42,7 +42,7 @@ export const editar_fila = (id, seccion) => {
         `
     
         // Añadir un evento al select
-        
+        agregarInsumos("insumos")
         categoriaCompletarProveedor()
     const selectCategoria = document.getElementById('categoria_select');
     celdas[celdas.length-1].id="ultima-compra"
@@ -114,19 +114,19 @@ export const editar_fila = (id, seccion) => {
             return;
         }
         if (seccion == "bebidas") {
-            var url=`https://proactive-intuition-production-15d4.up.railway.appbebidas/${id}`
-        }else if(seccion=="platos"){
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/platos/${id}`
+            // var url=`https://proactive-intuition-production-15d4.up.railway.appbebidas/${id}`
+            var url=`http://localhost:8080/bebidas/${id}`
+    
         }else if (seccion=="personal") {
             var url=`https://proactive-intuition-production-15d4.up.railway.app/employees/${id}`
+            // var url=`https://proactive-intuition-production-15d4.up.railway.app/employees/${id}`
         }else if (seccion=="insumos") {
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/article/${id}`
+            // var url=`https://proactive-intuition-production-15d4.up.railway.app/article/${id}`
+            var url=`http://localhost:8080/article/${id}`
         }else if(seccion="proveedores"){
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/providers/${id}`
+            // var url=`https://proactive-intuition-production-15d4.up.railway.app/providers/${id}`
+            var url=`http://localhost:8080/providers/${id}`
             
-        }else if(seccion="promociones"){
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/promotions/${id}`
-
         }
         console.log(url);
         

@@ -7,7 +7,7 @@ export const obtener_proveedor = (newRow) => {
         proveedores_select(selectCategoria, celdas)
     })
 }
-//FUNCION PARA QUE APAREZCAN LOS PROVEEDORES EN EL SELECT
+//FUNCION PARA QUE APAREZCAN LA CATEGORIA EN EL SELECT
 export const categoriaCompletarProveedor=()=> {
     const categoria = document.getElementById('categoria_select');
     
@@ -27,10 +27,12 @@ export const categoriaCompletarProveedor=()=> {
 
 //FUNCION PARA QUE DA EL ID DEL PROVEEDOR
 export const proveedores_select=(selectCategoria,celdas)=>{
-
-
-            const categoriaSeleccionada = selectCategoria.value;            
+            const categoriaSeleccionada = selectCategoria.value;     
+            console.log(categoriaSeleccionada);
+                   
             for (const [key, value] of Object.entries(proveedores_producto_id)) {
+                console.log(key);
+                
                 if (key === categoriaSeleccionada) {
                     var id_proveedor=value
                     break
