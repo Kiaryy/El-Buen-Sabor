@@ -1,3 +1,5 @@
+    //Crear elmento vacio para enviar
+
 export const api_add =async(email,password)=>{
     let user_save={
         name: "",
@@ -17,8 +19,10 @@ export const api_add =async(email,password)=>{
             
             console.log(email);
             console.log(password);
-            
+                        //recorremos los datos
+            //Valida si el usuario existe
             for (let user of data) {
+                //si el email y el password considen con los valores se guarda
                 if (user.mail==email && user.passWord==password) {
                 user_save.name=user.name
                 user_save.phoneNumber=user.phoneNumber
@@ -33,11 +37,12 @@ export const api_add =async(email,password)=>{
                 }else{
                     localStorage.setItem('Users', JSON.stringify([user_save]));
                 }
-                
+                //si existe retorna true
                 return true
-           }
+            }
             
         }
+        //si no existe retorna flase
        return false
         
     } 

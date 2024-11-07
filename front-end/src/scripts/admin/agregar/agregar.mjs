@@ -8,6 +8,7 @@ import { obtener_horarios } from "../horarios/obtener-horario.mjs";
 import { agregarInsumos } from "./obtener-insumos/agregar-insumo.mjs";
 import { articulosPLatos } from "./mostrar-articulos-para-platos/articulos-para-platos.mjs";
 //VARIABLE QUE CONTIENE LOS DATOS DE LAS SECCIONES
+
 const sections = {
     bebidas: {
         lastId: lastIds.bebidas,

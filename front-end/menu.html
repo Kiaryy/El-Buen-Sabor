@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buen Sabor</title>
     <link rel="stylesheet" href="/front-end/src/style-menu.css">
+ 
 </head>
 <body>
     <header class="navbar" aria-label="Navegación Principal">
@@ -13,7 +14,16 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="menu.html">MENÚ</a></li>
-                <li><a id="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu">
+                    <li><a id="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu-hamburguesa" class="menu-hidden">
+                    <ul>
+                        <li><a href="perfil.html">Mi Perfil</a></li>
+                        <li id="cerrar_sesion"><a href="">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+                </div>
+
             </ul>
         </nav>
     </header>
@@ -149,11 +159,14 @@
 
 
     <!-- Mostrar platos-->
-    <script type="module"src="/front-end/src/scripts/menu/main-menu.mjs"></script>
-  
+    
+    
+    
     <script src="src/scripts/menu/carrito/carrito.mjs"></script>
     <script src="src/scripts/menu/modal/modal.mjs"></script>
     <script type="module"  src="/front-end/src/scripts/menu/metodoPago.mjs"></script>
+    <script type="module"  src="/front-end/src/scripts/main.mjs"></script>
+   
     <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
 
     

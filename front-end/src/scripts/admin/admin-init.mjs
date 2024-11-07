@@ -1,9 +1,7 @@
-
-import { ver_cuenta } from "../asiento-contable/ver_cuenta.mjs";
-import { venta_hecha } from "../asiento-contable/venta_hecha.mjs";
-import { compra_hecha } from "../asiento-contable/compra_hecha.mjs";
-
+import { venta_hecha } from "./cuentas/asiento-contable/venta_hecha.mjs"; 
+import { compra_hecha } from "./cuentas/asiento-contable/compra_hecha.mjs";
 import { obtenerDatos } from "./mostrar/mostrar.mjs";
+
 
 const button_simu_venta=document.getElementById('simu-venta')
 const button_simu_compra=document.getElementById('simu-compra')

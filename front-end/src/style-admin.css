@@ -226,7 +226,11 @@ td button:hover img {
     border-radius: 5px; 
 }
 
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LIBRO MAYOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#libro-mayor{
+    width: 15vw;
+    margin: 0 0 2% 2%;
+}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INPUTS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .input-styles {
     width: calc(100% - 10px);  /* Ajuste para evitar que el input se superponga con los bordes de la celda */

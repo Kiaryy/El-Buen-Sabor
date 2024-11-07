@@ -19,6 +19,8 @@
                 <li><a href="#" class="nav-link" data-target="proveedores">Proveedor</a></li>
                 <li><a href="#" class="nav-link" data-target="promociones">Promociones</a></li>
                 <li><a href="#" class="nav-link" data-target="bebidas">Bebidas</a></li>
+                <li><a href="#" class="nav-link" data-target="cuentas">Cuentas</a></li>
+                <li><a href="#" class="nav-link" data-target="asientos">Asientos Contables</a></li>
             </ul>
         </nav>
 
@@ -176,6 +178,105 @@
                    
                 </table>
             </div>
+            
+            <div id="cuentas" class="content-section hide">
+                <h2>Cuentas</h2>
+                <table>
+                    <tr class="data-name">
+                        <th>#ID</th>
+                        <th>Nombre</th>
+                        <th>Saldo Disponible</th>                      
+                    </tr> 
+                    <tr>
+                        <td>1</td>
+                        <td>Cuenta 1</td>
+                        <td>1.000.000</td>                      
+                    </tr> 
+                    <tr>
+                        <td>2</td>
+                        <td>Cuenta 2</td>
+                        <td>5.000.000</td>                      
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Cuenta 3</td>
+                        <td>5.000.000</td>                      
+                    </tr>                   
+                </table>
+            </div>  
+
+
+            <div id="asientos" class="content-section hide">
+                <h2>Asientos Contables</h2>
+                <select name="libro mayor" id="libro-mayor">
+                    <option value="">Libro Mayor</option>
+                    <option value="Cuenta 1">Cuenta 1</option>
+                    <option value="Cuenta 2">Cuenta 2</option>
+                    <option value="Cuenta 3">Cuenta 3</option>
+                    <option value="Cuenta 4">Cuenta 4</option>
+                </select>
+                <table>
+                    <thead>
+                        <tr class="data-name">
+                            <th>#ID</th>
+                            <th>Fecha</th>  
+                            <th>Cuenta</th>                    
+                            <th>Debe</th>                      
+                            <th>Haber</th>
+                            <th>Cuenta 2</th>                    
+                            <th>Debe 2</th>                      
+                            <th>Haber 2</th>                       
+                        </tr> 
+                    </thead>
+                    <tbody id="tabla-asientos">
+                        <tr>
+                            <td>1</td>
+                            <td>19/08/24</td>
+                            <td>Cuenta 1</td>                  
+                            <td>500</td>                      
+                            <td>500</td> 
+                            <td>Cuenta 2</td>                  
+                            <td>500</td>                      
+                            <td>500</td>                    
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>19/08/24</td>
+                            <td>Cuenta 3</td>                  
+                            <td>500</td>                      
+                            <td>500</td> 
+                            <td>Cuenta 2</td>                  
+                            <td>500</td>                      
+                            <td>500</td>                    
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>19/08/24</td>
+                            <td>Cuenta 1</td>                  
+                            <td>500</td>                      
+                            <td>500</td> 
+                            <td>Cuenta 4</td>                  
+                            <td>500</td>                      
+                            <td>500</td>                    
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>19/08/24</td>
+                            <td>Cuenta 4</td>                  
+                            <td>500</td>                      
+                            <td>500</td> 
+                            <td>Cuenta 2</td>                  
+                            <td>500</td>                      
+                            <td>500</td>                    
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            
+            
+
+        </div>
                 
         </div>
 
@@ -185,6 +286,7 @@
     <script type ="module" src="/front-end/src/scripts/admin/admin-app.mjs"></script>
     <script type ="module" src="/front-end/src/scripts/admin/editar/editar.mjs"></script>
     <script type ="module" src="/front-end/src/scripts/admin/agregar/agregar.mjs"></script>
+    <script  src="/front-end/src/scripts/admin/cuentas/libro-mayor.mjs"></script>
     
     <script type ="module" src="/front-end/src/scripts/admin/habilitar-deshabilitar/habilitar-deshabilitar.mjs"></script>
     <script type ="module" src="/front-end/src/scripts/admin/admin-init.mjs"></script>

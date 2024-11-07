@@ -1,6 +1,7 @@
 export async function there_is_email(email){
     try{
-        const response=await fetch('https://localhost:8080/usuarios/findAll',{
+        const response=await fetch('http://localhost:8080/usuarios/findAll',
+            {
             method:'GET'
         });
         const data =  await response.json();
