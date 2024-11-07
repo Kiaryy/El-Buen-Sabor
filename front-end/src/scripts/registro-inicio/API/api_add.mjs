@@ -1,7 +1,8 @@
-    //Crear elmento vacio para enviar
 
+//FUNCION PARA TRAER LOS USUARIOS
 export const api_add =async(email,password)=>{
     let user_save={
+        id:0,
         name: "",
         phoneNumber : 0,
         addresses: [],
@@ -24,6 +25,7 @@ export const api_add =async(email,password)=>{
             for (let user of data) {
                 //si el email y el password considen con los valores se guarda
                 if (user.mail==email && user.passWord==password) {
+                user_save.id=user.id
                 user_save.name=user.name
                 user_save.phoneNumber=user.phoneNumber
                 user_save.addresses.push(user.addresses)

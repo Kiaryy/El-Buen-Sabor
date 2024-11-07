@@ -90,16 +90,26 @@ export const editar_fila = (id, seccion) => {
     //EVENTO SI TOCA CANCELAR , SE REGRESA COMO ESTABA ANTES
     fila.querySelector('.cancel-item').addEventListener('click', function () {
         celdas.forEach((celda, index) => {
-
-
-            if (index != 0) {
+            if (seccion=="personal") {
                 celda.textContent = valoresOriginales[index]
+                    if (index == (celdas.length - 1)) {
+                        celda.innerHTML = `${valorOriginalUltimo}`
+        
+        
+                    }
+                
+            }else{
+                if (index != 0) {
+                   
+                }
+                if (index == (celdas.length - 1)) {
+                    celda.innerHTML = `${valorOriginalUltimo}`
+    
+    
+                }
             }
-            if (index == (celdas.length - 1)) {
-                celda.innerHTML = `${valorOriginalUltimo}`
 
-
-            }
+          
         });
         isAdding = false;
     });

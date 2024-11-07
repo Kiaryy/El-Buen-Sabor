@@ -1,6 +1,6 @@
 // FUNCION PARA OCULTAR Y MOSTRAR EL MENU DE LOGIN Y REGISTER
 import { valueRegex } from "./validation/valieRegistro.mjs"
-import { there_is_email } from "./API/there_is_email.mjs";
+import {there_is_email } from "./API/there_is_email.mjs";
 import { api_call } from "./API/api_call.mjs";
 import { validation } from "./validation/valieRegistro.mjs";
 
@@ -39,7 +39,8 @@ export const vali_registro = async (section_login, section_sign_up, new_user) =>
         //Guarda si existe el gmail o no
         const emailExists = await there_is_email(new_user.mail)
         if (emailExists) {
-            const add = 'https://localhost:8080/usuarios/add';
+            const add = 'http://localhost:8080/usuarios/add';
+
             api_call(add, section_login, section_sign_up, new_user)
         } else {
             alert("Ya existe usuario con ese email, use otro");

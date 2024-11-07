@@ -31,7 +31,7 @@ const load_plates=async (sectionMap,url)=>{
         // var plates_new=[]
 
         data.forEach(item => {  
-            console.log(item);
+            
             
             // Verificar si existe una sección para el tipo de comida
             if (sectionMap[item.type]) {

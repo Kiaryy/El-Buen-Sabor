@@ -1,19 +1,18 @@
 import { api_editar } from "../editar/api-editar/api-editar.mjs";
 
 let seccion=""
-export function toggleStatus(id,articulo){
+export async function toggleStatus(id,articulo){
     if (articulo=="platos"|| articulo=="promociones") {
         const div = document.getElementById(`${articulo}`)
-        console.log(div);
         const fila = div.querySelector(`tr.fila${id}`)
         const tds = fila.querySelectorAll('td');
 
         const values=Array.from(tds).map(input => input.textContent);
    
-        console.log(values);
+  
         if (articulo=="platos") {
             values[4]=null
-            var update_plate={
+            var update={
                 platoId:id,
                 name:values[1],
                 price:Number(values[2]),
@@ -21,32 +20,31 @@ export function toggleStatus(id,articulo){
                 available:Boolean(values[4]),
         
             }
-            console.log(update_plate);
+            
             
             var url=`http://localhost:8080/platos/${id}`
           
         }else{
-            const update_promo={
+       
+           // Crear la lista de listas combinando nombres y precios
+           values[5]=null
+            var update={
                 platoId:id,
                 name:values[1],
-                platos:values[2],
-                bebidas:values[3],
                 precio:values[4],
                 available:Boolean(values[5]),
                 
             }
-            console.log(update_promo);
+    
             var url=`http://localhost:8080/promotions/${id}`
         }
-        api_editar(url,update_promo)
+        
+        await api_editar(url,update)
         location.reload();
 
      
     }
-    else if (articulo=="bebidas") {
-
-        seccion='bebidas'
-    }
+    
     // editar_fila(id,seccion)
   
 

@@ -1,3 +1,4 @@
+//FUNCION PARA AGREGAR USUARIOS
 export const api_call =(add,section_login,section_sign_up,new_user)=>{
     fetch(add, {
         method: 'POST',

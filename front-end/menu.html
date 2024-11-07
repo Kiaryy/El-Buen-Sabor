@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buen Sabor</title>
     <link rel="stylesheet" href="/front-end/src/style-menu.css">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
  
 </head>
 <body>
@@ -93,7 +94,7 @@
         <aside class="aside-right">
             <div id="pedido">
                 <h2>TU PEDIDO</h2>
-                <ul>
+                <ul id="products_ul">
                     
                 </ul>
                 <p id="total-pedido">TOTAL: $0</p>
@@ -152,7 +153,7 @@
     <div id="modal-pagar">
         <div class="metodo-de-pago">
             <h3>Seleccione el metodo de pago</h3>
-            <div id="wallet_container"></div>
+            <div id="button-checkout"></div>
             <button id="seguir-comprando">Seguir comprando</button>
         </div>
     </div>
@@ -165,7 +166,7 @@
     <script src="src/scripts/menu/carrito/carrito.mjs"></script>
     <script src="src/scripts/menu/modal/modal.mjs"></script>
     <script type="module"  src="/front-end/src/scripts/menu/metodoPago.mjs"></script>
-    <script type="module"  src="/front-end/src/scripts/main.mjs"></script>
+    <script type="module"  src="/front-end/src/scripts/menu/main-menu.mjs"></script>
    
     <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
 

@@ -1,3 +1,62 @@
+async function there_is_email(mail) {
+    try {
+        const response = await fetch('http://localhost:8080/usuarios/findAll', {
+            method: 'GET'
+        });
+
+        // Verifica la respuesta en formato de texto antes de convertirla a JSON
+        const rawData = await response.text();
+       
+
+        // Intenta convertir el texto en JSON
+       
+        const data = JSON.parse(rawData);
+        for (let user of data) {
+            if (user.mail === mail) {
+                return user.pedido || [];
+            }
+        }
+
+        return [];
+    } catch (error) {
+        console.error('Hubo un problema con la solicitud:', error);
+        return [];
+    }
+}
+
+window.onload = async function () {
+    const users = JSON.parse(localStorage.getItem("Users")) || [];
+    const userIndex = users.findIndex(user => user.state === true);
+
+    if (userIndex === -1) {
+        console.error("No se encontró un usuario con el estado `true` en localStorage.");
+        return;
+    }
+
+    const email = users[userIndex].mail;
+    const pedidos = await there_is_email(email);
+
+    console.log("Pedidos obtenidos:", pedidos);
+
+    // Selecciona el elemento de la lista
+    const listaPedidos = document.getElementById("lista-pedidos");
+
+    if (pedidos.length === 0) {
+        // Si no hay pedidos, muestra un mensaje en la lista
+        listaPedidos.innerHTML = '<li class="mensaje-sin-pedidos">Aún no realizaste ningún pedido.</li>';
+    } else {
+        // Si hay pedidos, los muestra
+        pedidos.forEach(pedido => {
+            const pedidoItem = document.createElement("li");
+            pedidoItem.innerHTML = `
+                <span>Pedido #${pedido.pedidoId}</span> - Productos: ${pedido.productos} - Nombre del repartidor: ${pedido.nombreDelivery}
+            `;
+            listaPedidos.appendChild(pedidoItem);
+        });
+    }
+}
+
+
 // Cargar datos del usuario al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
     cargarDatosUsuario();
@@ -9,7 +68,7 @@ function cargarDatosUsuario() {
  // Aquídebería estar el ID del usuario logueado
     // URL del endpoint para obtener los datos del usuario
     const users = JSON.parse(localStorage.getItem("Users")) || [];
-    const userIndex = users.findIndex(user => user.state === true);
+    
 
 // Buscar el usuario que tenga el 'state' en true
     const activeUser = users.find(user => user.state === true);
@@ -20,6 +79,7 @@ function cargarDatosUsuario() {
 function cargarFormulario(usuario) {
     document.getElementById("nombre").value = usuario.name;
     document.getElementById("email").value = usuario.mail;
+    document.getElementById("contraseña").value = usuario.passWord;
     document.getElementById("telefono").value = usuario.phoneNumber;
     document.getElementById("direccion").value = usuario.addresses;
 }
@@ -42,21 +102,20 @@ document.getElementById("form-datos-usuario").addEventListener("submit", functio
 
     const usuarioActualizado = {
         name: document.getElementById("nombre").value,
+        passWord:document.getElementById("contraseña").value,
         email: document.getElementById("email").value,
-        telefono: document.getElementById("telefono").value,
-        direccion: document.getElementById("direccion").value
+        phoneNumber: document.getElementById("telefono").value,
+        addresses:document.getElementById("direccion").value.split(",").map(direccion => direccion.trim())
     };
-
-    // Obtener el ID del usuario desde el localStorage
-    const userId = localStorage.getItem('userId');  // Deberías tener este ID guardado
-
-    if (!userId) {
-        alert("No se pudo encontrar el usuario. Inicia sesión de nuevo.");
-        return;
-    }
-    user[userIndex]
+    console.log(usuarioActualizado);
+    
+    const users = JSON.parse(localStorage.getItem("Users")) || [];
+    const userIndex = users.findIndex(user => user.state === true);
+    const id=users[userIndex].id
+    console.log(id);
+    
     // URL del endpoint para actualizar datos del usuario
-    const url = `https://localhost:8080/usuarios/${userId}`;
+    const url = `http://localhost:8080/usuarios/${id}`;
 
     fetch(url, {
         method: "PUT",
@@ -69,11 +128,18 @@ document.getElementById("form-datos-usuario").addEventListener("submit", functio
             if (!response.ok) {
                 throw new Error("Error al actualizar los datos del usuario");
             }
+          
+            users[userIndex].name= document.getElementById("nombre").value
+            users[userIndex].mail= document.getElementById("email").value,
+            users[userIndex].phoneNumber=  document.getElementById("telefono").value,
+            users[userIndex].addresses= document.getElementById("direccion").value
+            users[userIndex].passWord= document.getElementById("contraseña").value
+            localStorage.setItem("Users", JSON.stringify(users));
             return response.json();
         })
         .then(data => {
             alert("Datos actualizados correctamente");
-
+       
             // Deshabilitar los campos y mostrar el botón "Editar" nuevamente
             document.getElementById("nombre").setAttribute("readonly", "readonly");
             document.getElementById("email").setAttribute("readonly", "readonly");

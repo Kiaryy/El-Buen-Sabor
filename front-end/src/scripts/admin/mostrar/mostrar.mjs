@@ -22,7 +22,7 @@ export const entityConfig = {
     bebidas: { columns: ['id', 'nombre', 'descripcion', 'precio', 'stock'], idKey: 'id' },
     compras: { columns: ['id','provider', 'purchaseDate', 'itemsPurchased'], idKey: 'id' },
     ventas: { columns: ['id', 'dateSale', 'nameofUser', 'pedido', 'cards'], idKey: 'id' },
-    insumos: { columns: ['articleId', 'name', 'denominacion', 'category', 'provider', 'priceUnit', 'precioCompra', 'stockActual', 'existencies', 'lastPurchased'], idKey: 'articleId' },
+    insumos: { columns: ['articleId', 'name', 'category', 'provider', 'priceUnit', 'precioCompra', 'stockActual', 'existencies', 'lastPurchased'], idKey: 'articleId' },
     personal: { columns: ['name', 'charge', 'shift', 'hourlySalary', 'absences', 'phoneNumber', 'state'], idKey: 'id' },
     platos: { columns: ['platoId', 'name', 'type','price', 'stock','available'], idKey: 'platoId' },
     promociones: { columns: ['id', 'name','platos', 'bebidas', 'precio','available'], idKey: 'id' },
@@ -91,12 +91,9 @@ export const obtenerDatos = async (entity, url, table) => {
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('');
             } else if (entity === "platos") {
                 //valida si esta habilitado el plato
-                if (item[config.columns[5]]==false) {
-                    tr.classList.add("deshabilitado")
+                if (item[config.columns[5]]!=false) {
                     
-                }
-                //Agrega los valores y el boton de deshabilitar
-                
+                    
                 platos_todos.push({ id: item[config.idKey], name: item[config.columns[1]] , price:item[config.columns[2]]});
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
                     `
@@ -106,32 +103,37 @@ export const obtenerDatos = async (entity, url, table) => {
                         </button>
                     </td>
                     `;
+                }
+                //Agrega los valores y el boton de deshabilitar
+                
                   
                
             } 
             else if (entity == "promociones") {
-                if (item[config.columns[5]]==false) {
-                    tr.classList.add("deshabilitado")
+                if (item[config.columns[5]]!=false) {
                     
+                    tr.innerHTML = config.columns.map(col => {
+                        if (col === "platos") {
+                            // Crear una lista de nombres de platos concatenados en una sola celda
+                            const listItem = item.platos.map(plate => plate.plateName).join(', ');
+                            return `<td>${listItem !== undefined ? listItem : 'falta'}</td>`;
+                        }else if (col==="bebidas") {
+                            const listItem = item.bebidas.map(plate => plate.plateName).join(', ');
+                            return `<td>${listItem !== undefined ? listItem : 'falta'}</td>`;
+                        } else {
+                            // Para el resto de las columnas, simplemente mostramos el valor o 'falta' si no está definido
+                            return `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`;
+                        }
+                    }).join('') + `
+                    
+                        <td>
+                            <button onclick="toggleStatus(${item[config.idKey]}, '${entity}')">
+                                <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/avaliable.png" alt="habilitar/deshabilitar" title="Habilitar/Deshabilitar">
+                            </button>
+                        </td>
+                        `;
                 }
-                tr.innerHTML = config.columns.map(col => {
-                    if (col === "platos") {
-                        // Crear una lista de nombres de platos concatenados en una sola celda
-                        const listItem = item.platos.map(plate => plate.plateName).join(', ');
-                        return `<td>${listItem !== undefined ? listItem : 'falta'}</td>`;
-                    }else if (col==="bebidas") {
-                        const listItem = item.bebidas.map(plate => plate.plateName).join(', ');
-                        return `<td>${listItem !== undefined ? listItem : 'falta'}</td>`;
-                    } else {
-                        // Para el resto de las columnas, simplemente mostramos el valor o 'falta' si no está definido
-                        return `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`;
-                    }
-                }).join('') + `
-                <td>
-                    <button onclick="editItem(${item[config.idKey]}, '${entity}')">
-                        <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
-                    </button>
-                </td>`;
+                
             }
             
             else {
