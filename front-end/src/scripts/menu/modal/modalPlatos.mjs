@@ -1,9 +1,17 @@
+import { load_bebidas } from "../show-drinks/show-drinks.mjs";
+import { totalBebidas } from "../show-drinks/show-drinks.mjs";
+
+
 // Referencias a los elementos del modal de platos (productModal)
 const productModal = document.getElementById('productModal');
 const modalImageFood = productModal.querySelector('#modal-img');
 const modalNameFood = productModal.querySelector('#modal-title');
 const modalDescriptionFood = productModal.querySelector('#modal-description');
 const modalPriceFood = productModal.querySelector('#modal-price');
+
+
+let totalPlatos = 0;
+
 
 // Evento para abrir el modal de platos al hacer clic en una tarjeta de comida
 document.addEventListener('click', function(event) {
@@ -28,6 +36,7 @@ document.addEventListener('click', function(event) {
 
         // Mostrar el modal del plato después de cargar los datos
         productModal.style.display = "block";
+        load_bebidas(); 
     }
 });
 
@@ -46,11 +55,15 @@ window.onclick = function(event) {
 
 // Funciones de aumentar/disminuir cantidad y actualizar el total en el modal de platos
 function increaseQuantity(id) {
-    const inputField = document.getElementById(id);
+    const inputField = document.getElementById(`${id}`);
+    console.log(inputField);
+    
     let currentValue = parseInt(inputField.value);
     inputField.value = currentValue + 1;
     updateTotalFood(); // Actualiza el total en el botón "Agregar al Carrito"
 }
+window.increaseQuantity = increaseQuantity;
+
 
 function decreaseQuantity(id) {
     const inputField = document.getElementById(id);
@@ -60,11 +73,19 @@ function decreaseQuantity(id) {
         updateTotalFood(); // Actualiza el total en el botón "Agregar al Carrito"
     }
 }
+window.decreaseQuantity = decreaseQuantity;
+
 
 function updateTotalFood() {
     const price = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
     let qtyClasica = parseInt(document.getElementById('opcion-clasica').value);
-    let total = price * qtyClasica;
+    totalPlatos += price * qtyClasica; // Calcula el subtotal de los platos
+    updateTotalCarrito(); // Llama a la función que actualiza el total combinado
+}
+window.updateTotalFood = updateTotalFood; // Asegúrate de que esta función esté disponible globalmente
+
+export function updateTotalCarrito() {
+    const total = totalPlatos + totalBebidas; // Suma los subtotales de platos y bebidas
     document.querySelector('.btn-agregar-carrito').textContent = `Agregar al Carrito - TOTAL: $${total}`;
 }
 
@@ -104,6 +125,8 @@ let total_carrito_plato = document.getElementById('total-pedido');
 function update_cart_plato(total) {
     total_carrito_plato.innerHTML = `TOTAL: $${total}`;
 }
+
+
 
 // Notificaciones
 function showToast(message, duration = 3000) {
@@ -153,3 +176,5 @@ carritoPlato.addEventListener("click", (event) => {
         showToast('Producto eliminado del carrito', 1500);
     }
 });
+
+

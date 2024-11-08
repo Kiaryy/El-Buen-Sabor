@@ -50,6 +50,7 @@
                     <h2 class="title-products">PROMOCIONES</h2>
                     <section class="container-menu" id="section-promos">
                         <!-- Productos promos (por agregar dinámicamente) -->
+                    
                     </section>
                 </div>
 
@@ -103,6 +104,9 @@
                 <ul id="products_ul">
                     
                 </ul>
+                <ul id="product-drinks">
+
+                </ul>
                 <p id="total-pedido">TOTAL: $0</p>
                 <div class="container-buttons-carrito">
                     <button id="editar-carrito">Editar Pedido</button>
@@ -144,10 +148,20 @@
                     <button class ="more" onclick="increaseQuantity('opcion-clasica')">+</button>
                 </div>
             </div>
+
+
             <div class="option">
-            <label for="opcion-bebidas">Agregar Bebidas</label>
-                <button class="btn-agregar-bebidas">Seleccionar</button>
+                <label for="opcion-bebidas">Agregar Bebidas</label>
+                <select name="opcion-bebidas" id="add-bebida" onchange="handleBebidaSelect()">
+                    <option value="">Seleccionar una bebida</option>
+                </select>
+                <div id="bebida-quantity-control" class="quantity-control" style="display: none;">
+                    <button class="less" id="decrease-bebida">-</button>
+                    <input type="number" id="selected-bebida-quantity" value="0" min="0" readonly>
+                    <button class="more" id="increase-bebida">+</button>
+                </div>
             </div>
+            
         </div>
         <button class="btn-agregar-carrito">Agregar al Carrito - TOTAL: $0</button>
     </div>
@@ -204,13 +218,14 @@
     <!-- Mostrar platos-->
     <script type="module"src="/front-end/src/scripts/menu/main-menu.mjs"></script>
   
-    <script src="src/scripts/menu/carrito/carrito.mjs"></script>
-    <script src="src/scripts/menu/modal/modalPlatos.mjs"></script>
-    <script src="src/scripts/menu/modal/modalPromos.mjs"></script>
+    <script type="module" src="src/scripts/menu/carrito/carrito.mjs"></script>
+    <script type="module" src="src/scripts/menu/modal/modalPlatos.mjs"></script>
+    <script type="module" src="src/scripts/menu/modal/modalPromos.mjs"></script>
     <script type="module"  src="/front-end/src/scripts/menu/metodoPago.mjs"></script>
     <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
-    <script src="src/scripts/menu/carrito/editar-carrito.mjs"></script>
-    
+    <script type="module" src="src/scripts/menu/carrito/editar-carrito.mjs"></script>
+    <script type="module" src="src/scripts/menu/show-drinks/show-drinks.mjs"></script>
+    <script type="module" src="src/scripts/menu/modal/modalBebidas.mjs"></script>
     <!-- Seleccionar metodo de pago-->
     <!-- <script type="module"  src="/front-end/src/scripts/menu/metodoPago.js"></script> -->
 </body>
