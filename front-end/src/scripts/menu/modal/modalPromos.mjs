@@ -3,7 +3,7 @@ const promosModal = document.getElementById('promosModal');
 const modalImagePromo = promosModal.querySelector('#modal-img');
 const modalNamePromo = promosModal.querySelector('#modal-title');
 const modalDescriptionPromo = promosModal.querySelector('#modal-description');
-const modalPricePromo = promosModal.querySelector('#modal-price');
+const modalPricePromo = promosModal.querySelector('#modal-price-promo');
 const platosListPromo = document.getElementById("platos-promo");
 const bebidasListPromo = document.getElementById("bebidas-promo");
 
@@ -36,7 +36,7 @@ document.addEventListener('click', function(event) {
         bebidasListPromo.innerHTML = ""; // Limpiar contenido previo
         promoBebidas.forEach(bebida => {
             const li = document.createElement("li");
-            li.innerText = bebida.drinkName; // Confirmá que este campo sea correcto
+            li.innerText = bebida.plateName; // Confirmá que este campo sea correcto
             bebidasListPromo.appendChild(li);
         });
 

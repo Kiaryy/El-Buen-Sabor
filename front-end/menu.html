@@ -137,7 +137,7 @@
         </div>
         <div class="modal-content">
             <p id="modal-description">Una hamburguesa clásica con carne super jugosa y sabor incomparable...</p>
-            <p id="modal-price">Precio: $5600</p>
+            <p id="modal-price">Precio: $0</p>
         </div>
         <div class="options-container">
             <div class="option">
@@ -156,9 +156,11 @@
                     <option value="">Seleccionar una bebida</option>
                 </select>
                 <div id="bebida-quantity-control" class="quantity-control" style="display: none;">
-                    <button class="less" id="decrease-bebida">-</button>
-                    <input type="number" id="selected-bebida-quantity" value="0" min="0" readonly>
-                    <button class="more" id="increase-bebida">+</button>
+                    < <div class="quantity-control">
+                        <button class="less" onclick="decreaseQuantity('opcion-bebidas')">-</button>
+                        <input type="number" id="opcion-bebidas" value="0" min="0" readonly>
+                        <button class ="more" onclick="increaseQuantity('opcion-bebidas')">+</button>
+                    </div>
                 </div>
             </div>
             
@@ -183,15 +185,15 @@
                     <!-- Lista de bebidas se cargará aquí -->
                 </ul>
             </p>
-            <p id="modal-price">Precio: $0</p>
+            <p id="modal-price-promo">Precio: $0</p>
         </div>
         <div class="options-container">
             <div class="option">
                 <label for="opcion-promo">Cantidad:</label>
                 <div class="quantity-control">
-                    <button class="less" onclick="decreaseQuantityPromo('opcion-promo')">-</button>
+                    <button class="less" onclick="decreaseQuantity('opcion-promo')">-</button>
                     <input type="number" id="opcion-promo" value="0" min="0" readonly>
-                    <button class="more" onclick="increaseQuantityPromo('opcion-promo')">+</button>
+                    <button class="more" onclick="increaseQuantity('opcion-promo')">+</button>
                 </div>
             </div>
         </div>

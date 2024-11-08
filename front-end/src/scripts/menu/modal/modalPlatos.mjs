@@ -8,10 +8,12 @@ const modalImageFood = productModal.querySelector('#modal-img');
 const modalNameFood = productModal.querySelector('#modal-title');
 const modalDescriptionFood = productModal.querySelector('#modal-description');
 const modalPriceFood = productModal.querySelector('#modal-price');
+const modalPriceFoodPromo = document.querySelector('#modal-price-promo');
+
 
 
 let totalPlatos = 0;
-
+let totalPromos=0
 
 // Evento para abrir el modal de platos al hacer clic en una tarjeta de comida
 document.addEventListener('click', function(event) {
@@ -56,37 +58,71 @@ window.onclick = function(event) {
 // Funciones de aumentar/disminuir cantidad y actualizar el total en el modal de platos
 function increaseQuantity(id) {
     const inputField = document.getElementById(`${id}`);
-    console.log(inputField);
+
     
     let currentValue = parseInt(inputField.value);
     inputField.value = currentValue + 1;
-    updateTotalFood(); // Actualiza el total en el botón "Agregar al Carrito"
+    updateTotalFood(id); // Actualiza el total en el botón "Agregar al Carrito"
 }
 window.increaseQuantity = increaseQuantity;
 
 
 function decreaseQuantity(id) {
+    console.log(id);
+    
     const inputField = document.getElementById(id);
     let currentValue = parseInt(inputField.value);
     if (currentValue > 0) {
         inputField.value = currentValue - 1;
-        updateTotalFood(); // Actualiza el total en el botón "Agregar al Carrito"
+        updateTotalFood(id); // Actualiza el total en el botón "Agregar al Carrito"
     }
 }
 window.decreaseQuantity = decreaseQuantity;
 
 
-function updateTotalFood() {
-    const price = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
-    let qtyClasica = parseInt(document.getElementById('opcion-clasica').value);
-    totalPlatos += price * qtyClasica; // Calcula el subtotal de los platos
-    updateTotalCarrito(); // Llama a la función que actualiza el total combinado
+function updateTotalFood(tipo) {
+    console.log(tipo);
+    
+    if (tipo=="opcion-promo") {
+    
+        const price = parseInt(modalPriceFoodPromo.textContent.replace('Precio: $', ''));
+        const qtyClasica = parseInt(document.getElementById('opcion-promo').value);
+        console.log(qtyClasica);
+        
+        totalPromos = price * qtyClasica; // Calcula el subtotal de los platos
+        updateTotalCarrito(tipo);
+    }else if (tipo=="opcion-bebidas") {
+        const price = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
+        console.log(price);
+        
+        const qtyClasica = parseInt(document.getElementById('opcion-bebidas').value);
+        console.log(qtyClasica);
+        
+        updateTotalCarrito(tipo);
+   // Calcula el subtotal de los platos
+    }
+    
+    else{
+        const price = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
+
+        const qtyClasica = parseInt(document.getElementById('opcion-clasica').value);
+        totalPlatos = price * qtyClasica; // Calcula el subtotal de los platos
+        updateTotalCarrito(tipo); // Llama a la función que actualiza el total combinado
+    }
 }
 window.updateTotalFood = updateTotalFood; // Asegúrate de que esta función esté disponible globalmente
 
-export function updateTotalCarrito() {
-    const total = totalPlatos + totalBebidas; // Suma los subtotales de platos y bebidas
-    document.querySelector('.btn-agregar-carrito').textContent = `Agregar al Carrito - TOTAL: $${total}`;
+export function updateTotalCarrito(tipo) {
+    if (tipo=="opcion-promo") {
+        const total=totalPromos
+        console.log(document.querySelector('.btn-agregar-carrito-promo'));
+        
+        document.querySelector('.btn-agregar-carrito-promo').textContent = `Agregar al Carrito - TOTAL: $${total}`;
+    }else{
+
+        const total = totalPlatos + totalBebidas; // Suma los subtotales de platos y bebidas
+        document.querySelector('.btn-agregar-carrito').textContent = `Agregar al Carrito - TOTAL: $${total}`;
+    }
 }
 
 // Agregar al carrito

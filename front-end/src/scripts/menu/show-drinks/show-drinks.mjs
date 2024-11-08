@@ -45,7 +45,7 @@ function handleBebidaSelect() {
         // Mostrar el control de cantidad
         const quantityControl = document.getElementById('bebida-quantity-control');
         quantityControl.style.display = 'flex';
-        const quantityInput = document.getElementById('selected-bebida-quantity');
+        const quantityInput = document.getElementById('opcion-bebidas');
         quantityInput.value = 0;
 
         // Agregar eventos a los botones solo si el control está visible
