@@ -128,7 +128,7 @@ export const editar_fila = (id, seccion) => {
             var url=`http://localhost:8080/bebidas/${id}`
     
         }else if (seccion=="personal") {
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/employees/${id}`
+            var url=`http://localhost:8080/article/${id}`
             // var url=`https://proactive-intuition-production-15d4.up.railway.app/employees/${id}`
         }else if (seccion=="insumos") {
             // var url=`https://proactive-intuition-production-15d4.up.railway.app/article/${id}`

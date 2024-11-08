@@ -11,53 +11,7 @@ body {
 button, a {
     cursor: url("/front-end/IMAGENES BUEN SABOR/pizza.png"), auto;
 }
-/* OPCIONES USUARIO */
-#profile{
-    border: 3px solid #FFA101;
-    padding: 0.5em 1em;
-    border-radius: 15px;
-    
-}
-.menu-hidden {
-    display: none;
-}
-#menu-hamburguesa {
-    position: absolute;
-    top: 77px;
-    background-color: #FFD184;
-    padding: 0px;
-    border-radius: 5px;
-    padding-left: 5px;
-    box-shadow: 5px 10px 0px 0px rgba(0,0,0,0.3);
-  
-}
 
-#menu-hamburguesa ul {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    flex-direction: column;
-
-}
-#menu-hamburguesa li{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #000000;
-  
-}
-#menu{
-    display: flex;
-    
-justify-content: center
-}
-#menu-hamburguesa li a {
-    font-size: 20px;
-    padding: 0.5em 1em;
-    border-radius: 15px;
-    margin: 2px;
-    
-}
 /*~~~~~~~~~~~~~HEADER~~~~~~~~~~~~~*/
 ul {
     list-style: none;
@@ -76,10 +30,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
-}
-.navbar nav{
-    margin-right: 100px;
 }
 
 .navbar .logo {
@@ -124,34 +74,6 @@ header {
 }
 
 
-#barra {
-    background-color: #ffffff;
-    position: sticky;
-    top: 0;
-    padding-top: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    border-bottom: 2px solid #FFA101;
-    width: 100%;
-    margin: auto;   
-}
-
-.nav-link {
-    border-right: 2px solid #FFA101;
-    padding-right: 30px;
-}
-
-.nav-link:last-child {
-    border: none;
-}
-
-#barra a {
-    font-family: sans-serif;
-    text-decoration: none;
-    color: #333333;
-    font-size: 24px;
-}
 
 /*~~~~~~~~~~BODY~~~~~~~~*/
 
@@ -165,6 +87,22 @@ header {
 aside {
     flex: 1;
 }
+
+
+/* ~~~~~~ LOADER ~~~~~~ */
+.loader {
+    display: none;
+    margin: auto;
+    margin-top: 10%;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid lightblue;
+    border-right-color: orange;
+    animation: l2 1s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
+
 
 /*~~~~~~~~~~MAIN PLATOS~~~~~~~~*/
 main {
@@ -194,7 +132,7 @@ main {
     font-weight: bold;
 }
 
-.card-food {
+.card-food, .card-promo {
     align-items: center;
     display: flex;
     text-align: center;
@@ -206,11 +144,12 @@ main {
     margin-top: 0;
 }
 
-.card-food img{
+.card-food img, .card-promo img{
     width: 50%;
     object-fit: contain;
     border-radius: 10px 10px 0 0;
 }
+
 
 /*~~~~~~~~~~ASIDE IZQUIERDO~~~~~~~~~~*/
 .aside-left {
@@ -287,13 +226,29 @@ main {
     font-weight: bold;
 }
 
-#pedido #pagar{
-    margin:0 0 4% 33%;
-    padding: 5%;
+#pedido .container-buttons-carrito{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-bottom:4% ;
+}
+
+#pedido #editar-carrito{
+    padding: 4%;
     border: none;
     border-radius: 10px;
     background-color: #333333;
     color: #FFA101;
+    font-weight: bold;
+}
+
+#pedido #pagar{
+    padding: 4%;
+    border: none;
+    border-radius: 10px;
+    background-color: #FFA101;
+    color: #333333;
     font-weight: bold;
 }
 
@@ -343,9 +298,7 @@ footer {
 }
 
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MODAL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/* Estilo general del modal */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MODAL PLATOS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #productModal {
     display: none; 
     position: fixed;
@@ -359,7 +312,6 @@ footer {
     box-shadow: 0px 0px 20px #00000099;
 }
 
-/* Encabezado del modal */
 #productModal .modal-header {
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -370,8 +322,6 @@ footer {
     font-size: 0.8em;
     color: #333333; 
 }
-
-/* Imagen del modal */
 #productModal .modal-image {
     width: 40%; 
     object-fit: cover;
@@ -379,12 +329,10 @@ footer {
     padding-top: 10%;
 }
 
-/* Contenido del modal */
 #productModal .modal-content {
     padding: 1% 4% ;
 }
 
-/* Descripción del producto */
 #productModal .modal-description {
     font-size: 0.8em;
     color: #333;
@@ -399,7 +347,6 @@ footer {
     margin-top: 1%;
 }
 
-/* Botón de cierre */
 #productModal .close {
     position: absolute;
     top: 1.5%;
@@ -410,6 +357,147 @@ footer {
 }
 
 #productModal .close:hover {
+    color: #ffffff; 
+}
+
+.option {
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 3%;
+    padding: 0 10%;
+}
+
+.option label {
+    flex: 1; 
+}
+
+.quantity-control {
+    display: flex; 
+    align-items: center;
+}
+
+.quantity-control button {
+    margin: 0;
+    width: 1.7em; 
+    height: 1.7em;
+    font-size: 1.2em;
+    background-color: #FFA101;
+    border: none;
+    cursor: pointer; 
+    border-radius: 10%;
+}
+
+.quantity-control input {
+    width: 2.5em;
+    height: 2.4em;
+    text-align: center;
+    border: none;
+    border: 1px solid #777777;
+}
+
+.btn-agregar-bebidas {
+    background-color: #FFAA00; 
+    color: white; 
+    padding: 2% 4%;
+    border: none; 
+    border-radius: 10px;
+    cursor: pointer; 
+    margin-left: auto;
+}
+
+.btn-agregar-carrito {
+    bottom: 0;
+    width: 90%;
+    background-color: #ff9900; 
+    color: white;
+    padding: 3% 0;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 0 3% 5%;
+}
+
+/* Estilo del botón de agregar al carrito al pasar el mouse */
+.btn-agregar-carrito:hover,
+.btn-agregar-bebidas:hover {
+    background-color: #e68a00; 
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~MODAL PROMOS~~~~~~~~~~~~~~~~~~~+*/
+#promosModal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 450px;
+    background-color: #eeeeee;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #00000099;
+}
+
+/* Encabezado del modal */
+#promosModal .modal-header {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: #FFAA00; 
+    padding: 2%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #333333; 
+}
+
+/* Imagen del modal */
+#promosModal .modal-image {
+    width: 40%; 
+    object-fit: cover;
+    margin-top: -5%; 
+    padding-top: 10%;
+}
+
+/* Contenido del modal */
+#promosModal .modal-content {
+    padding: 1% 4% ;
+}
+
+/* Descripción de la promo */
+#promosModal .modal-description ul{
+    list-style: none;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#promosModal .modal-description ul li{
+    font-size: 0.8rem;
+    font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Precio              NO FUNCIONA*/ 
+#promosModal .modal-price {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 1%;
+}
+
+/* Botón de cierre */
+#promosModal .close {
+    position: absolute;
+    top: 1.5%;
+    right: 3%;
+    font-size: 2em;
+    color: #333;
+    cursor: pointer;
+}
+
+#promosModal .close:hover {
     color: #ffffff; 
 }
 
@@ -465,7 +553,7 @@ footer {
 }
 
 /* Estilo del botón "Agregar al Carrito" */
-.btn-agregar-carrito {
+.btn-agregar-carrito, .btn-agregar-carrito-promo{
     bottom: 0;
     width: 90%;
     background-color: #ff9900; 
@@ -482,6 +570,8 @@ footer {
 .btn-agregar-bebidas:hover {
     background-color: #e68a00; /* Color más oscuro al pasar el mouse */
 }
+
+
 
 
 /*~~~~~~~~~~~~~~~~~MODAL IR A PAGAR~~~~~~~~~~~~~~*/
@@ -522,17 +612,17 @@ footer {
 /* Responsive para tablets y dispositivos medianos */
 @media (max-width: 1024px) {
     .navbar {
-        padding: 2%; /* Aumentamos el padding para que se vea mejor */
+        padding: 2%; 
     }
 
     .container-menu {
-        grid-template-columns: repeat(2, 1fr); /* Cambiamos a dos columnas */
+        grid-template-columns: repeat(2, 1fr); 
     }
 
-    .card-food img {
+    .card-food img, .card-promo img {
         width: 60%; /* Aumentamos la imagen para mejor visibilidad */
     }
-
+    
     .aside-right #pedido {
         width: 30%; /* Reducimos el ancho */
     }
@@ -546,42 +636,43 @@ footer {
 /* Responsive para móviles */
 @media (max-width: 768px) {
     .navbar .logo {
-        font-size: 1.2em; /* Ajustamos el tamaño de fuente */
+        font-size: 1.2em; 
     }
 
     .navbar nav ul {
-        flex-direction: column; /* Cambiamos a columnas */
+        flex-direction: column;
         padding: 0;
     }
 
     .container-menu {
-        grid-template-columns: 1fr; /* Solo una columna en móviles */
+        grid-template-columns: 1fr;
     }
 
     #barra {
-        flex-direction: column; /* Para que los links de barra se apilen */
+        flex-direction: column; 
         padding-top: 0;
     }
 
     .title-products {
-        font-size: 24px; /* Tamaño reducido para móviles */
+        font-size: 24px; 
     }
 
-    .card-food {
+    .card-food, .card-promo {
         width: 100%;
-        margin: 2% auto; /* Centrado en móvil */
+        margin: 2% auto;
     }
 
-    .card-food img {
-        width: 70%; /* Un poco más grande */
+    .card-food img, .card-promo {
+        width: 70%; 
     }
+
 
     .aside-left, .aside-right, #profile {
-        display: none; /* Ocultamos los sidebars en móvil */
+        display: none; 
     }
 
     #productModal, #modal-pagar {
-        width: 90%; /* Ajustamos el modal */
+        width: 90%;
         max-width: 350px;
     }
     
@@ -589,4 +680,36 @@ footer {
         padding: 4% 0;
         font-size: 1em;
     }
+}
+
+
+/* NOTIFICACION */
+
+/* Estilos para el contenedor de la notificación */
+.toast-notification {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Animación para hacerla aparecer */
+.toast-notification.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animación para desaparecer */
+.toast-notification.hide {
+    opacity: 0;
+    transform: translateY(-20px);
 }

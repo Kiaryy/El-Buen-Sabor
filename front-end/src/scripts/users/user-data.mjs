@@ -48,8 +48,10 @@ window.onload = async function () {
         // Si hay pedidos, los muestra
         pedidos.forEach(pedido => {
             const pedidoItem = document.createElement("li");
+            console.log(pedido.productos);
+            
             pedidoItem.innerHTML = `
-                <span>Pedido #${pedido.pedidoId}</span> - Productos: ${pedido.productos} - Nombre del repartidor: ${pedido.nombreDelivery}
+                <span>Pedido #${pedido.pedidoId}</span> - Productos: ${pedido.productos} - Nombre del repartidor: ${pedido.nombreDelivery}- Fcha:${pedido.date}
             `;
             listaPedidos.appendChild(pedidoItem);
         });

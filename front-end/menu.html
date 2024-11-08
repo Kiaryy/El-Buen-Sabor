@@ -6,7 +6,7 @@
     <title>Buen Sabor</title>
     <link rel="stylesheet" href="/front-end/src/style-menu.css">
     <script src="https://sdk.mercadopago.com/js/v2"></script>
- 
+
 </head>
 <body>
     <header class="navbar" aria-label="Navegación Principal">
@@ -15,16 +15,7 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="menu.html">MENÚ</a></li>
-                <div id="menu">
-                    <li><a id="profile" href="sign-up.html">Registro</a></li>
-                <div id="menu-hamburguesa" class="menu-hidden">
-                    <ul>
-                        <li><a href="perfil.html">Mi Perfil</a></li>
-                        <li id="cerrar_sesion"><a href="">Cerrar Sesión</a></li>
-                    </ul>
-                </div>
-                </div>
-
+                <li><a id="profile" href="sign-up.html">Registro</a></li>
             </ul>
         </nav>
     </header>
@@ -34,7 +25,7 @@
             <div class="aside-left">
                 <h2>CATEGORIAS</h2>
                 <ul>
-                    <li class="nav-aside"><a href="#">PROMOS</a></li>
+                    <li class="nav-aside"><a href="#promociones">PROMOS</a></li>
                     <li class="nav-aside"><a href="#hamburguesas">HAMBURGUESAS</a></li>
                     <li class="nav-aside"><a href="#pizzas">PIZZAS</a></li>
                     <li class="nav-aside"><a href="#empanadas">EMPANADAS</a></li>
@@ -47,6 +38,21 @@
 
         <main>
             <div class="container-main">
+                <!-- cargando productos -->
+                 <div id="container_loader">
+                    <div class="loader" id="loader">cargando platos</div>
+                </div>
+                    
+                
+
+                <!-- PROMOCIONES -->
+                <div  id="promociones">
+                    <h2 class="title-products">PROMOCIONES</h2>
+                    <section class="container-menu" id="section-promos">
+                        <!-- Productos promos (por agregar dinámicamente) -->
+                    </section>
+                </div>
+
                 <!-- HAMBURGUESAS -->
                 <div  id="hamburguesas">
                     <h2 class="title-products">HAMBURGUESAS</h2>
@@ -98,7 +104,11 @@
                     
                 </ul>
                 <p id="total-pedido">TOTAL: $0</p>
-                <button id="pagar">IR A PAGAR</button>
+                <div class="container-buttons-carrito">
+                    <button id="editar-carrito">Editar Pedido</button>
+                    <button id="pagar">IR A PAGAR</button>
+                </div>
+                
             </div>
         </aside>
     </div>
@@ -114,7 +124,7 @@
         </div>
     </footer>
 
-    <!-- Modal -->
+    <!-- Modal PLATOS -->
     <div id="productModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-header">
@@ -135,14 +145,6 @@
                 </div>
             </div>
             <div class="option">
-                <label for="opcion-sin-tacc">Opción Sin TACC:</label>
-                <div class="quantity-control">
-                    <button class="less_tact"onclick="decreaseQuantity('opcion-sin-tacc')">-</button>
-                    <input type="number" id="opcion-sin-tacc" value="0" min="0" readonly>
-                    <button class="more_tact" onclick="increaseQuantity('opcion-sin-tacc')">+</button>
-                </div>
-            </div>
-            <div class="option">
             <label for="opcion-bebidas">Agregar Bebidas</label>
                 <button class="btn-agregar-bebidas">Seleccionar</button>
             </div>
@@ -150,6 +152,41 @@
         <button class="btn-agregar-carrito">Agregar al Carrito - TOTAL: $0</button>
     </div>
 
+
+        <!-- Modal PROMOCIONES-->
+    <div id="promosModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <img id="modal-img" class="modal-image" src="" alt="Imagen del producto o promoción">
+            <h2 id="modal-title">Producto/Promo</h2>
+        </div>
+        <div class="modal-content">
+            <p id="modal-description">
+                <ul id="platos-promo">
+                    <!-- Lista de platos se cargará aquí -->
+                </ul>
+                <ul id="bebidas-promo">
+                    <!-- Lista de bebidas se cargará aquí -->
+                </ul>
+            </p>
+            <p id="modal-price">Precio: $0</p>
+        </div>
+        <div class="options-container">
+            <div class="option">
+                <label for="opcion-promo">Cantidad:</label>
+                <div class="quantity-control">
+                    <button class="less" onclick="decreaseQuantityPromo('opcion-promo')">-</button>
+                    <input type="number" id="opcion-promo" value="0" min="0" readonly>
+                    <button class="more" onclick="increaseQuantityPromo('opcion-promo')">+</button>
+                </div>
+            </div>
+        </div>
+        <button class="btn-agregar-carrito-promo">Agregar al Carrito - TOTAL: $0</button>
+    </div>
+
+
+
+    <!-- Modal de pago -->
     <div id="modal-pagar">
         <div class="metodo-de-pago">
             <h3>Seleccione el metodo de pago</h3>
@@ -158,18 +195,21 @@
         </div>
     </div>
 
+    <!-- Notificaciones -->
+    <div id="toast-notification" class="toast-notification">
+        <p id="toast-message"></p>
+    </div>
+    
 
     <!-- Mostrar platos-->
-    
-    
-    
+    <script type="module"src="/front-end/src/scripts/menu/main-menu.mjs"></script>
+  
     <script src="src/scripts/menu/carrito/carrito.mjs"></script>
-    <script src="src/scripts/menu/modal/modal.mjs"></script>
+    <script src="src/scripts/menu/modal/modalPlatos.mjs"></script>
+    <script src="src/scripts/menu/modal/modalPromos.mjs"></script>
     <script type="module"  src="/front-end/src/scripts/menu/metodoPago.mjs"></script>
-    <script type="module"  src="/front-end/src/scripts/menu/main-menu.mjs"></script>
-   
     <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
-
+    <script src="src/scripts/menu/carrito/editar-carrito.mjs"></script>
     
     <!-- Seleccionar metodo de pago-->
     <!-- <script type="module"  src="/front-end/src/scripts/menu/metodoPago.js"></script> -->
