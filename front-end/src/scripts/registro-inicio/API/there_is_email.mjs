@@ -2,7 +2,8 @@ import { last_id } from "../../admin/lastId.mjs";
 
 export async function there_is_email(email){
     try{
-        const response=await fetch('http://localhost:8080/usuarios/findAll',
+
+        const response=await fetch('https://proactive-intuition-production-15d4.up.railway.app/usuarios/findAll',
             {
             method:'GET'
         });

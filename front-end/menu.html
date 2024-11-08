@@ -157,9 +157,9 @@
                 </select>
                 <div id="bebida-quantity-control" class="quantity-control" style="display: none;">
                     < <div class="quantity-control">
-                        <button class="less" onclick="decreaseQuantity('opcion-bebidas')">-</button>
+                        <button class="less" onclick="decreaseQuantityBebida('opcion-bebidas')">-</button>
                         <input type="number" id="opcion-bebidas" value="0" min="0" readonly>
-                        <button class ="more" onclick="increaseQuantity('opcion-bebidas')">+</button>
+                        <button class ="more" onclick="increaseQuantityBebida('opcion-bebidas')">+</button>
                     </div>
                 </div>
             </div>
@@ -202,6 +202,16 @@
 
 
 
+   <!-- Modal de pago -->
+<div id="modal-pagar">
+    <div  class="metodo-de-pago">
+        <h3>Seleccione el metodo de pago</h3>
+        <div id="button-checkout"></div>
+        <button id="binance-pay-button" class="btn-agregar-carrito-promo">Pagar con criptomonedas</button>
+        <button id="seguir-comprando">Seguir comprando</button>
+    </div>
+</div>
+
     <!-- Modal de pago -->
     <div id="modal-pagar">
         <div class="metodo-de-pago">
@@ -210,6 +220,24 @@
             <button id="seguir-comprando">Seguir comprando</button>
         </div>
     </div>
+    <!-- Modal para pago con criptomonedas -->
+    <div id="modal-crypto" class="modal">
+        <div class="metodo-de-pago">
+            <h3>Pago con criptomonedas</h3>
+            <form id="formulario-crypto">
+                <label for="crypto-amount">Cantidad:</label>
+                <h4 id="crypto-amount"></h4>
+                <select name="currency" id="currency-selector">
+                    <option value="USDT">USDT</option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                </select>
+                <button id="confirm-payment" type="button">Confirmar Pago</button>
+            </form>
+            <button id="close-crypto-modal">Cerrar</button>
+        </div>
+
+
 
     <!-- Notificaciones -->
     <div id="toast-notification" class="toast-notification">
@@ -228,6 +256,7 @@
     <script type="module" src="src/scripts/menu/carrito/editar-carrito.mjs"></script>
     <script type="module" src="src/scripts/menu/show-drinks/show-drinks.mjs"></script>
     <script type="module" src="src/scripts/menu/modal/modalBebidas.mjs"></script>
+    <script src="src/scripts/menu/BinancePay.mjs"></script>
     <!-- Seleccionar metodo de pago-->
     <!-- <script type="module"  src="/front-end/src/scripts/menu/metodoPago.js"></script> -->
 </body>

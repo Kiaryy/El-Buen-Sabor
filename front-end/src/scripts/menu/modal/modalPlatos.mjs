@@ -81,8 +81,6 @@ window.decreaseQuantity = decreaseQuantity;
 
 
 function updateTotalFood(tipo) {
-    console.log(tipo);
-    
     if (tipo=="opcion-promo") {
     
         const price = parseInt(modalPriceFoodPromo.textContent.replace('Precio: $', ''));
@@ -91,18 +89,8 @@ function updateTotalFood(tipo) {
         
         totalPromos = price * qtyClasica; // Calcula el subtotal de los platos
         updateTotalCarrito(tipo);
-    }else if (tipo=="opcion-bebidas") {
-        const price = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
-        console.log(price);
-        
-        const qtyClasica = parseInt(document.getElementById('opcion-bebidas').value);
-        console.log(qtyClasica);
-        
-        updateTotalCarrito(tipo);
-   // Calcula el subtotal de los platos
     }
-    
-    else{
+    else if(tipo=="opcion-clasica"){
         const price = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
 
         const qtyClasica = parseInt(document.getElementById('opcion-clasica').value);

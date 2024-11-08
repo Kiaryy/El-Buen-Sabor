@@ -2,8 +2,8 @@ const section_promos = document.getElementById("section-promos");
 
 export const show_promos=async ()=>{
 
-        // const url = 'https://proactive-intuition-production-15d4.up.railway.app/promotions/findAll';
-    const url = 'http://localhost:8080/promotions/findAll';
+        const url = 'https://proactive-intuition-production-15d4.up.railway.app/promotions/findAll';
+    // const url = 'http://localhost:8080/promotions/findAll';
 
     try {
         const response = await fetch(url, {

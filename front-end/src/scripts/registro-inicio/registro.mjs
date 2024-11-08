@@ -39,7 +39,8 @@ export const vali_registro = async (section_login, section_sign_up, new_user) =>
         //Guarda si existe el gmail o no
         const emailExists = await there_is_email(new_user.mail)
         if (emailExists) {
-            const add = 'http://localhost:8080/usuarios/add';
+            
+            const add = 'https://proactive-intuition-production-15d4.up.railway.app/usuarios/add';
 
             api_call(add, section_login, section_sign_up, new_user)
         } else {

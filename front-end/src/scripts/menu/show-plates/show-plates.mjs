@@ -2,8 +2,8 @@ import { show_promos } from "./show-promos/show-promos.mjs";
 
 export const show_plates = async(sectionMap)=>{
 
-    const url = ' http://localhost:8080/platos/findAll';
-    // const url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/findAll';
+        // const url = ' http://localhost:8080/platos/findAll';
+    const url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/findAll';
     show_promos();
     load_plates(sectionMap,url);
     

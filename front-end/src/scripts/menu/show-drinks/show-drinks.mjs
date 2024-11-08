@@ -62,8 +62,9 @@ function handleBebidaSelect() {
 window.handleBebidaSelect = handleBebidaSelect;
 
 
-function increaseQuantity() {
-    const quantityInput = document.getElementById('selected-bebida-quantity');
+function increaseQuantityBebida() {
+    const quantityInput = document.getElementById('opcion-bebidas');
+    console.log(quantityInput);
     
     // Verificar si el elemento existe antes de acceder a su valor
     if (quantityInput) {
@@ -76,10 +77,10 @@ function increaseQuantity() {
 }
 
 // Exponer la función al contexto global
-window.increaseQuantity = increaseQuantity;
+window.increaseQuantityBebida = increaseQuantityBebida;
 
-function decreaseQuantity() {
-    const quantityInput = document.getElementById('selected-bebida-quantity');
+function decreaseQuantityBebida() {
+    const quantityInput = document.getElementById('opcion-bebidas');
     
     // Verificar si el elemento existe antes de acceder a su valor
     if (quantityInput) {
@@ -94,10 +95,10 @@ function decreaseQuantity() {
 }
 
 // Exponer la función al contexto global
-window.decreaseQuantity = decreaseQuantity;
+window.decreaseQuantityBebida = decreaseQuantityBebida;
 
 function updateTotal() {
-    const quantity = parseInt(document.getElementById('selected-bebida-quantity').value, 10);
+    const quantity = parseInt(document.getElementById('opcion-bebidas').value, 10);
     const bebidaPrice = selectedBebida && !isNaN(selectedBebida.price) ? parseFloat(selectedBebida.price) : 0;
     totalBebidas += quantity * bebidaPrice; // Calcula el subtotal de las bebidas
     updateTotalCarrito(); // Llama a la función que actualiza el total combinado
