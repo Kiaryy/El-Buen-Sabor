@@ -1,5 +1,8 @@
+
+//FUNCION PARA TRAER LOS USUARIOS
 export const api_add =async(email,password)=>{
     let user_save={
+        id:0,
         name: "",
         phoneNumber : 0,
         addresses: [],
@@ -10,16 +13,19 @@ export const api_add =async(email,password)=>{
         state:false,
     };
         try{
-            const response=await fetch('https://bsapi-latest.onrender.com/usuarios/findAll',{
+            const response=await fetch('https://proactive-intuition-production-15d4.up.railway.app/usuarios/findAll',{
                 method:'GET'
             });
             const data =  await response.json();
             
             console.log(email);
             console.log(password);
-            
+                        //recorremos los datos
+            //Valida si el usuario existe
             for (let user of data) {
+                //si el email y el password considen con los valores se guarda
                 if (user.mail==email && user.passWord==password) {
+                user_save.id=user.id
                 user_save.name=user.name
                 user_save.phoneNumber=user.phoneNumber
                 user_save.addresses.push(user.addresses)
@@ -33,11 +39,12 @@ export const api_add =async(email,password)=>{
                 }else{
                     localStorage.setItem('Users', JSON.stringify([user_save]));
                 }
-                
+                //si existe retorna true
                 return true
-           }
+            }
             
         }
+        //si no existe retorna flase
        return false
         
     } 

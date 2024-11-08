@@ -12,7 +12,9 @@ body  {
     flex-direction: row;
     height: 100vh;
 }
-
+.deshabilitado{
+    background-color: red;
+}
 /* Estilos de la barra lateral */
 .sidebar {
     position: fixed;
@@ -108,7 +110,7 @@ body  {
     height: 20px;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~ Estilos del boton ~~~~~~~~~~~~~~~~~~~~~~~ */
-#add-item{
+.add-item{
     position: sticky;
     top: 15%;
     width: 100%;
@@ -118,7 +120,7 @@ body  {
     border-right: 0;
 }
 
-#add-item:hover{
+.add-item:hover{
     background-color: #cccccc;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~ Estilos del contenido ~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -147,6 +149,7 @@ table{
 .data-name{
     position: sticky;
     top: 17.9%;
+    width: 100%;
 }
 
 table th{
@@ -223,7 +226,11 @@ td button:hover img {
     border-radius: 5px; 
 }
 
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LIBRO MAYOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#libro-mayor{
+    width: 15vw;
+    margin: 0 0 2% 2%;
+}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INPUTS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .input-styles {
     width: calc(100% - 10px);  /* Ajuste para evitar que el input se superponga con los bordes de la celda */

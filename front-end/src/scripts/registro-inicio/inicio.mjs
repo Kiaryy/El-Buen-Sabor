@@ -35,7 +35,7 @@ export const vali_inicio=async(validate_user)=>{
                     
                     if (user.mail==validate_user.login_email) {
                         if (user.passWord==validate_user.login_password) {
-                        console.log("sdadasdd");
+                     
                         
                         profile=true
                         break

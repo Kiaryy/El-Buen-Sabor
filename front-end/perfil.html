@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/style-perfile.css">
+    <title>BUEN SABOR - Perfil</title>
+</head>
+<body>
+    <div class="container-body">
+        <header class="navbar" aria-label="Navegación Principal">
+            <div class="logo">Buen<span>SABOR</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="menu.html">MENÚ</a></li>
+     
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="container-main">
+                <aside class="aside-left">
+                    <div class="container-nav-aside">
+                        <nav class="sidebar">
+                            <ul>
+                                <li><a href="#" class="nav-link active" data-target="data-user-nav">Datos Personales</a></li>
+                                <li><a href="#" class="nav-link" data-target="orders-nav">Pedidos</a></li>
+                                <li><a href="#" class="nav-link" data-target="faq-nav">Preguntas Frecuentes</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- DATOS PERSONALES -->
+                <div class="container-content" id="data-user-nav">
+                    <section id="datos-usuario">
+                        <h2>Datos Personales</h2>
+                        <form id="form-datos-usuario">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" value="Juan Pérez" readonly>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" value="juan.perez@example.com" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="contraseña">Contraseña</label>
+                                <input type="text" id="contraseña" name="contraseña" value="juan.perez@example.com" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" value="+54 9 261 123 4567" readonly>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="direccion">Dirección</label>
+                                <input type="text" id="direccion" name="direccion" value="Cnel. Rodriguez 273, Mendoza" readonly>
+                            </div>
+                            
+                            <!-- Botones para editar y guardar -->
+                            <div class="container-buttons">
+                                <button type="button" id="btn-editar" onclick="habilitarEdicion()">Editar</button>
+                                <button type="submit" id="btn-guardar" style="display: none;">Guardar</button>
+                            </div>
+                            
+                        </form>
+                    </section>                            
+                </div>
+
+
+
+                <!-- DATOS DE LOS PEDIDOS -->
+                <div class="container-content hide" id="orders-nav">    
+                    <section id="datos-usuario">
+                        <h2>Pedidos Realizados</h2>
+                        <ul class="lista-pedidos" id="lista-pedidos">
+                            <!-- La lista de pedidos se llenará dinámicamente -->
+                           
+                        </ul>
+                    </section> 
+                </div>
+
+
+
+                <!-- DATOS DE CONVERSIONES -->
+                <div class="container-content hide" id="faq-nav">
+                    <section id="preguntas-frecuentes">
+                        <h2>Preguntas Frecuentes</h2>                            
+                        <div class="faq-item">
+                            <button class="faq-question">¿Cómo realizo un pedido?</button>
+                            <div class="faq-answer">
+                                <p>Para realizar un pedido, simplemente seleccioná los productos que querés en el menú, agregalos al carrito y seleccionael metodo de pago.</p>
+                            </div>
+                        </div>                    
+                        <div class="faq-item">
+                            <button class="faq-question">¿Cuáles son los métodos de pago aceptados?</button>
+                            <div class="faq-answer">
+                                <p>Aceptamos pagos con tarjeta de crédito, débito y criptomonedas con Binance.</p>
+                            </div>
+                        </div>                    
+                        <div class="faq-item">
+                            <button class="faq-question">¿Cuál es el tiempo estimado de entrega?</button>
+                            <div class="faq-answer">
+                                <p>El tiempo de entrega estimado es de 30 a 45 minutos, dependiendo de la ubicación.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Se puede retirar el pedido en el local?</button>
+                            <div class="faq-answer">
+                                <p>Desde la pagina web se puede realizar un pedido para delivery. Para retirar en el local, llama al numero que seencuentra en el pie de pagina.</p>
+                            </div>
+                        </div>                                              
+                        <div class="faq-item">
+                            <button class="faq-question">¿Cuánto cuesta el envío?</button>
+                            <div class="faq-answer">
+                                <p>El costo de envío depende de la distancia. Podés ver el precio al momento de realizar el pedido.</p>
+                            </div>
+                        </div>                            
+                        <div class="faq-item">
+                            <button class="faq-question">¿Puedo modificar o cancelar un pedido después de realizarlo?</button>
+                            <div class="faq-answer">
+                                <p>Si necesitás modificar o cancelar un pedido, comunicate al número de contacto lo antes posible. Haremos lo posible porcumplir con tu solicitud si el pedido no está en preparación.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Tienen opciones vegetarianas o veganas?</button>
+                            <div class="faq-answer">
+                                <p>Sí, ofrecemos varias opciones vegetarianas y veganas en nuestro menú. ¡Esperamos que las disfrutes!</p>
+                            </div>
+                        </div>                  
+                        <div class="faq-item">
+                            <button class="faq-question">¿Ofrecen opciones para personas con alergias alimentarias?</button>
+                            <div class="faq-answer">
+                                <p>Contamos con opciones sin gluten y platos aptos para personas con algunas alergias. Consultá el menú para más detalleso contactanos si tenés alguna duda.</p>
+                            </div>
+                        </div> 
+                    </section>
+                </div>
+            </div>
+        </main>
+    
+
+        <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FOOTER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
+        <div class="conntainer-footer">
+            <footer>
+                <section id="footer-name">
+                    <p>Buen<span>SABOR</span></p>
+                    <div id="container-contact">
+                        <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/telefono.png" alt="">+54 9 261 123 4567</div>
+                        <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/ubi.png" alt="">Cnel. Rodriguez 273, Ciudad, Mendoza</div>
+                        <div class="contact"><img src="IMAGENES BUEN SABOR/MAIN/relojFooter.png" alt="">Lunes a Viernes, 9 AM - 9 PM</div>
+                    
+                    </div>
+                </section>
+            </footer>
+        </div>
+    </div>
+    
+    <script src="/front-end/src/scripts/users/user-data.mjs"></script>
+    <script src="/front-end/src/scripts/users/userPages.js"></script>
+
+</body>
+</html>

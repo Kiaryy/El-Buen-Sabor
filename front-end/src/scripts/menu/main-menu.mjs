@@ -1,5 +1,4 @@
 import { show_plates } from "./show-plates/show-plates.mjs";
-import { show_plates_local } from "./show-plates/local-plates/show-plate-local.mjs";
 // Selección de las secciones donde se mostrarán los productos
 const section_hamburguesa = document.querySelector('#section-hamburguesa');
 const section_pizza = document.querySelector('#section-pizza');
@@ -7,24 +6,33 @@ const section_empanada = document.querySelector('#section-empanada');
 const section_ensalada = document.querySelector('#section-ensalada');
 const section_acompañamiento = document.querySelector('#section-acompañamiento');
 const section_postre = document.querySelector('#section-postre');
-const button_profile=document.querySelector('.profile')
+const button_profile=document.querySelector('#profile')
+const button_cerrar_sesion=document.querySelector('#cerrar_sesion')
 
 
 
 
 // Al cargar la página
 window.onload = async function () {
-    let users = JSON.parse(localStorage.getItem('Users')) || [];
 
-    
-    let index = users.findIndex(u => u.state == true);
-
-    
-    if (index!=-1) {
-  
-        
-        button_profile.innerHTML = 'Perfil';
+    if (localStorage.getItem("Users") !== null) {
+        console.log("La base 'Users' existe en localStorage.");
+        let users = JSON.parse(localStorage.getItem('Users')) || [];
+        var index = users.findIndex(u => u.state == true);
+    } else {
+        button_profile.innerHTML = 'Registro';
+        console.log("La base 'Users' no existe en localStorage.");
     }
+    if (index!=-1) {
+        button_profile.innerHTML = 'Perfil';
+        
+        button_profile.addEventListener("click", function(event) {
+            event.preventDefault();
+            const menu = document.getElementById("menu-hamburguesa");
+            menu.classList.toggle("menu-hidden");
+          });
+    }
+    
     const sectionMap = {
         HAMBURGUESA: section_hamburguesa,
         PIZZA: section_pizza,
@@ -33,16 +41,20 @@ window.onload = async function () {
         ACOMPAÑANMIENTO: section_acompañamiento,
         POSTRE: section_postre
     };
-       
-        console.log("Cargando productos...");
-        
-        // URL de la API para obtener los platos
-        if (!localStorage.getItem('Platos')) {
-        //   Realizar la solicitud GET a la API
-        show_plates(sectionMap)
-         }else{
-            show_plates_local(sectionMap)
 
-    }   
+        console.log("Cargando productos...");
+        // Mostrar la animación de carga
+        loader.style.display = 'block';
+
+        // URL de la API para obtener los platos
+        // if (!localStorage.getItem('Platos')) {
+        //   Realizar la solicitud GET a la API
+    
+        
+        try {
+            await show_plates(sectionMap);
+        } catch (error) {
+            console.error("Error cargando los platos:", error);
+        } 
        
 };
