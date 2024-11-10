@@ -35,7 +35,7 @@ document.getElementById("pagar").addEventListener("click", async () => {
         guadarPedido(orderData)
 
     
-        const response = await fetch("https://proactive-intuition-production-15d4.up.railway.app/pedido/createPreference", {
+        const response = await fetch("http://localhost:8080/pedido/createPreference", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -131,7 +131,7 @@ export const guadarPedido=(pedido)=>{
 const agregarHistorial=(pedido)=>{
     //FUNCION PARA ENVIAR LOS DATOS A LA API
     // Assuming your API endpoint is 'https://your-api-endpoint.com/upload'
-    const url="https://proactive-intuition-production-15d4.up.railway.app/pedido/realizarPedido"
+    const url="http://localhost:8080/pedido/realizarPedido"
     // Create a JSON object to send
 
     fetch(url, {

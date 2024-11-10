@@ -60,7 +60,7 @@ confirmPaymentButton.addEventListener("click", () => {
         };
         console.log(paymentData);
       
-        fetch("https://proactive-intuition-production-15d4.up.railway.app/binance/create", { 
+        fetch("http://localhost:8080/binance/create", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

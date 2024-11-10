@@ -23,7 +23,7 @@ export async function toggleStatus(id,articulo){
             
             
             // var url=`http://localhost:8080/platos/${id}`
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/platos/${id}`
+            var url=`http://localhost:8080/platos/${id}`
            
           
         }else{
@@ -39,7 +39,7 @@ export async function toggleStatus(id,articulo){
             }
     
             // var url=`http://localhost:8080/promotions/${id}`
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/promotions/${id}`
+            var url=`http://localhost:8080/promotions/${id}`
         }
         
         await api_editar(url,update)

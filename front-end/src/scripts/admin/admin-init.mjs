@@ -48,28 +48,28 @@ window.onload =async function () {
         if (funciones[section.id]) {
             if (section.id=="platos") {
                 // var url = 'http://localhost:8080/platos/simple';
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/platos/simple';
+                var url = 'http://localhost:8080/platos/simple';
             
             } 
             else if(section.id=="compras"){
                 // var url='http://localhost:8080/historypurchased/findAll'
-                var url='https://proactive-intuition-production-15d4.up.railway.app/historypurchased/findAll'
+                var url='http://localhost:8080/historypurchased/findAll'
             }
             else if(section.id=="ventas"){
                 // var url='http://localhost:8080/historySale/findAll'
-                var url='https://proactive-intuition-production-15d4.up.railway.app/historySale/findAll'
+                var url='http://localhost:8080/historySale/findAll'
             }
             
             else if(section.id=="personal"){
                 
                 // var url='http://localhost:8080/employees/findAll'
-                var url='https://proactive-intuition-production-15d4.up.railway.app/employees/findAll'
+                var url='http://localhost:8080/employees/findAll'
             
             }
             
             if(section.id=="insumos"){
                 // var url = 'http://localhost:8080/article/findAll';
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/article/findAll';
+                var url = 'http://localhost:8080/article/findAll';
             
 
             }
@@ -77,16 +77,16 @@ window.onload =async function () {
                 
                 // var url = 'http://localhost:8080/promotions/findAll';
 
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/promotions/findAll';
+                var url = 'http://localhost:8080/promotions/findAll';
             }else if (section.id=="proveedores") {
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/providers/findAll';
+                var url = 'http://localhost:8080/providers/findAll';
                 // var url = 'http://localhost:8080/providers/findAll';
                 
             }
             else if(section.id=="bebidas"){
                 
                 // var url = 'http://localhost:8080/bebidas/findAll';
-                var url = 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/findAll';
+                var url = 'http://localhost:8080/bebidas/findAll';
             }
             const table=section.querySelector("table")
             await obtenerDatos(funciones[section.id],url,table)
