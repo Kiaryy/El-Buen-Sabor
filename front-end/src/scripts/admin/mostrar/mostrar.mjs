@@ -153,8 +153,19 @@ export const obtenerDatos = async (entity, url, table) => {
                     }
                 }).join  ('');
            
+            }  else {
+                //se agrega el valor y el boton de editar
+                tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
+                    `
+                    <td>
+                        <button onclick="editItem(${item[config.idKey]}, '${entity}')">
+                            <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
+                        </button>
+                        
+                    </td>
+                    `;
             }
-
+            
             table.appendChild(tr);
         });
 

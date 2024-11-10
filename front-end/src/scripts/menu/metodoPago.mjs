@@ -118,9 +118,10 @@ export const guadarPedido=(pedido)=>{
         plato.push({ plateName, price });
     });
     console.log(plato);
+    const deilvery = ["Tobias", "Angel", "Diego"]
     const envio={
         userId: id,
-        deliveryName: nombre,
+        deliveryName: deilvery[Math.floor(Math.random()*deilvery.length)],
         platos: plato
     }
     agregarHistorial(envio)
