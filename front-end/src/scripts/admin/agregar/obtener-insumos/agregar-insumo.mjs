@@ -1,36 +1,29 @@
 //FUNCIO PARA OBTENER TODOS LOS INSUMOS
 
-import { tabla_insumos } from "../../mostrar/mostrar.mjs";
+import { proveedores_producto_id} from "../../mostrar/mostrar.mjs";
 
 export const agregarInsumos=(valor)=>{
     if (valor=="proveedor") {
         
         var productSelect = document.querySelectorAll('.producto');
-        tabla_insumos.forEach(insumo => {
-        
+        for (const [key] of Object.entries(proveedores_producto_id)) {
+            console.log(key);
+            
             const option = document.createElement('option');
-    
-            option.value =insumo.name
-            option.textContent=insumo.name
+            option.value =key
+            option.textContent=key
             productSelect.forEach(select=>{
-    
-                select.appendChild(option.cloneNode(true))
+
+                select.appendChild(option)
             })
-        }); 
-    }else{
-        var productSelect = document.getElementById('categoria_select');
-        tabla_insumos.forEach(insumo => {
-        
-            const option = document.createElement('option');
-    
-            option.value =insumo.name
-            option.textContent=insumo.name
-      
-    
-            productSelect.appendChild(option.cloneNode(true))
-        
-        }); 
+            
+            
+        }
     }
+     
+    
+    
+
     
     
 

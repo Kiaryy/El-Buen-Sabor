@@ -2,6 +2,7 @@
 import { proveedores_select ,categoriaCompletarProveedor} from "../agregar/obtener-provedores/obtener_proveedores.mjs";
 import { cargos } from "../agregar/cargos/cargos.mjs";
 import { saveData } from "../agregar/agregar.mjs";
+import { agregarInsumos } from "../agregar/obtener-insumos/agregar-insumo.mjs";
 let isAdding = false;
 
 export const editar_fila = (id, seccion) => {
@@ -21,6 +22,8 @@ export const editar_fila = (id, seccion) => {
 
 //AGREGAR EL BOTON PARA ELEGIR LAS CATEGORIA PRE DEFINIDAS Y QUE SE PONGAN LOS PROVEEDORES AUTOMATICO
     celdas.forEach((celda, index) => {
+        console.log(celdas.value);
+        
         if (seccion=="personal") {
             celda.innerHTML = `
             <input type="text" class="input-styles"value="${celda.textContent.trim()}">
@@ -35,7 +38,9 @@ export const editar_fila = (id, seccion) => {
      
     });
     if (seccion == "insumos") {
-        celdas[3].innerHTML=`
+     
+        
+        celdas[2].innerHTML=`
         <select id="categoria_select"> 
                 <option>CATEGORIA</>
                 </select>
@@ -45,7 +50,8 @@ export const editar_fila = (id, seccion) => {
         agregarInsumos("insumos")
         categoriaCompletarProveedor()
     const selectCategoria = document.getElementById('categoria_select');
-    celdas[celdas.length-1].id="ultima-compra"
+    celdas[celdas.length-2].id="ultima-compra"
+    celdas[celdas.length-2].innerHTML=valoresOriginales[celdas.length-2]
     
     
     selectCategoria.addEventListener('change', function () {
@@ -81,6 +87,8 @@ export const editar_fila = (id, seccion) => {
    
     //CAMBIO LA PARTE DE OPCINES
     let opciones = celdas[celdas.length - 1]
+    console.log(opciones);
+    
     opciones.innerHTML = `
     <td>
     <button class="save-item">Guardar</button>
@@ -90,23 +98,23 @@ export const editar_fila = (id, seccion) => {
     //EVENTO SI TOCA CANCELAR , SE REGRESA COMO ESTABA ANTES
     fila.querySelector('.cancel-item').addEventListener('click', function () {
         celdas.forEach((celda, index) => {
+            celda.textContent = valoresOriginales[index]
             if (seccion=="personal") {
-                celda.textContent = valoresOriginales[index]
                     if (index == (celdas.length - 1)) {
                         celda.innerHTML = `${valorOriginalUltimo}`
-        
-        
+
                     }
                 
             }else{
                 if (index != 0) {
                    
-                }
+              
                 if (index == (celdas.length - 1)) {
                     celda.innerHTML = `${valorOriginalUltimo}`
     
     
                 }
+            }
             }
 
           

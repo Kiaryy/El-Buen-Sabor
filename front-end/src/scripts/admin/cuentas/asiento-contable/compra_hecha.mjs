@@ -23,6 +23,6 @@ export const compra_hecha=(compra,tipo)=>{
     };
     //lama a la funcion para subir a la base
     llamar_api(new_compra_banco)
-
+    location.reload()
 
 }

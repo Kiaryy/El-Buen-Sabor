@@ -35,7 +35,7 @@ const sections = {
         createRow: () => `
             <td>${(lastIds.insumos + 1)}</td>
             <td><input type="text" class="input-styles" placeholder="Nombre"></td>
-            <td><input type="text" class="input-styles" placeholder="Denominacion"></td>
+    
             <td>
                 <select id="categoria_select"> 
                 <option>CATEGORIA</>
@@ -228,7 +228,7 @@ export const addItem = (section) => {
         table.insertBefore(newRow, table.rows[1]);
         toggleColumns(section)
         if (section == "insumos") {
-            agregarInsumos("insumo")
+            // agregarInsumos("insumo")
             //llama a la funcion para obtener el proveedor
             obtener_proveedor(newRow)
             //llama a la funcion para que aparezcan los proveedores
@@ -380,8 +380,6 @@ const enviarData = async (byteArray, section, values, additionalData, url, urlEd
         const articles = arti.map(value => `${value}`);
 
         const container_product = document.getElementById("cell_poduct")
-
-
         const product = container_product.querySelectorAll("select")
         const productValues = Array.from(product).map(input => input.value);
 
@@ -548,7 +546,7 @@ export function addProductSelect() {
     containerProduct.appendChild(newInput);
     containerProduct.appendChild(deleteButton);
     // Añadir el contenedor en la celda antes del botón "Agregar otro producto"
-    productCell.insertBefore(inputContainer, productCell.lastElementChild);
+    // productCell.insertBefore(inputContainer, productCell.lastElementChild);
     agregarInsumos("proveedor")
 
  
