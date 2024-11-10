@@ -26,7 +26,7 @@ document.getElementById("pagar").addEventListener("click", async () => {
             const itemData = {
                 title: descriptionText.split(" x")[0],
                 quantity: quantity,
-                price: price
+                price: price/quantity
             };
             console.log("Objeto itemData creado:", itemData);
             orderData.push(itemData);
