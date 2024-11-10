@@ -51,9 +51,15 @@ confirmPaymentButton.addEventListener("click", () => {
         document.getElementById("modal-crypto").style.display = "none";
  
         const totalTransformado=await convertirDePesosACriptomonedas(total,currency)
-      
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        let counter = 0;
+        while (counter < 25) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+            counter += 1;
+          }
         const paymentData = {
-            merchantTradeNo: "dsdsssdasdadasdxz",   
+            merchantTradeNo: result,   
             orderAmount: totalTransformado,           
             currency: currency,
             message: "El buen Sabor"
