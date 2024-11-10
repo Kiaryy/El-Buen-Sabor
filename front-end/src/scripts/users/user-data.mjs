@@ -36,7 +36,7 @@ window.onload = async function () {
     const email = users[userIndex].mail;
     const pedidos = await there_is_email(email);
 
-    console.log("Pedidos obtenidos:", pedidos);
+
 
     // Selecciona el elemento de la lista
     const listaPedidos = document.getElementById("lista-pedidos");
@@ -48,11 +48,15 @@ window.onload = async function () {
         // Si hay pedidos, los muestra
         pedidos.forEach(pedido => {
             const pedidoItem = document.createElement("li");
-            console.log(pedido.productos);
+        
             
-            pedidoItem.innerHTML = `
-                <span>Pedido #${pedido.pedidoId}</span> - Productos: ${pedido.productos} - Nombre del repartidor: ${pedido.nombreDelivery}- Fcha:${pedido.date}
+            const plato= pedido.platos.map(plate => plate.plateName).join(', ');
+             pedidoItem.innerHTML = ` <span>-Pedido de la fecha #${pedido.date}</span><br>
+                <span>- Productos: ${plato} </span><br>
+                <span>- Nombre del repartidor: ${pedido.nombreDelivery}</span><br>
+                
             `;
+        
             listaPedidos.appendChild(pedidoItem);
         });
     }
@@ -105,7 +109,7 @@ document.getElementById("form-datos-usuario").addEventListener("submit", functio
     const usuarioActualizado = {
         name: document.getElementById("nombre").value,
         passWord:document.getElementById("contraseña").value,
-        email: document.getElementById("email").value,
+        mail: document.getElementById("email").value,
         phoneNumber: document.getElementById("telefono").value,
         addresses:document.getElementById("direccion").value.split(",").map(direccion => direccion.trim())
     };

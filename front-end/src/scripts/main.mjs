@@ -1,11 +1,10 @@
 
 const button_profile=document.querySelector('#profile')
+const button_cerrar_sesion=document.querySelector('#cerrar_sesion')
 
 
 
-window.onload = function () {
-    console.log("waeaweaweeaw");
-    
+window.onload = function () { 
     if (localStorage.getItem("Users") !== null) {
         console.log("La base 'Users' existe en localStorage.");
         let users = JSON.parse(localStorage.getItem('Users')) || [];
@@ -28,3 +27,12 @@ window.onload = function () {
         console.log("La base 'Users' no existe en localStorage.");
     }
 }
+button_cerrar_sesion.addEventListener('click',()=>{
+    let users = JSON.parse(localStorage.getItem('Users')) || [];
+    var index = users.findIndex(u => u.state == true);
+    users[index].state=false
+    localStorage.setItem('Users', JSON.stringify([users[index]]));
+    alert("Se cerro la sesion correctamente")
+    location.reload()
+
+})

@@ -14,24 +14,25 @@ const button_cerrar_sesion=document.querySelector('#cerrar_sesion')
 
 // Al cargar la página
 window.onload = async function () {
-
+    
     if (localStorage.getItem("Users") !== null) {
         console.log("La base 'Users' existe en localStorage.");
         let users = JSON.parse(localStorage.getItem('Users')) || [];
         var index = users.findIndex(u => u.state == true);
+        if (index!=-1) {
+            button_profile.innerHTML = 'Perfil';
+            
+            button_profile.addEventListener("click", function(event) {
+                event.preventDefault();
+                const menu = document.getElementById("menu-hamburguesa");
+                menu.classList.toggle("menu-hidden");
+              });
+        }
     } else {
         button_profile.innerHTML = 'Registro';
         console.log("La base 'Users' no existe en localStorage.");
     }
-    if (index!=-1) {
-        button_profile.innerHTML = 'Perfil';
-        
-        button_profile.addEventListener("click", function(event) {
-            event.preventDefault();
-            const menu = document.getElementById("menu-hamburguesa");
-            menu.classList.toggle("menu-hidden");
-          });
-    }
+   
     
     const sectionMap = {
         HAMBURGUESA: section_hamburguesa,
@@ -58,3 +59,12 @@ window.onload = async function () {
         } 
        
 };
+button_cerrar_sesion.addEventListener('click',()=>{
+    let users = JSON.parse(localStorage.getItem('Users')) || [];
+    var index = users.findIndex(u => u.state == true);
+    users[index].state==false
+    localStorage.setItem('Users', JSON.stringify([users[index]]));
+    alert("Se cerro la sesion correctamente")
+    location.reload()
+
+})

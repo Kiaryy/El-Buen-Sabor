@@ -1,4 +1,4 @@
-import { load_bebidas } from "../show-drinks/show-drinks.mjs";
+import { load_bebidas, nombreBebidas } from "../show-drinks/show-drinks.mjs";
 import { totalBebidas } from "../show-drinks/show-drinks.mjs";
 
 
@@ -58,7 +58,7 @@ window.onclick = function(event) {
 // Funciones de aumentar/disminuir cantidad y actualizar el total en el modal de platos
 function increaseQuantity(id) {
     const inputField = document.getElementById(`${id}`);
-
+    console.log(inputField);
     
     let currentValue = parseInt(inputField.value);
     inputField.value = currentValue + 1;
@@ -90,7 +90,7 @@ function updateTotalFood(tipo) {
         totalPromos = price * qtyClasica; // Calcula el subtotal de los platos
         updateTotalCarrito(tipo);
     }
-    else if(tipo=="opcion-clasica"){
+    else {
         const price = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
 
         const qtyClasica = parseInt(document.getElementById('opcion-clasica').value);
@@ -118,11 +118,18 @@ let button_add = document.querySelector('.btn-agregar-carrito');
 const carritoPlato = document.querySelector("#pedido ul");
 let shopping_cart = 0;
 
+
 button_add.addEventListener("click", () => {
+
+
+    let qtyBebida = parseInt(document.getElementById('opcion-bebidas').value); // Cantidad seleccionad
     let name = modalNameFood.textContent; 
     let qtyPlato = parseInt(document.getElementById('opcion-clasica').value); // Cantidad seleccionada
+   
     let pricePlato = parseInt(modalPriceFood.textContent.replace('Precio: $', ''));
-    let total_price_plato = pricePlato * qtyPlato; 
+    console.log(pricePlato);
+    
+    let total_price_plato = (pricePlato * qtyPlato); 
 
     if (qtyPlato > 0) {
         // Verifica si el producto ya está en el carrito
@@ -132,14 +139,25 @@ button_add.addEventListener("click", () => {
         if (existingItem) {
             showToast('Ya tenes el plato en el carrito', 2500);
             
-        }else{        
-            let newItem = document.createElement("li");
-            newItem.classList.add("item-carrito");
-            newItem.innerHTML = `${name} x${qtyPlato} <span>$${total_price_plato}</span>`;
-            shopping_cart += total_price_plato;
-            carritoPlato.appendChild(newItem);
-            update_cart_plato(shopping_cart);
-            showToast('Producto agregado al carrito correctamente', 1500);
+        }else{      
+            if (nombreBebidas) {
+                
+                let newItem = document.createElement("li");
+                newItem.classList.add("item-carrito");
+                newItem.innerHTML = `${nombreBebidas} x${qtyBebida} <span>$${totalBebidas}</span>`;
+                shopping_cart += totalBebidas;
+                carritoPlato.appendChild(newItem);
+                update_cart_plato(shopping_cart);
+            } 
+
+                let newItem = document.createElement("li");
+                newItem.classList.add("item-carrito");
+                newItem.innerHTML = `${name} x${qtyPlato} <span>$${total_price_plato}</span>`;
+                shopping_cart += total_price_plato;
+                carritoPlato.appendChild(newItem);
+                update_cart_plato(shopping_cart);
+                showToast('Producto agregado al carrito correctamente', 1500);
+            
         }
     }
 });

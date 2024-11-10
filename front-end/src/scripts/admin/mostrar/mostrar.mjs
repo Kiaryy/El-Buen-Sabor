@@ -20,7 +20,7 @@ export const lastIds = {
 // Configuración general de cada tipo de entidad
 export const entityConfig = {
     bebidas: { columns: ['id', 'nombre', 'descripcion', 'precio', 'stock'], idKey: 'id' },
-    compras: { columns: ['id','provider', 'purchaseDate', 'itemsPurchased'], idKey: 'id' },
+    compras: { columns: ['id','provider', 'purchaseDate', 'product'], idKey: 'id' },
     ventas: { columns: ['id','userId', 'dateSale', 'pedido'], idKey: 'id' },
     insumos: { columns: ['articleId', 'name', 'category', 'provider', 'priceUnit', 'precioCompra', 'stockActual', 'existencies', 'lastPurchased'], idKey: 'articleId' },
     personal: { columns: ['name', 'charge', 'shift', 'hourlySalary', 'absences', 'phoneNumber', 'state'], idKey: 'id' },
@@ -84,6 +84,8 @@ export const obtenerDatos = async (entity, url, table) => {
                 </td>
                 `;
             } else if (entity === "compras") {
+             
+                
                 //se agrega solo los valores
                 tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('');
             } else if (entity === "platos") {
@@ -151,19 +153,6 @@ export const obtenerDatos = async (entity, url, table) => {
                     }
                 }).join  ('');
            
-            }
-            
-            else {
-                //se agrega el valor y el boton de editar
-                tr.innerHTML = config.columns.map(col => `<td>${item[col] !== undefined ? item[col] : 'falta'}</td>`).join('') +
-                    `
-                    <td>
-                        <button onclick="editItem(${item[config.idKey]}, '${entity}')">
-                            <img src="/front-end/IMAGENES BUEN SABOR/ADMIN/edit.png" alt="editar" title="Editar">
-                        </button>
-                        
-                    </td>
-                    `;
             }
 
             table.appendChild(tr);

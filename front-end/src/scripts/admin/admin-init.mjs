@@ -24,6 +24,8 @@ button_empezar_compra.addEventListener('click',()=>{
 button_simu_compra.addEventListener('click',()=>{
     const selectElement = document.getElementById('nombre_proveedor');
     const selectedOption = selectElement.options[selectElement.selectedIndex];
+   
+    
     const precio = selectedOption.getAttribute('data-precio');
     const tipo=document.getElementById('metodo_pago')
     compra_hecha(Number(precio),tipo.value)
