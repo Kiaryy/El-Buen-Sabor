@@ -13,7 +13,6 @@ export const  llamar_api=(asiento)=>{
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        alert("asiento registrado")
         return response.json();
     })
     

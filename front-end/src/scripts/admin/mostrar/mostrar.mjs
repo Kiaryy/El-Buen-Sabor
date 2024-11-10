@@ -32,7 +32,7 @@ export const entityConfig = {
 export const platos_todos = [];
 export const bebidas_todas = [];
 export const proveedores_producto_id={}
-export const tabla_insumos=[];
+
 export const tabla_nombre_insumos=[]
 export const proveedores_nombre=[]
 
@@ -65,10 +65,7 @@ export const obtenerDatos = async (entity, url, table) => {
                     
                 }
                     else{
-                        if (!tabla_insumos.find(insumo => insumo.name === item[config.columns[3]])) {
-                            // Si no lo contiene, agrega un nuevo objeto con el 'name'
-                            tabla_insumos.push({ name: item[config.columns[3]] });
-                        }
+                       
                         if (!tabla_nombre_insumos.find(insumo => insumo.name === item[config.columns[1]])) {
                             // Si no lo contiene, agrega un nuevo objeto con el 'name'
                             tabla_nombre_insumos.push({ name: item[config.columns[1]], id: item[config.columns[0]]});
@@ -179,7 +176,7 @@ export const obtenerDatos = async (entity, url, table) => {
         lastIds[entity] = last_id(data, config.idKey);
 
         // Muestra la alerta después de que se han cargado todos los datos
-        alert(`Los productos de: ${entity} ya estan cargadas`);
+   
     } catch (error) {
         console.error('Hubo un problema con la solicitud:', error);
     }

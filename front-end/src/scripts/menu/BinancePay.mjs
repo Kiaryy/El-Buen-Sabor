@@ -64,8 +64,6 @@ confirmPaymentButton.addEventListener("click", () => {
             currency: currency,
             message: "El buen Sabor"
         };
-        console.log(paymentData);
-      
         fetch("http://localhost:8080/binance/create", { 
             method: "POST",
             headers: {
@@ -79,13 +77,15 @@ confirmPaymentButton.addEventListener("click", () => {
                 
                 const urlCrypto = res.data.checkoutUrl
                 window.open(urlCrypto)
+                location.reload()
 
-            alert("Pago confirmado con éxito.");
+           
         })
         .catch(error => {
             console.error("Error en el pago:", error);
-            alert("Hubo un error al procesar el pago.");
+   
         });
+        
 
     });
     }

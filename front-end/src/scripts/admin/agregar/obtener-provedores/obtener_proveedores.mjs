@@ -41,10 +41,10 @@ export const proveedores_select=(selectCategoria,celdas)=>{
             }
             console.log(id_proveedor);
             
-            celdas[4].textContent=id_proveedor
-            if (!celdas[4].id) {
+            celdas[3].textContent=id_proveedor
+            if (!celdas[3].id) {
                 
-                celdas[4].id="proveedor"
+                celdas[3].id="proveedor"
             }
             // Actualizar la celda 4 con el proveedor correspondient
           
