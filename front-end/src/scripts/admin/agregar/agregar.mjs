@@ -26,7 +26,7 @@ const sections = {
             </td>
         `,
         // url: 'http://localhost:8080/bebidas/add'
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/add'
+        url: 'http://localhost:8080/bebidas/add'
     },
     insumos: {
         lastId: lastIds.insumos,
@@ -54,7 +54,7 @@ const sections = {
             </td>
         `,
 
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/article/add'
+        url: 'http://localhost:8080/article/add'
         // url: 'http://localhost:8080/article/add'
     },
     personal: {
@@ -89,7 +89,7 @@ const sections = {
                 <button class="cancel-item">Cancelar</button>
             </td>
         `,
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/employees/add'
+        url: 'http://localhost:8080/employees/add'
         // url: 'http://localhost:8080/employees/add'
     },
     platos: {
@@ -132,7 +132,7 @@ const sections = {
         `,
         
         // url: 'http://localhost:8080/platos/add'
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/platos/add'
+        url: 'http://localhost:8080/platos/add'
     },
     proveedores: {
         lastId: lastIds.proveedores,
@@ -163,7 +163,7 @@ const sections = {
             </td>
         `,
         // url: 'http://localhost:8080/providers/add'
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/providers/add'
+        url: 'http://localhost:8080/providers/add'
     },
     promociones: {
         lastId: lastIds.promociones,
@@ -196,7 +196,7 @@ const sections = {
             </td>
             `,
 
-        url: 'https://proactive-intuition-production-15d4.up.railway.app/promotions/add'
+        url: 'http://localhost:8080/promotions/add'
     }
 };
 

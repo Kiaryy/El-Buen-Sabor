@@ -4,7 +4,7 @@ export let totalBebidas;
 export const load_bebidas = async () => {
 
     const bebidasSelect = document.getElementById('add-bebida');
-    const url = 'https://proactive-intuition-production-15d4.up.railway.app/bebidas/findAll';
+    const url = 'http://localhost:8080/bebidas/findAll';
     //const url = 'http://localhost:8080/bebidas/findAll';
 
 totalBebidas = 0;

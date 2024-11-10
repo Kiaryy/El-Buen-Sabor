@@ -124,17 +124,17 @@ export const editar_fila = (id, seccion) => {
             return;
         }
         if (seccion == "bebidas") {
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/bebidas/${id}`
+            var url=`http://localhost:8080/bebidas/${id}`
             // var url=`http://localhost:8080/bebidas/${id}`
     
         }else if (seccion=="personal") {
             // var url=`http://localhost:8080/article/${id}`
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/employees/${id}`
+            var url=`http://localhost:8080/employees/${id}`
         }else if (seccion=="insumos") {
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/article/${id}`
+            var url=`http://localhost:8080/article/${id}`
             // var url=`http://localhost:8080/article/${id}`
         }else if(seccion="proveedores"){
-            var url=`https://proactive-intuition-production-15d4.up.railway.app/providers/${id}`
+            var url=`http://localhost:8080/providers/${id}`
             // var url=`http://localhost:8080/providers/${id}`
             
         }
