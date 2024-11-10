@@ -100,29 +100,31 @@ window.onclick = function(event) {
         
 }
 }
+
 export const guadarPedido=(pedido)=>{
-    // const users = JSON.parse(localStorage.getItem("Users")) || [];
-    // const userIndex = users.findIndex(user => user.state === true);
-    // const id=users[userIndex].id
-    // const nombre=users[userIndex].name
-    // const plato = [];
-    // let plateName = '';
-    // let price = 0;
+    const users = JSON.parse(localStorage.getItem("Users")) || [];
+    const userIndex = users.findIndex(user => user.state === true);
+    const id=users[userIndex].id
+    const nombre=users[userIndex].name
+    const plato = [];
+    let plateName = '';
+    let price = 0;
     
-    // pedido.forEach(datos => {
-    //     plateName = datos.title;  // Asignar el title a plateName
-    //     price = datos.price;      // Asignar el price a price
+    pedido.forEach(datos => {
+        plateName = datos.title;  // Asignar el title a plateName
+        price = datos.price;      // Asignar el price a price
     
-    //     // Agregar al arreglo plato
-    //     plato.push({ plateName, price });
-    // });
-    // console.log(plato);
-    // const envio={
-    //     userId: id,
-    //     deliveryName: nombre,
-    //     platos: plato
-    // }
-    // agregarHistorial(envio)
+        // Agregar al arreglo plato
+        plato.push({ plateName, price });
+    });
+    console.log(plato);
+    const deilvery = ["Tobias", "Angel", "Diego"]
+    const envio={
+        userId: id,
+        deliveryName: deilvery[Math.floor(Math.random()*deilvery.length)],
+        platos: plato
+    }
+    agregarHistorial(envio)
 
 }
 

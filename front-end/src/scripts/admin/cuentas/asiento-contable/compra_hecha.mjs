@@ -1,14 +1,23 @@
 import { llamar_api } from "./llamar_api.mjs";
 //Funcion que construye el objeto del asiento
 export const compra_hecha=(compra,tipo)=>{
-
-    
+    const idProveedor=document.getElementById('nombre_proveedor').value;
+   
+    if (idProveedor=="NOMBRE DEL PROVEEDOR") {
+        alert("ingrese el proveedor ")
+        return false
+    }
     if (tipo=="EFECTIVO") {
         var tipo_cuenta="Efectivo"
     }else if (tipo=="TRANSFERENCIA") {
         var tipo_cuenta="Banco"
         
-    }else{
+    }else if(tipo=="METODO PAGO"){
+        alert("elija el metodo de pago")
+        return false
+    }
+    
+    else{
         var tipo_cuenta="Crypto"
         
     } 

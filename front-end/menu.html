@@ -15,7 +15,15 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="menu.html">MENÚ</a></li>
-                <li><a id="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu">
+                    <li><a id="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu-hamburguesa" class="menu-hidden">
+                    <ul>
+                        <li><a href="perfil.html">Mi Perfil</a></li>
+                        <li id="cerrar_sesion"><a href="">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+                </div>
             </ul>
         </nav>
     </header>
@@ -148,15 +156,13 @@
                     <button class ="more" onclick="increaseQuantity('opcion-clasica')">+</button>
                 </div>
             </div>
-
-
             <div class="option">
                 <label for="opcion-bebidas">Agregar Bebidas</label>
                 <select name="opcion-bebidas" id="add-bebida" onchange="handleBebidaSelect()">
                     <option value="">Seleccionar una bebida</option>
                 </select>
                 <div id="bebida-quantity-control" class="quantity-control" style="display: none;">
-                    < <div class="quantity-control">
+                     <div class="quantity-control">
                         <button class="less" onclick="decreaseQuantityBebida('opcion-bebidas')">-</button>
                         <input type="number" id="opcion-bebidas" value="0" min="0" readonly>
                         <button class ="more" onclick="increaseQuantityBebida('opcion-bebidas')">+</button>

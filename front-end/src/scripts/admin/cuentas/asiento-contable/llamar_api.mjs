@@ -25,6 +25,8 @@ export const  llamar_api=(asiento)=>{
 }
 const aumentar_prove=()=>{
     const idProveedor=document.getElementById('nombre_proveedor').value;
+    
+
     console.log(typeof idProveedor);
     const id = `http://localhost:8080/providers/purchase/${idProveedor}`;
 fetch(id, {
