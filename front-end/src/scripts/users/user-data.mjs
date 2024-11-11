@@ -51,10 +51,19 @@ window.onload = async function () {
         
             
             const plato= pedido.platos.map(plate => plate.plateName).join(', ');
-             pedidoItem.innerHTML = ` <span>-Pedido de la fecha #${pedido.date}</span><br>
+            const date = new Date(pedido.dateCreated);
+            const date2 = new Date(pedido.dateArrived);
+            let spanEnvio = ``
+            if (new Date() < date2.getTime()) {
+                spanEnvio = `Llega aproximadamente a las: <u>${date2.getHours().toString().padStart(2, '0')}:${date2.getMinutes().toString().padStart(2, '0')}</u>`
+            } else {
+                spanEnvio = `<u>Entregado</u>`
+            }
+            
+            pedidoItem.innerHTML = ` <span>-Pedido de la fecha #${date.getFullYear().toString().padStart(2, '0')}-${(date.getMonth()+1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}</span><br>
                 <span>- Productos: ${plato} </span><br>
                 <span>- Nombre del repartidor: ${pedido.nombreDelivery}</span><br>
-                
+                <span>- ${spanEnvio}</span><br>
             `;
         
             listaPedidos.appendChild(pedidoItem);

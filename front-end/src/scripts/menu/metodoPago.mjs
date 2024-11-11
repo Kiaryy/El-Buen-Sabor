@@ -32,6 +32,36 @@ document.getElementById("pagar").addEventListener("click", async () => {
             orderData.push(itemData);
         });
         console.log("Array completo orderData:", orderData); 
+        let total = 0;
+        orderData.forEach(data => {
+            total += data.price*data.quantity;
+        });
+        const asiento = {
+            cuenta: "Banco",
+            cuenta2: "Mercaderia",
+            debe: 0,
+            haber: total,
+            debe2: total,
+            haber2: 0
+        }
+        const apiEndpoint = 'http://localhost:8080/contabilidad/registrar-asiento';
+    fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(asiento)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    
+    .catch((error) => {
+        // console.error('Error:');
+    });
         guadarPedido(orderData)
 
     
