@@ -54,7 +54,7 @@ window.onload = async function () {
             const date = new Date(pedido.dateCreated);
             const date2 = new Date(pedido.dateArrived);
             let spanEnvio = ``
-            if (date.getTime() < date2) {
+            if (new Date() < date2.getTime()) {
                 spanEnvio = `Llega aproximadamente a las: <u>${date2.getHours().toString().padStart(2, '0')}:${date2.getMinutes().toString().padStart(2, '0')}</u>`
             } else {
                 spanEnvio = `<u>Entregado</u>`
