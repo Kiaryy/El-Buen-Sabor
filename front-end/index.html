@@ -15,7 +15,16 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="menu.html">MENÚ</a></li>
-                <li><a class="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu">
+                    <li><a id="profile" href="sign-up.html">Registro</a></li>
+                <div id="menu-hamburguesa" class="menu-hidden">
+                    <ul>
+                        <li><a href="perfil.html">Mi Perfil</a></li>
+                        <li id="cerrar_sesion"><a href="">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+                </div>
+                
             </ul>
         </nav>
     </header>
@@ -38,131 +47,13 @@
 
     <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MAIN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
     <main class="main">
-
-        <!-- /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~POPULAR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ -->
-         <!-- 
-        <section id="popular">
-            <h2> POPULARES </h2>
-            <div id="container-pop">
-                <div class="product-pop">
-                    <img src="IMAGENES BUEN SABOR/MAIN/muzza doble.png" alt="">
-                    <div class="name-food">
-                        <h5><center>Pizza<br>Hawaiana</center></h5>
-                    </div>
-                    
-                    <div class="add-car">
-                        <div class="description-pop">
-                            <div id="time">
-                                <img src="IMAGENES BUEN SABOR/MAIN/reloj.png" alt="" id="reloj">
-                                <p>15 mins.</p>
-                            </div>
-                            <img src="IMAGENES BUEN SABOR/MAIN/estrellas.png" alt="">
-                            <br>
-                        </div>
-                        <button class="button-to-product">IR AL<br>PRODUCTO</button>
-                    </div>
-                </div>
-
-                <div class="product-pop">
-                    <img src="IMAGENES BUEN SABOR/MAIN/hamburguesaBBQ.png" alt="">
-                    <div class="name-food">
-                        <h5><center>Hamburguesa<br>BBQ</center></h5>
-                    </div>
-                    <div class="add-car">
-                        <div class="description-pop">
-                            <div id="time">
-                                <img src="IMAGENES BUEN SABOR/MAIN/reloj.png" alt="" id="reloj">
-                                <p>15 mins.</p>
-                            </div>
-                            <img src="IMAGENES BUEN SABOR/MAIN/estrellas.png" alt="">
-                            <br>
-                        </div>
-                        <button class="button-to-product">IR AL <br> PRODUCTO</button>
-                    </div>
-                </div>
-
-                <div class="product-pop">
-                    <img src="IMAGENES BUEN SABOR/MAIN/hamburguesaClasica.png" alt="">
-                    <div class="name-food">
-                        <h5><center>Hamburguesa<br>Clasica</center></h5>
-                    </div>
-                    <div class="add-car">
-                        <div class="description-pop">
-                            <div id="time">
-                                <img src="IMAGENES BUEN SABOR/MAIN/reloj.png" alt="" id="reloj">
-                                <p>15 mins.</p>
-                            </div>
-                            <img src="IMAGENES BUEN SABOR/MAIN/estrellas.png" alt="">
-                            <br>
-                        </div>
-                        <button class="button-to-product">IR AL <br> PRODUCTO</button>
-                    </div>
-                </div>
-
-                <div class="product-pop">
-                    <img src="IMAGENES BUEN SABOR/MAIN/empanadas.png" alt="">
-                    <div class="name-food">
-                        <h5><center>Empanadas<br>de Carne</center></h5>
-                    </div>
-                    <div class="add-car">
-                        <div class="description-pop">
-                            <div id="time">
-                                <img src="IMAGENES BUEN SABOR/MAIN/reloj.png" alt="" id="reloj">
-                                <p>15 mins.</p>
-                            </div>
-                            <img src="IMAGENES BUEN SABOR/MAIN/estrellas.png" alt="">
-                            <br>
-                        </div>
-                        <button class="button-to-product">IR AL <br> PRODUCTO</button>
-                    </div>
-                </div>   
-            </div>
-        </section>
-        -->
-
-        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~PROMOCIONES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <section id="promos">
-            <H2>PROMOCIONES</H2>
-            <div id="container-cat">
-
-                <div class="product-cat">
-                    <img src="IMAGENES BUEN SABOR/MAIN/categoriaempanada.png" alt=""> 
-                    <div class="description-cate">
-                        <h5>EMPANADAS</h5>
-                    </div>
-                </div>
-
-                <div class="product-cat">
-                    <img src="IMAGENES BUEN SABOR/MAIN/pizaaCategoria.png" alt=""> 
-                    <div class="description-cate">
-                        <h5>PIZZAS</h5>
-                    </div>
-                </div>
-
-                <div class="product-cat">
-                    <img src="IMAGENES BUEN SABOR/MAIN/hamburguesaCategoria.png" alt=""> 
-                    <div class="description-cate">
-                        <h5>HAMBURGUESAS</h5>
-                    </div>
-                </div>
-
-                <div class="product-cat">
-                    <img src="IMAGENES BUEN SABOR/MAIN/ensaladaCategoria.png" alt=""> 
-                    <div class="description-cate">
-                        <h5>ENSALADAS</h5>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~VERDADEDRO SABOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <section id="taste">
             <div id="text-taste">
-            <h2 id="taste-title">SOBRE NOSOTROS</h2>
-            <p>En Buen Sabor, nuestra misión es reinventar los platos clásicos con un toque único que haga cada bocado memorable. Combinamos        ingredientes frescos y de alta calidad para crear una experiencia culinaria que se adapta a todos los gustos y antojos. </p>
-            <p>Nos dedicamos a crear una oferta culinaria diversa, que incluye desde pizzas artesanales hasta empanadas y hamburguesas, siempre         asegurándonos de que encuentres algo delicioso que se ajuste a tus antojos.
-            Cada día buscamos innovar y sorprender a nuestros clientes con sabores que reflejen nuestra dedicación y amor por la buena comida. ¡Te      invitamos a descubrir el verdadero significado del buen sabor!</p>
+            <h2 id="taste-title">¡Bienvenidos a El Buen Sabor!</h2>
+            <p>Aquí creemos que la buena comida es más que solo un plato; es una experiencia que despierta los sentidos y llena el corazón. 
+            Nuestro menú está diseñado con ingredientes frescos y recetas cuidadosamente seleccionadas para llevarte en un viaje gastronómico único.
+            Ya sea que busques un almuerzo rápido o una cena memorable, estamos aquí para deleitarte con cada bocado.</p>
             </div>
             <img src="/front-end/IMAGENES BUEN SABOR/MAIN/verdadero-sabor.png" alt="chica comiendo hamburguesa">
         </section>
@@ -192,7 +83,8 @@
         </section>
         
     </footer>
-    <script type="module" src="src/scripts/main.mjs"></script>
+    <!-- <script type="module" src="src/scripts/menu/main-menu.mjs"></script> -->
+    <script  src="src/scripts/main.mjs"></script>
 
 </body>
 </html>

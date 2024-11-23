@@ -12,10 +12,13 @@ body  {
     flex-direction: row;
     height: 100vh;
 }
-
+.deshabilitado{
+    background-color: red;
+}
 /* Estilos de la barra lateral */
 .sidebar {
     position: fixed;
+    z-index: 100;
     width: 15%;
     height: 100%;
     background-color: #999999;
@@ -64,9 +67,7 @@ body  {
 .sidebar ul li a:hover {
     background-color: #aaaaaa;
 }
-
-/* Estilos del buscador */
-
+/* ~~~~~~~~~~~~~~~~~~~~~~~ Estilos del buscador ~~~~~~~~~~~~~~~~~~~~~~~ */
 .search-container {
     position: relative;
     width: 50%;
@@ -98,7 +99,7 @@ body  {
     height: 20%;
     background-color: #ffffff;
     display: flex;
-    position: sticky;
+    position: fixed;
     top: 0;
     flex-direction: row;
     justify-content: center;
@@ -108,8 +109,8 @@ body  {
     width: 20px;
     height: 20px;
 }
-
-#add-item{
+/* ~~~~~~~~~~~~~~~~~~~~~~~ Estilos del boton ~~~~~~~~~~~~~~~~~~~~~~~ */
+.add-item{
     position: sticky;
     top: 15%;
     width: 100%;
@@ -119,17 +120,19 @@ body  {
     border-right: 0;
 }
 
-#add-item:hover{
+.add-item:hover{
     background-color: #cccccc;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~ Estilos del contenido ~~~~~~~~~~~~~~~~~~~~~~~ */
 
-/* Estilos del contenido */
 
-
-h2{
+h2 {
     padding-left: 1rem;
 }
 
+.content-section {
+    margin-top: 10%;
+}
 .content {
     margin-left: 15%;
     width: 100%;
@@ -146,14 +149,42 @@ table{
 .data-name{
     position: sticky;
     top: 17.9%;
-}
-table th{
-    background-color: #dddddd;
+    width: 100%;
 }
 
-table, th, td    {
+table th{
+    background-color: #dddddd;
+    font-size: 13px;
+}
+.sticky-top {
+    top: 15%;
+}
+.sticky-top:last-child {
+    top: 18.5%;
+}
+table th, table td {
+    text-align: center;
+    vertical-align: middle; 
+}
+/* Asignar tamaños a las columnas */
+table th:nth-child(1), table td:nth-child(1) {
+    width: 5%;  /* Columna para el ID */
+}
+table th:nth-child(2), table td:nth-child(2) {
+    width: 25%; /* Columna para el Nombre */
+}
+table th:nth-child(4), table td:nth-child(4) {
+    width: 10%; /* Columna para Precio Venta */
+}
+table th:nth-child(7), table td:nth-child(7) {
+    width: 10%; /* Columna para el Stock */
+ 
+}
+
+table, th, td{
     border: 1px solid #DDDDDD;
     border-collapse: collapse;
+    font-size: 13px;
 }
 
 th, td{
@@ -174,8 +205,8 @@ td button {
 }
 
 td button img {
-    width: 22px;
-    height: 22px;
+    width: 17px;
+    height: 17px;
     margin-right: 5px;
 }
 
@@ -193,4 +224,27 @@ td button:hover img {
     background-color: #FFA101; 
     color: #fff; 
     border-radius: 5px; 
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LIBRO MAYOR~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#libro-mayor{
+    width: 15vw;
+    margin: 0 0 2% 2%;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INPUTS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.input-styles {
+    width: calc(100% - 10px);  /* Ajuste para evitar que el input se superponga con los bordes de la celda */
+    font-size: 12px;  
+    margin: 0;
+}
+/* Estilos para los botones de guardar/cancelar */
+.save-item, .cancel-item {
+    font-size: 12px; 
+    padding: 1% 3%;
+    background-color: #FFA101;
+    border: none;
+    cursor: pointer;
+}
+.save-item:hover, .cancel-item:hover {
+    background-color: #dddddd;
 }

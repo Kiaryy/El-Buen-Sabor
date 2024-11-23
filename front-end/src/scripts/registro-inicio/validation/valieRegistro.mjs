@@ -35,13 +35,14 @@ export const valueRegex = {
     login_password: false,
 };
 const regex = {
-    name:/^[a-zA-Z]{3,30}$/,
+    name: /^[a-zA-ZáéíóúÁÉÍÓÚ ]{3,30}$/,
     phone_number: /^\d{10,15}$/,
-    addresses:/^[a-zA-Z0-9 ]{5,40}$/,
+    addresses: /^[a-zA-Z0-9áéíóúÁÉÍÓÚ ]{5,40}$/,
     login_email: /^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
-    sign_up_email:/^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
-    passWord: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
-    login_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$/,
+    sign_up_email: /^[a-zA-Z0-9\.\-_]+@[a-zA-Z]+\.(com|net|gov\.ar)$/,
+    passWord: /^(?=.*[a-záéíóú])(?=.*[A-ZÁÉÍÓÚ])(?=.*\d)[A-Za-záéíóúÁÉÍÓÚ\d]{8,12}$/,
+    login_password: /^(?=.*[a-záéíóú])(?=.*[A-ZÁÉÍÓÚ])(?=.*\d)[A-Za-záéíóúÁÉÍÓÚ\d]{8,12}$/,
+
     // login_password: /^\d{2,15}$/,
     repeat_password: function(value) {
         return value === document.querySelector('input[name="passWord"]').value;
