@@ -6,8 +6,8 @@ Tienda Virtual El Buen Sabor
 Características Principales:
 Inicio de Sesión Personalizado:
 
-Los usuarios pueden registrarse y acceder a su cuenta para personalizar su experiencia de compra.
-Se utiliza localStorage para manejar sesiones activas y mejorar la navegación.
+- Los usuarios pueden registrarse y acceder a su cuenta para personalizar su experiencia de compra.
+- Se utiliza localStorage para manejar sesiones activas y mejorar la navegación.
 Métodos de Pago:
 
 Integración con MercadoPago para pagos rápidos y seguros.
