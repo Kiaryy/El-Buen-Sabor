@@ -1,49 +1,55 @@
-# El-Buen-Sabor
-Nombre del Proyecto:
-Tienda Virtual El Buen Sabor
-##Parte Front-end
+# 🛒 **EL Buen Sabor - Ecommerce Ficticio(Parte del Front-end)**
+---
 
-Características Principales:
-Inicio de Sesión Personalizado:
+## 🚀 **Características Principales**
 
-- Los usuarios pueden registrarse y acceder a su cuenta para personalizar su experiencia de compra.
-- Se utiliza localStorage para manejar sesiones activas y mejorar la navegación.
-Métodos de Pago:
+- **Inicio de Sesión Personalizado**  
+  Los usuarios pueden registrarse e iniciar sesión para personalizar su experiencia de compra. Se utiliza `localStorage` para gestionar la sesión y navegación.
 
-Integración con MercadoPago para pagos rápidos y seguros.
-Opción de realizar transacciones mediante criptomonedas, adaptándose a tendencias actuales.
-Gestión del Perfil del Usuario:
+- **Métodos de Pago Modernos**  
+  - **MercadoPago**: Integración con API para pagos rápidos y seguros.  
+  - **Criptomonedas**: Soporte para transacciones con monedas digitales.  
 
-Visualización y edición de datos personales desde la sección "Tu Perfil".
-Acceso al historial de compras, permitiendo al usuario consultar productos adquiridos previamente y sus detalles.
-Carrito de Compras Dinámico:
+- **Gestión de Perfiles**  
+  - Edición de datos personales en la sección "Tu Perfil".  
+  - Visualización del historial de compras, incluyendo detalles de cada transacción.
 
-Los usuarios pueden agregar productos a su carrito y modificar cantidades antes del pago.
-Validación automática para evitar duplicados y facilitar la experiencia de compra.
-Tecnologías Utilizadas:
-Frontend:
+- **Carrito de Compras Dinámico**  
+  - Posibilidad de agregar productos al carrito con validación para evitar duplicados.  
+  - Gestión fácil de cantidades antes del proceso de pago.
 
-HTML, CSS y JavaScript para la creación de una interfaz intuitiva y dinámica.
-Backend:
+---
 
-API propia desarrollada con Node.js para manejar la lógica de negocios y almacenamiento.
-Base de datos MySQL para gestionar usuarios, productos e historial de compras.
-Integraciones:
+## 🛠️ **Tecnologías Utilizadas**
 
-MercadoPago API para la gestión de pagos.
-Librerías para manejar pagos en criptomonedas.
-Flujo de Usuario:
-Registro/Iniciar Sesión: El usuario crea su cuenta o inicia sesión con sus credenciales para acceder a todas las funciones.
+### **Frontend:**
+- HTML, CSS, y JavaScript para crear una interfaz intuitiva y dinámica.
 
-Navegación y Selección: Puede explorar productos en categorías y agregar los deseados al carrito.
 
-Gestión del Carrito: Se puede verificar el contenido del carrito, modificar cantidades y proceder al pago.
+### **Integraciones:**
+- **MercadoPago API** para la gestión de pagos.
+- Librerías para pagos con criptomonedas.
 
-Pago: Escoge su método de pago preferido (MercadoPago o Criptomonedas).
+---
 
-Post-Compra:
+## 📚 **Flujo de Usuario**
 
-Acceso al historial de compras.
-En "Tu Perfil", puede visualizar y actualizar información personal.
+1. **Registro/Iniciar Sesión:**  
+   El usuario crea una cuenta o accede con sus credenciales para disfrutar de las funciones.
+
+2. **Navegación y Selección:**  
+   Puede explorar productos y añadir los deseados al carrito.
+
+3. **Gestión del Carrito:**  
+   Verifica el contenido del carrito, modifica cantidades y procede al pago.
+
+4. **Pago:**  
+   Escoge entre los métodos de pago disponibles (MercadoPago o Criptomonedas).
+
+5. **Post-Compra:**  
+   - Revisa su historial de compras.  
+   - Gestiona su información personal desde la sección "Tu Perfil".
+
+---
 
 
